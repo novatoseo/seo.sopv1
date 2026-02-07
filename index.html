@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SOP SEO Calculadoras — Gamificado</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,500;9..40,700;9..40,800&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -20,910 +20,341 @@ body{background:#080c14;color:#e2e8f0;font-family:'DM Sans','Segoe UI',system-ui
 .mono{font-family:'Space Mono',monospace}
 .code{font-family:'JetBrains Mono','Fira Code',monospace}
 .hidden{display:none!important}
-
-/* Badge overlay */
 .badge-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;animation:fadeIn .3s}
 .badge-card{background:linear-gradient(145deg,#1e293b,#0f172a);border:2px solid #f59e0b;border-radius:28px;padding:52px 48px;text-align:center;box-shadow:0 0 100px rgba(245,158,11,.2);animation:popIn .4s cubic-bezier(.175,.885,.32,1.275);max-width:400px;width:90%}
-.badge-icon{font-size:72px;margin-bottom:20px}
-.badge-label{color:#f59e0b;font-size:12px;font-weight:700;letter-spacing:5px;margin-bottom:8px}
-.badge-name{color:#f1f5f9;font-size:30px;font-weight:800;margin-bottom:28px}
-.badge-btn{background:linear-gradient(135deg,#f59e0b,#d97706);border:none;color:#000;font-weight:800;padding:14px 36px;border-radius:14px;cursor:pointer;font-size:15px;font-family:inherit}
-
-/* Prompt blocks */
 .prompt-block{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:14px;margin-bottom:20px;overflow:hidden}
 .prompt-toggle{width:100%;background:none;border:none;color:#e2e8f0;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:inherit;font-size:15px;font-weight:700;text-align:left}
 .prompt-toggle:hover{background:rgba(255,255,255,.02)}
-.prompt-icon{color:#f59e0b;font-size:18px;margin-right:10px}
 .prompt-arrow{transition:transform .3s;font-size:11px;opacity:.4}
 .prompt-arrow.open{transform:rotate(180deg)}
 .prompt-body{padding:0 22px 22px}
-.prompt-note{color:#f59e0b;font-size:13px;margin-bottom:14px;font-style:italic;line-height:1.5}
 .prompt-pre{background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:18px;color:#cbd5e1;font-size:12.5px;line-height:1.7;overflow-x:auto;white-space:pre-wrap;word-break:break-word;max-height:520px;overflow-y:auto;font-family:'JetBrains Mono','Fira Code',monospace}
-.copy-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:#94a3b8;padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:all .25s;font-family:inherit;font-weight:600;float:right;margin-bottom:10px}
+.copy-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:#94a3b8;padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:all .25s;font-family:inherit;font-weight:600}
 .copy-btn.copied{background:#22c55e;color:#fff;border-color:#22c55e}
-
-/* Info boxes */
 .info-box{border-radius:12px;padding:18px;margin-top:16px}
-.info-box.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25)}
-.info-box.green{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25)}
-.info-box.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25)}
-.info-box.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.25)}
-.info-box.purple{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.25)}
-.info-box.pink{background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.25)}
-
-/* Section titles */
 .section-title{color:#e2e8f0;font-size:16px;font-weight:700;margin-top:32px;margin-bottom:14px;font-family:'Space Mono',monospace;border-bottom:1px solid rgba(255,255,255,.06);padding-bottom:10px}
 .step-list{color:#cbd5e1;font-size:14px;line-height:2.2;padding-left:22px;margin:0}
-
-/* Check items */
 .check-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;cursor:pointer;font-size:14px;line-height:1.5;transition:color .2s}
-.check-item.done{color:#22c55e}
-.check-item.undone{color:#94a3b8}
 .check-box{width:22px;height:22px;min-width:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .2s;margin-top:1px}
-.check-box.done{border:2px solid #22c55e;background:rgba(34,197,94,.12)}
-.check-box.undone{border:2px solid rgba(255,255,255,.18);background:transparent}
-.check-text.done{text-decoration:line-through;opacity:.55}
-
-/* Phase cards */
 .phase-card{border-radius:16px;padding:20px 24px;cursor:pointer;transition:all .2s}
 .phase-card:hover{transform:translateX(4px)}
-
-/* Buttons */
 .complete-btn{width:100%;padding:18px 24px;border:none;border-radius:14px;font-size:16px;font-weight:800;cursor:pointer;font-family:'Space Mono',monospace;letter-spacing:1px;transition:transform .15s;margin-top:12px}
 .complete-btn:active{transform:scale(.97)}
-.complete-btn.gold{background:linear-gradient(135deg,#f59e0b,#d97706);color:#000}
-.complete-btn.green{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
-
-/* Nav bar */
 .nav-bar{background:rgba(0,0,0,.5);border-bottom:1px solid rgba(255,255,255,.06);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(16px)}
 .back-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#94a3b8;padding:8px 18px;border-radius:8px;cursor:pointer;font-size:13px;font-family:inherit;font-weight:600;transition:all .2s}
 .back-btn:hover{background:rgba(255,255,255,.1);color:#e2e8f0}
-
-/* Sub tabs */
 .sub-tab{padding:12px 22px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;font-family:inherit;transition:all .2s;border:none;color:#fff}
-.sub-tab.active-blue{background:#3b82f6}
-.sub-tab.active-purple{background:#8b5cf6}
-.sub-tab.active-pink{background:#ec4899}
-.sub-tab.inactive{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
-
-/* Hero */
 .hero{background:linear-gradient(170deg,#0c1220,#0a0f1a 40%,#111827);border-bottom:1px solid rgba(255,255,255,.04);padding:56px 20px 52px;text-align:center;position:relative;overflow:hidden}
 .hero-grid{position:absolute;inset:0;opacity:.04;background-image:linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px);background-size:48px 48px}
 .hero-inner{position:relative;max-width:700px;margin:0 auto}
 .hero-tag{display:inline-block;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);border-radius:8px;padding:6px 16px;font-size:12px;font-weight:700;color:#f59e0b;letter-spacing:2px;margin-bottom:20px}
 .hero-title{font-size:clamp(28px,5vw,44px);font-weight:800;line-height:1.15;margin-bottom:16px;background:linear-gradient(135deg,#f1f5f9,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:clamp(15px,2.5vw,18px);color:#64748b;margin-bottom:36px;line-height:1.6}
-
-/* XP bar */
-.xp-wrap{max-width:420px;margin:0 auto}
-.xp-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
-.xp-bar-outer{height:10px;background:rgba(255,255,255,.04);border-radius:5px;border:1px solid rgba(255,255,255,.06);overflow:hidden}
-.xp-bar-inner{height:100%;border-radius:5px;transition:width .8s cubic-bezier(.22,1,.36,1)}
-.xp-bar-inner.complete{background:linear-gradient(90deg,#22c55e,#16a34a)}
-.xp-bar-inner.progress{background:linear-gradient(90deg,#f59e0b,#ef4444,#ec4899);box-shadow:0 0 12px rgba(245,158,11,.3)}
-
-/* Badges row */
-.badges-row{margin-top:20px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
-.badge-pill{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:4px 12px;font-size:11px;color:#f59e0b;font-weight:700}
-
-/* Timeline */
-.timeline-wrap{max-width:680px;margin:0 auto;padding:40px 20px 80px}
-.timeline-item{position:relative;padding-left:52px;margin-bottom:16px}
-.timeline-line{position:absolute;left:21px;top:48px;bottom:-16px;width:2px;background:rgba(34,197,94,.25)}
-.timeline-dot{position:absolute;left:8px;top:16px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800}
-.timeline-dot.done{background:#22c55e;color:#fff}
-.timeline-dot.next{background:#f59e0b;color:#000;animation:pulse 2s infinite}
-
-/* Phase detail */
-.phase-detail{max-width:780px;margin:0 auto;padding:0 20px 60px;animation:fadeIn .4s}
-.phase-header{padding:48px 20px 0;max-width:780px;margin:0 auto}
-.phase-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
-.phase-tag{border-radius:8px;padding:5px 14px;font-size:12px}
-
-/* Final card */
-.final-card{margin-top:48px;padding:44px 32px;background:linear-gradient(145deg,rgba(34,197,94,.06),rgba(245,158,11,.04));border:2px solid rgba(34,197,94,.2);border-radius:24px;text-align:center;animation:fadeIn .6s}
-.final-title{font-size:28px;font-weight:800;margin-bottom:8px;background:linear-gradient(135deg,#22c55e,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.final-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:32px}
-.final-item{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.12);border-radius:10px;padding:12px;font-size:12px;color:#4ade80;font-weight:600}
-.reset-btn{margin-top:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#64748b;padding:10px 24px;border-radius:10px;cursor:pointer;font-size:12px;font-family:inherit}
-
-/* QA progress */
-.qa-bar-outer{height:8px;background:rgba(255,255,255,.05);border-radius:4px;margin-bottom:6px}
-.qa-bar-inner{height:100%;border-radius:4px;transition:width .4s}
-
-/* Timeline summary */
-.summary-box{margin-top:40px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:24px}
-.summary-grid{display:grid;grid-template-columns:1fr auto;gap:8px 20px;font-size:13px}
 </style>
 </head>
 <body>
 
-<div id="badge-popup" class="badge-overlay hidden">
-  <div class="badge-card">
-    <div id="badge-popup-icon" class="badge-icon"></div>
-    <div class="badge-label mono">BADGE DESBLOQUEADO</div>
-    <div id="badge-popup-name" class="badge-name mono"></div>
-    <button class="badge-btn" onclick="closeBadge()">¡SIGUIENTE FASE!</button>
+<div id="badge-popup" class="badge-overlay hidden" onclick="closeBadge()">
+  <div class="badge-card" onclick="event.stopPropagation()">
+    <div id="bp-icon" style="font-size:72px;margin-bottom:20px"></div>
+    <div class="mono" style="color:#f59e0b;font-size:12px;font-weight:700;letter-spacing:5px;margin-bottom:8px">BADGE DESBLOQUEADO</div>
+    <div id="bp-name" class="mono" style="color:#f1f5f9;font-size:30px;font-weight:800;margin-bottom:28px"></div>
+    <button onclick="closeBadge()" style="background:linear-gradient(135deg,#f59e0b,#d97706);border:none;color:#000;font-weight:800;padding:14px 36px;border-radius:14px;cursor:pointer;font-size:15px;font-family:inherit">¡SIGUIENTE FASE!</button>
   </div>
 </div>
 
-<div id="view-map"></div>
-<div id="view-phase" class="hidden"></div>
+<div id="app"></div>
 
 <script>
-// ══════════════════════════════════════
-// DATA
-// ══════════════════════════════════════
-const PHASES = [
-  {id:1,icon:"💡",title:"Generar 100 Ideas de Nichos",subtitle:"Opciones infinitas. Elige la que TE APASIONE.",time:"8-10 min",xp:150,output:"Lista de 100 nichos viables",badge:"IDEATOR",badgeIcon:"🧠"},
-  {id:2,icon:"🔍",title:"Análisis Competencia & Arquitectura",subtitle:"Espía a la competencia. Luego, supéralos.",time:"15-20 min",xp:250,output:"Lista de URLs con análisis",badge:"STRATEGIST",badgeIcon:"🎯"},
-  {id:3,icon:"🔑",title:"Keyword Research Profundo",subtitle:"Encuentra las palabras clave que Google ADORA.",time:"12-15 min",xp:300,output:"Inputs organizados para cada URL",badge:"KEYWORD HUNTER",badgeIcon:"🏹"},
-  {id:4,icon:"⚙️",title:"Crear URLs (Calc + Blog + Tools)",subtitle:"Cada página = un archivo .html independiente",time:"5-10 min c/u",xp:500,output:"N URLs SEO optimizadas",badge:"BUILDER",badgeIcon:"🏗️"},
-  {id:5,icon:"⚖️",title:"Crear Páginas Legales",subtitle:"Protección legal. Necesarias para operar.",time:"25-30 min",xp:200,output:"Privacidad, Términos, Aviso Legal",badge:"COMPLIANT",badgeIcon:"🛡️"},
-  {id:6,icon:"🏠",title:"Página Inicio + Header/Footer",subtitle:"Tu vitrina al mundo.",time:"15-17 min",xp:250,output:"index.html + header-footer.html",badge:"ARCHITECT",badgeIcon:"🏛️"},
-  {id:7,icon:"✅",title:"QA Final & Publicación",subtitle:"Últimas revisiones. Luego: al mundo.",time:"10-15 min",xp:350,output:"Sitio completamente funcional",badge:"LAUNCHER",badgeIcon:"🚀"},
+// ══════════════════════ DATA ══════════════════════
+var PHASES=[
+{id:1,icon:"💡",title:"Generar 100 Ideas de Nichos",subtitle:"Opciones infinitas. Elige la que TE APASIONE.",time:"8-10 min",xp:150,output:"Lista de 100 nichos viables",badge:"IDEATOR",bi:"🧠"},
+{id:2,icon:"🔍",title:"Análisis Competencia & Arquitectura",subtitle:"Espía a la competencia. Luego, supéralos.",time:"15-20 min",xp:250,output:"Lista de URLs con análisis",badge:"STRATEGIST",bi:"🎯"},
+{id:3,icon:"🔑",title:"Keyword Research Profundo",subtitle:"Encuentra las palabras clave que Google ADORA.",time:"12-15 min",xp:300,output:"Inputs organizados para cada URL",badge:"KEYWORD HUNTER",bi:"🏹"},
+{id:4,icon:"⚙️",title:"Crear URLs (Calc + Blog + Tools)",subtitle:"Cada página = un archivo .html independiente",time:"5-10 min c/u",xp:500,output:"N URLs SEO optimizadas",badge:"BUILDER",bi:"🏗️"},
+{id:5,icon:"⚖️",title:"Crear Páginas Legales",subtitle:"Protección legal. Necesarias para operar.",time:"25-30 min",xp:200,output:"Privacidad, Términos, Aviso Legal",badge:"COMPLIANT",bi:"🛡️"},
+{id:6,icon:"🏠",title:"Página Inicio + Header/Footer",subtitle:"Tu vitrina al mundo.",time:"15-17 min",xp:250,output:"index.html + header-footer.html",badge:"ARCHITECT",bi:"🏛️"},
+{id:7,icon:"✅",title:"QA Final & Publicación",subtitle:"Últimas revisiones. Luego: al mundo.",time:"10-15 min",xp:350,output:"Sitio completamente funcional",badge:"LAUNCHER",bi:"🚀"}
 ];
-const TOTAL_XP = PHASES.reduce((s,p)=>s+p.xp,0);
+var TXP=PHASES.reduce(function(s,p){return s+p.xp},0);
 
-let completed = [];
-try { completed = JSON.parse(localStorage.getItem('sop_done')||'[]'); } catch(e){}
-let qaChecks = {};
-try { qaChecks = JSON.parse(localStorage.getItem('sop_qa')||'{}'); } catch(e){}
+var completed=[];try{completed=JSON.parse(localStorage.getItem('sop_done')||'[]')}catch(e){}
+var qaChecks={};try{qaChecks=JSON.parse(localStorage.getItem('sop_qa')||'{}')}catch(e){}
 
-function save(){
-  try{localStorage.setItem('sop_done',JSON.stringify(completed));localStorage.setItem('sop_qa',JSON.stringify(qaChecks));}catch(e){}
-}
-function getXP(){return completed.reduce((s,id)=>s+(PHASES.find(p=>p.id===id)?.xp||0),0)}
-function getLevel(){const n=completed.length;return n===0?"NOVATO":n<=2?"APRENDIZ":n<=4?"PRO":n<=6?"EXPERTO":"MAESTRO SEO"}
-function getPct(){return Math.round((getXP()/TOTAL_XP)*100)}
+function save(){try{localStorage.setItem('sop_done',JSON.stringify(completed));localStorage.setItem('sop_qa',JSON.stringify(qaChecks))}catch(e){}}
+function getXP(){var s=0;for(var i=0;i<completed.length;i++){var p=PHASES.find(function(x){return x.id===completed[i]});if(p)s+=p.xp}return s}
+function getLevel(){var n=completed.length;return n===0?"NOVATO":n<=2?"APRENDIZ":n<=4?"PRO":n<=6?"EXPERTO":"MAESTRO SEO"}
+function getPct(){return Math.round((getXP()/TXP)*100)}
 
-// ══════════════════════════════════════
-// BADGE POPUP
-// ══════════════════════════════════════
-function showBadge(phase){
-  document.getElementById('badge-popup-icon').textContent=phase.badgeIcon;
-  document.getElementById('badge-popup-name').textContent=phase.badge;
-  document.getElementById('badge-popup').classList.remove('hidden');
-}
+function showBadge(p){document.getElementById('bp-icon').textContent=p.bi;document.getElementById('bp-name').textContent=p.badge;document.getElementById('badge-popup').classList.remove('hidden')}
 function closeBadge(){document.getElementById('badge-popup').classList.add('hidden')}
 
-// ══════════════════════════════════════
-// COPY
-// ══════════════════════════════════════
-function copyPrompt(btnId,text){
-  navigator.clipboard.writeText(text).then(()=>{
-    const b=document.getElementById(btnId);
-    b.textContent='✓ Copiado';b.classList.add('copied');
-    setTimeout(()=>{b.textContent='📋 Copiar prompt';b.classList.remove('copied')},2000);
-  });
+// ══════════════════════ PROMPTS ══════════════════════
+var P={};
+P.P1="=== GENERADOR DE 100 IDEAS DE NICHOS SEO RENTABLES ===\n\nCONTEXTO:\nSoy emprendedor digital que quiere crear sitios de calculadoras online para ganar dinero.\nObjetivo: Obtener 100 ideas de nichos REALES y VIABLES en [PAÍS-DESTINO].\n\nCRITERIOS DE FILTRO (ESTRICTOS):\n1. Volumen de búsquedas: 600-10000/mes (debe tener demanda real)\n2. Competencia: BAJA-MEDIA (no dominado por Google o sitios gigantes)\n3. Potencial monetario: EUR 500-3000+/mes realista\n4. Validación: Que EXISTA demanda real en [PAÍS-DESTINO]\n5. Calculadora viable: Que tenga sentido crear una herramienta interactiva\n\nINSTRUCCIONES DE ANÁLISIS:\nPara cada nicho, debes:\n- Pensar COMO PERSONA que vive en [PAÍS-DESTINO]\n- Entender necesidades reales y psicología del mercado\n- Investigar micronichos no saturados\n- Considerar estacionalidad y tendencias\n- Pensar en PROBLEMAS reales que la gente resuelve con calculadoras\n\nDIVERSIDAD DE CATEGORÍAS:\nIncluye nichos de:\n- Finanzas (hipotecas, créditos, impuestos, inversiones)\n- Construcción & Hogar (presupuestos, materiales, reforma)\n- Salud & Fitness (calorías, IMC, edad biológica, etc.)\n- Educación (becas, costos estudio, etc.)\n- Energía (consumo eléctrico, solar, etc.)\n- Seguros (cálculo de primas, etc.)\n- Viajes (presupuestos, conversiones)\n- Negocios (márgenes, ROI, payback, etc.)\n- Automotor (financiamiento, consumo combustible)\n- Y más...\n\nFORMATO DE RESPUESTA (OBLIGATORIO):\nDevuelve EXACTAMENTE 100 ideas en este formato CSV:\n\nRanking | Nicho | Palabra Clave Principal | Volumen/Mes Est. | Viabilidad | Por Qué Funciona | Potencial Mensual EUR | Categoría\n\nEjemplo de filas:\n1 | Calculadora de Hipotecas | \"hypothekenrechner\" | 1800 | ALTA | Alemanes buscan financiamiento. Alto ticket. | 1500-2500 | Finanzas\n2 | Calculadora de Impuestos | \"steuerrechner\" | 2100 | ALTA | Anual. Millones lo buscan. Recurrente. | 1200-2000 | Impuestos\n\nREGLAS IMPORTANTES:\n- NO repitas nichos (cada uno único)\n- Los volúmenes deben ser REALISTAS\n- Incluye nichos obvios Y nichos ocultos\n- Prioriza \"evergreen\"\n- Considera demanda REAL, no especulación\n\nAHORA GENERA LOS 100 NICHOS.\nResponde en formato CSV directo (sin preamble ni explicaciones).";
+
+P.P2="=== ANÁLISIS COMPETIDOR & ARQUITECTURA DE URLs ===\n\nCONTEXTO:\nElegí el nicho: [NICHO-ELEGIDO]\nPalabra clave principal: [PALABRA-CLAVE-PRINCIPAL]\nPaís/Idioma: [PAÍS-IDIOMA]\n\nPARTE 1: ANÁLISIS DE COMPETENCIA\n\nNecesito que analices a los competidores TOP 10 de esta palabra clave:\n- ¿Cuántas URLs/páginas tienen cada sitio?\n- ¿Cuál es la estructura de navegación?\n- ¿Tienen calculadora, blog, o ambas?\n- ¿Qué palabras clave secundarias atacan?\n- ¿Cuántos artículos de blog?\n- ¿Tienen \"tools\" o herramientas secundarias?\n\nRespuesta formato:\n**Competidor 1 (sitio):**\n- URLs totales: [número]\n- Estructura: [descripción]\n- Herramientas: [lista]\n- Palabras clave: [lista de 5 principales]\n- Estrategia: [resumen]\n[Repite para competidores 2-10]\n\nPARTE 2: ANÁLISIS DE GAPS\n- ¿Qué URLs crean los competidores?\n- ¿Qué Keywords NO atacan (oportunidades)?\n- ¿Qué long-tail desatendidas?\n- ¿Hay demanda sin oferta?\n\nPARTE 3: ARQUITECTURA RECOMENDADA\n1. ¿Cuántas URLs MÍNIMO? JUSTIFICA.\n2. Para CADA URL: Nombre, URL amigable, KW objetivo, Búsquedas/mes, Tipo, Justificación, Dificultad SEO, Prioridad.\n3. Estructura en orden de importancia.\n\nPARTE 4: VENTAJA COMPETITIVA\n¿Cómo SUPERAR a la competencia? 3-5 acciones específicas.\n\nFORMATO FINAL (TABLA):\n| Prioridad | Tipo | URL | Palabra Clave | Volumen | Dificultad | Por Qué |\n\nRESPONDE TODAS LAS PARTES EN ORDEN.";
+
+P.P3="=== KEYWORD RESEARCH PROFUNDO (100+ KEYWORDS) + INPUTS FASE 4 ===\n\nCONTEXTO:\nNicho: [NICHO]\nPalabra clave principal: [PALABRA-CLAVE-PRINCIPAL]\nIdioma: [IDIOMA]\nPaís: [PAÍS]\nURLs planeadas: [URLS-ARQUITECTURA]\n\nINSTRUCCIONES CRÍTICAS:\n1. GENERA 100+ palabras clave REALES.\n2. Cada keyword: palabra exacta, búsquedas/mes, intención, categoría, dificultad, justificación, URL destino.\n3. THINK CULTURALLY: ¿Cómo busca la gente? ¿Qué problemas? ¿Tendencias? ¿Estacionalidad?\n4. VARIEDADES: Marca+genérica, preguntas, long-tail, comparativas, how-to, problemas.\n\nPARTE 1: TABLA COMPLETA\n| Ranking | Palabra Clave | Búsquedas/Mes | Intención | Categoría | Dificultad | URL Destino | Justificación |\nGenera 100+ rows.\n\nPARTE 2: INPUTS POR URL\nPara CADA URL genera bloque con:\n- URL, Tipo, KW Primaria, Volumen Total\n- Lista de KWs a atacar\n- Descripción contenido ideal\n- H2s sugeridos\n- JSON de inputs para Fase 4:\n{\n  \"nombre_pagina\": \"[Nombre]\",\n  \"url_amigable\": \"[url]\",\n  \"tipo\": \"[CALCULADORA/BLOG/HERRAMIENTA]\",\n  \"palabra_clave_principal\": \"[KW]\",\n  \"palabras_clave_lsi\": [\"kw1\",\"kw2\",\"kw3\"],\n  \"descripcion\": \"[1-2 líneas]\",\n  \"intencion\": \"[TRANSACCIONAL/INFORMATIVA]\",\n  \"volumen_total\": [número],\n  \"publico_objetivo\": \"[Descripción]\",\n  \"cta_principal\": \"[Botón]\",\n  \"si_es_calculadora\": {\n    \"inputs_necesarios\": [\"Input 1\",\"Input 2\"],\n    \"outputs_esperados\": [\"Output 1\",\"Output 2\"],\n    \"formula_descripcion\": \"[Fórmula]\"\n  },\n  \"si_es_blog\": {\n    \"longitud_palabras\": 1500,\n    \"h2_principales\": [\"H2 1\",\"H2 2\",\"H2 3\"],\n    \"incluir_ejemplos\": true,\n    \"incluir_datos\": true\n  }\n}\nREPITE para CADA URL.\n\nPARTE 3: RESUMEN EJECUTIVO\nTotal URLs, Total KWs, Volumen combinado, Dificultad promedio, Prioridad.";
+
+P.P4A="=== GENERADOR DE CALCULADORA - HTML + JAVASCRIPT COMPLETO ===\n\nDATOS (del bloque JSON Fase 3):\nNombre: [nombre_pagina]\nURL: /[url_amigable]/\nKW principal: [palabra_clave_principal]\nKW LSI: [palabras_clave_lsi]\nDescripción: [descripcion]\nPúblico: [público_objetivo]\nCTA: [cta_principal]\nINPUTS: [si_es_calculadora.inputs_necesarios]\nOUTPUTS: [si_es_calculadora.outputs_esperados]\nFÓRMULA: [si_es_calculadora.formula_descripcion]\n\nESPECIFICACIONES:\n1. DISEÑO: Gradiente azul (#667eea) a púrpura (#764ba2), Responsive 375px+\n2. FUNCIONALIDAD: Vanilla JS, Validación, 2 decimales EUR\n3. SEO: title+KW, meta description, h1, Schema WebApplication+Calculator\n4. CONVERSIÓN: Botón CTA prominente, Resultado con animación, Disclaimer\n\nREQUISITOS:\n✅ Funciona al copiar tal cual\n✅ Validación inputs\n✅ Resultados correctos\n✅ Mobile first\n✅ Sin console.log()\n✅ Gradiente profesional\n\nGENERA: UN ÚNICO BLOQUE HTML completo (copy-paste ready) con CSS inline, JS funcional, meta tags, Schema.";
+
+P.P4B="=== GENERADOR DE ARTÍCULO BLOG - HTML COMPLETO ===\n\nDATOS (del bloque JSON Fase 3):\nTítulo: [nombre_pagina]\nURL: /[url_amigable]/\nKW principal: [palabra_clave_principal]\nKW LSI: [palabras_clave_lsi]\nDescripción: [descripcion]\nIntención: [intención]\nPúblico: [público_objetivo]\nLongitud: [si_es_blog.longitud_palabras] palabras\nH2s: [si_es_blog.h2_principales]\n\nESTRUCTURA:\n[INTRO 80-120 palabras] - Engancha, promete solución, incluye KW\n[H2: SUBTEMA 1 - 250-350] - KW LSI #1, dato/estadística\n[H2: SUBTEMA 2 - 250-350] - KW LSI #2, casos reales\n[H2: SUBTEMA 3 - 250-350] - KW LSI #3, objeciones\n[H2: CÓMO USAR CALCULADORA - 150-200] - Paso a paso, LINK\n[CONCLUSIÓN - 100-150] - Resume, CTA final\n\nSEO: Title 60 chars, Meta 155 chars, 1xH1, 4-5xH2, KW 0.5-1%, 2 internal links.\nTONO: Conversacional, sin jerga, párrafos cortos.\n\nGENERA: HTML COMPLETO como UN ÚNICO BLOQUE con article, Schema BlogPosting.";
+
+P.P4C="=== GENERADOR DE HERRAMIENTA/COMPARADOR - HTML COMPLETO ===\n\nDATOS (del bloque JSON Fase 3):\nNombre: [nombre_pagina]\nURL: /[url_amigable]/\nKW: [palabra_clave_principal]\nDescripción: [descripcion]\nPúblico: [público_objetivo]\nCTA: [cta_principal]\n\nOBJETIVO: Página INTERACTIVA con HTML responsive, JS vanilla, SEO optimizado, conversión alta.\n\nGENERA HTML COMPLETO Y FUNCIONAL como UN ÚNICO BLOQUE .html.";
+
+P.P5="=== GENERADOR DE PÁGINAS LEGALES ===\n\nPARÁMETROS:\nNombre sitio: [NOMBRE-SITIO]\nDominio: [DOMINIO]\nEmail: [EMAIL-CONTACTO]\nPaís: [PAÍS]\nTipo: [POLÍTICA PRIVACIDAD / TÉRMINOS DE SERVICIO / AVISO LEGAL]\n\nINSTRUCCIONES: Crea HTML COMPLETA y LEGAL para [TIPO-PAGINA].\n- Cumplir RGPD/LOPD\n- Cookies, datos personales, derechos usuario\n- Secciones específicas [PAÍS]\n\nPOLÍTICA PRIVACIDAD: Introducción, Responsable, Base legal, Datos, Derechos, Cookies, Cambios, Contacto.\nTÉRMINOS: Aceptación, Uso, PI, Limitación, Renuncia, Modificación, Jurisdicción, Contacto.\nAVISO LEGAL: Identificación, Responsabilidad, PI, Limitación, Garantías, Cookies, Cambios, Contacto.\n\nGENERA HTML COMPLETO. Disclaimer: no es asesoramiento legal.";
+
+P.P6="=== GENERADOR DE PÁGINA INICIO - HTML COMPLETO ===\n\nDATOS:\nNombre: [NOMBRE-SITIO]\nTagline: [TAGLINE-CORTO]\nDescripción: [DESCRIPCIÓN-LARGA]\nCalculadoras: [URLS-CALCULADORAS]\nBlog: [URLS-ARTICULOS-BLOG]\n\nESTRUCTURA:\n1. HERO SECTION\n2. GRID DE CALCULADORAS (cards)\n3. CARACTERÍSTICAS\n4. PREVIEW BLOG\n5. FOOTER (iframe)\n\nColores: #667eea → #764ba2. Mobile first 375px.\nGENERA HTML COMPLETO, HERMOSO Y RESPONSIVE.";
+
+P.P7="=== GENERADOR DE HEADER & FOOTER COMPARTIDO ===\n\nDATOS:\nMarca: [NOMBRE-MARCA]\nDominio: [DOMINIO]\nLinks menú: [URLS-MENU]\n\nHEADER: Sticky, gradiente #667eea→#764ba2, texto blanco, responsive.\nFOOTER: Fondo #1a1a1a, texto #999, columnas, copyright, hover.\n\nGENERA HTML COMPLETO CON HEADER Y FOOTER.";
+
+// ══════════════════════ DOM HELPERS ══════════════════════
+function el(tag,attrs){
+  var e=document.createElement(tag);
+  if(!attrs)return e;
+  if(attrs.cls)e.className=attrs.cls;
+  if(attrs.id)e.id=attrs.id;
+  if(attrs.html)e.innerHTML=attrs.html;
+  if(attrs.text)e.textContent=attrs.text;
+  if(attrs.css)Object.assign(e.style,attrs.css);
+  if(attrs.onclick)e.addEventListener('click',attrs.onclick);
+  return e;
+}
+function add(parent){for(var i=1;i<arguments.length;i++)if(arguments[i])parent.appendChild(arguments[i]);return parent}
+
+// ══════════════════════ REUSABLE BUILDERS ══════════════════════
+function mkSectionTitle(txt){return el('h3',{cls:'section-title',html:txt})}
+function mkStepList(steps){return el('ol',{cls:'step-list',html:steps.map(function(s){return '<li>'+s+'</li>'}).join('')})}
+function mkParagraph(innerHTML){return el('p',{html:innerHTML,css:{color:'#94a3b8',fontSize:'14px',lineHeight:'1.8'}})}
+function mkInfoBox(bgColor,borderColor,innerHTML){var d=el('div',{cls:'info-box',html:innerHTML});d.style.background=bgColor;d.style.border='1px solid '+borderColor;return d}
+
+function mkPromptBlock(title,note,promptKey){
+  var block=el('div',{cls:'prompt-block'});
+  var arrow=el('span',{cls:'prompt-arrow',text:'▼'});
+  var toggle=el('button',{cls:'prompt-toggle'});
+  toggle.innerHTML='<span style="display:flex;align-items:center;gap:10px"><span style="color:#f59e0b;font-size:18px">📄</span>'+title+'</span>';
+  toggle.appendChild(arrow);
+  var body=el('div',{cls:'prompt-body',css:{display:'none'}});
+  if(note)add(body,el('p',{html:note,css:{color:'#f59e0b',fontSize:'13px',marginBottom:'14px',fontStyle:'italic',lineHeight:'1.5'}}));
+  var copyBtn=el('button',{cls:'copy-btn',text:'📋 Copiar prompt',onclick:function(){
+    navigator.clipboard.writeText(P[promptKey]).then(function(){
+      copyBtn.textContent='✓ Copiado';copyBtn.classList.add('copied');
+      setTimeout(function(){copyBtn.textContent='📋 Copiar prompt';copyBtn.classList.remove('copied')},2000);
+    });
+  }});
+  add(body,el('div',{css:{display:'flex',justifyContent:'flex-end',marginBottom:'10px'}}).appendChild(copyBtn).parentNode);
+  var pre=el('pre',{cls:'prompt-pre'});pre.textContent=P[promptKey];
+  add(body,pre);
+  toggle.addEventListener('click',function(){var v=body.style.display==='none';body.style.display=v?'block':'none';arrow.classList.toggle('open',v)});
+  return add(block,toggle,body);
 }
 
-// ══════════════════════════════════════
-// PROMPT DATA
-// ══════════════════════════════════════
-const PROMPTS = {};
-
-PROMPTS.P1 = `=== GENERADOR DE 100 IDEAS DE NICHOS SEO RENTABLES ===
-
-CONTEXTO:
-Soy emprendedor digital que quiere crear sitios de calculadoras online para ganar dinero.
-Objetivo: Obtener 100 ideas de nichos REALES y VIABLES en [PAÍS-DESTINO].
-
-CRITERIOS DE FILTRO (ESTRICTOS):
-1. Volumen de búsquedas: 600-10000/mes (debe tener demanda real)
-2. Competencia: BAJA-MEDIA (no dominado por Google o sitios gigantes)
-3. Potencial monetario: EUR 500-3000+/mes realista
-4. Validación: Que EXISTA demanda real en [PAÍS-DESTINO]
-5. Calculadora viable: Que tenga sentido crear una herramienta interactiva
-
-INSTRUCCIONES DE ANÁLISIS:
-Para cada nicho, debes:
-- Pensar COMO PERSONA que vive en [PAÍS-DESTINO]
-- Entender necesidades reales y psicología del mercado
-- Investigar micronichos no saturados
-- Considerar estacionalidad y tendencias
-- Pensar en PROBLEMAS reales que la gente resuelve con calculadoras
-
-DIVERSIDAD DE CATEGORÍAS:
-Incluye nichos de:
-- Finanzas (hipotecas, créditos, impuestos, inversiones)
-- Construcción & Hogar (presupuestos, materiales, reforma)
-- Salud & Fitness (calorías, IMC, edad biológica, etc.)
-- Educación (becas, costos estudio, etc.)
-- Energía (consumo eléctrico, solar, etc.)
-- Seguros (cálculo de primas, etc.)
-- Viajes (presupuestos, conversiones)
-- Negocios (márgenes, ROI, payback, etc.)
-- Automotor (financiamiento, consumo combustible)
-- Y más...
-
-FORMATO DE RESPUESTA (OBLIGATORIO):
-Devuelve EXACTAMENTE 100 ideas en este formato CSV:
-
-Ranking | Nicho | Palabra Clave Principal | Volumen/Mes Est. | Viabilidad | Por Qué Funciona | Potencial Mensual EUR | Categoría
-
-Ejemplo de filas:
-1 | Calculadora de Hipotecas | "hypothekenrechner" | 1800 | ALTA | Alemanes buscan financiamiento. Alto ticket. | 1500-2500 | Finanzas
-2 | Calculadora de Impuestos | "steuerrechner" | 2100 | ALTA | Anual. Millones lo buscan. Recurrente. | 1200-2000 | Impuestos
-
-REGLAS IMPORTANTES:
-- NO repitas nichos (cada uno único)
-- Los volúmenes deben ser REALISTAS (investiga mercados reales)
-- Incluye nichos obvios Y nichos ocultos
-- Prioriza "evergreen" (buscan TODO el año, no solo ciertas épocas)
-- Considera demanda REAL, no especulación
-
-AHORA GENERA LOS 100 NICHOS.
-Responde en formato CSV directo (sin preamble ni explicaciones).`;
-
-PROMPTS.P2 = `=== ANÁLISIS COMPETIDOR & ARQUITECTURA DE URLs ===
-
-CONTEXTO:
-Elegí el nicho: [NICHO-ELEGIDO]
-Palabra clave principal: [PALABRA-CLAVE-PRINCIPAL]
-País/Idioma: [PAÍS-IDIOMA]
-
-PARTE 1: ANÁLISIS DE COMPETENCIA
-
-Necesito que analices a los competidores TOP 10 de esta palabra clave:
-- ¿Cuántas URLs/páginas tienen cada sitio?
-- ¿Cuál es la estructura de navegación?
-- ¿Tienen calculadora, blog, o ambas?
-- ¿Qué palabras clave secundarias atacan?
-- ¿Cuántos artículos de blog?
-- ¿Tienen "tools" o herramientas secundarias?
-
-Responde en este formato:
-
-**Competidor 1 (sitio):**
-- URLs totales: [número]
-- Estructura: [descripción]
-- Herramientas: [lista]
-- Palabras clave: [lista de 5 principales]
-- Estrategia: [resumen]
-
-[Repite para competidores 2-10]
-
-PARTE 2: ANÁLISIS DE GAPS
-
-Con base en lo que viste, responde:
-- ¿Qué URLs crean los competidores?
-- ¿Qué Keywords NO atacan (oportunidades)?
-- ¿Qué palabras clave long-tail están desatendidas?
-- ¿Hay demanda sin oferta?
-
-PARTE 3: ARQUITECTURA RECOMENDADA
-
-Basándote en el análisis anterior, RECOMIENDA:
-
-1. ¿Cuántas URLs MÍNIMO debe tener mi sitio? JUSTIFICA por qué ese número
-
-2. Para CADA URL propuesta:
-   - Nombre/Título: [nombre]
-   - URL amigable: /url-en-minusculas/
-   - Palabra clave objetivo: [kw]
-   - Búsquedas estimadas/mes: [número]
-   - Tipo de página: [Calculadora / Blog / Herramienta / Informativa / Legal]
-   - Por qué la incluyo: [justificación de oportunidad]
-   - Dificultad SEO: [BAJA/MEDIA/ALTA]
-   - Prioridad: [1=MÁXIMA, 2=ALTA, 3=MEDIA, 4=BAJA]
-
-3. Estructura recomendada (en orden de importancia)
-
-PARTE 4: VENTAJA COMPETITIVA
-
-¿Cómo SUPERAR a la competencia con esta arquitectura?
-- ¿Qué hacen ellos que NO haya pensado?
-- ¿Qué podría diferenciarme?
-- ¿Qué URLs ellos NO tienen que YO SÍ podría crear?
-Responde con 3-5 acciones específicas.
-
-FORMATO FINAL DE ARQUITECTURA (TABLA):
-| Prioridad | Tipo | URL | Palabra Clave | Volumen | Dificultad | Por Qué |
-
-RESPONDE TODAS LAS PARTES EN ORDEN.`;
-
-PROMPTS.P3 = `=== KEYWORD RESEARCH PROFUNDO (100+ KEYWORDS) + INPUTS FASE 4 ===
-
-CONTEXTO:
-Nicho: [NICHO]
-Palabra clave principal: [PALABRA-CLAVE-PRINCIPAL]
-Idioma: [IDIOMA]
-País: [PAÍS]
-URLs planeadas: [URLS-ARQUITECTURA - lista de URLs con tipo]
-
-INSTRUCCIONES CRÍTICAS:
-
-1. GENERA 100+ palabras clave REALES que la gente busca en [PAÍS].
-2. Cada keyword DEBE tener:
-   - La palabra exacta (como se busca)
-   - Búsquedas estimadas/mes (REALISTAS)
-   - Intención de búsqueda (INFORMATIVA/NAVEGACIONAL/TRANSACCIONAL)
-   - Categoría (CALCULADORA/BLOG/HERRAMIENTA)
-   - Dificultad SEO (BAJA/MEDIA/ALTA)
-   - Justificación psicológica
-   - URL DESTINO donde debería ir
-
-3. THINK CULTURALLY:
-   - ¿Cómo busca la gente en [PAÍS]?
-   - ¿Qué problemas reales tiene en la vida diaria?
-   - ¿Qué preocupaciones tienen sobre [NICHO]?
-   - ¿Qué tendencias afectan el mercado?
-   - ¿Qué épocas del año buscan más?
-
-4. VARIEDADES DE KEYWORDS:
-   - Marca + genérica
-   - Preguntas (cómo, qué, por qué)
-   - Long-tail específico
-   - Comparativas / How-to / Problemas
-
-PARTE 1: TABLA COMPLETA DE KEYWORDS
-| Ranking | Palabra Clave | Búsquedas/Mes | Intención | Categoría | Dificultad | URL Destino | Justificación |
-Genera TODOS los 100+ keywords en esta tabla.
-
-PARTE 2: INPUTS ORGANIZADOS PARA FASE 4
-
-Reorganiza todos los keywords por URL DESTINO.
-Para CADA URL genera un bloque con:
-- URL, Tipo, Palabra Clave Primaria, Volumen Total Estimado
-- Palabras Clave a Atacar (todas con búsquedas e intención)
-- Descripción de Contenido Ideal
-- Estructura Sugerida (H2s)
-- Inputs Específicos para IA (Fase 4) en formato JSON:
-{
-  "nombre_pagina": "[Nombre]",
-  "url_amigable": "[url]",
-  "tipo": "[CALCULADORA / BLOG / HERRAMIENTA]",
-  "palabra_clave_principal": "[KW]",
-  "palabras_clave_lsi": ["kw1", "kw2", "kw3"],
-  "descripcion": "[1-2 líneas]",
-  "intencion": "[TRANSACCIONAL / INFORMATIVA]",
-  "volumen_total": [número],
-  "publico_objetivo": "[Descripción]",
-  "cta_principal": "[Botón]",
-  "si_es_calculadora": {
-    "inputs_necesarios": ["Input 1", "Input 2"],
-    "outputs_esperados": ["Output 1", "Output 2"],
-    "formula_descripcion": "[Fórmula]"
-  },
-  "si_es_blog": {
-    "longitud_palabras": 1500,
-    "h2_principales": ["H2 1", "H2 2", "H2 3"],
-    "incluir_ejemplos": true,
-    "incluir_datos": true
-  }
+// ══════════════════════ PHASE CONTENT ══════════════════════
+function phaseContent1(c){
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Generar <strong style="color:#f59e0b">100 ideas de nichos SEO</strong> rentables para sitios de calculadoras. Cada nicho validado con volumen, viabilidad y potencial monetario.'));
+  add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList(['Copia el prompt de abajo','Personaliza SOLO [PAÍS-DESTINO] (ej: Alemania, España…)','Pega el prompt en tu IA preferida','Recibe la tabla CSV con 100 nichos','Elige 1 nicho — el que MÁS te apasione']));
+  add(c,mkSectionTitle('📄 Prompt: Generador de 100 Ideas (v3.0)'),mkPromptBlock('PROMPT 1 — Generador de 100 Ideas de Nichos SEO','Formato de salida: CSV. Personaliza SOLO [PAÍS-DESTINO].','P1'));
+  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#fbbf24;font-size:14px;margin:0;font-weight:700">📋 Output esperado</p><p style="color:#94a3b8;font-size:13px;margin-top:8px;margin-bottom:0">CSV con 100 filas: Ranking | Nicho | Palabra Clave | Volumen | Viabilidad | Justificación | Potencial | Categoría</p>'));
 }
-
-REPITE para CADA URL. Si tienes 5 URLs = 5 bloques. 20 URLs = 20 bloques.
-
-PARTE 3: RESUMEN EJECUTIVO
-Total URLs, Total Keywords, Volumen combinado, Dificultad promedio, Recomendación de Prioridad.
-
-RESPONDE CON: 1. Tabla 100+ KW  2. Bloques inputs por URL  3. Resumen ejecutivo`;
-
-PROMPTS.P4A = `=== GENERADOR DE CALCULADORA - HTML + JAVASCRIPT COMPLETO ===
-
-DATOS DE LA CALCULADORA (Copia del bloque JSON de Fase 3):
-
-Nombre: [nombre_pagina]
-URL amigable: /[url_amigable]/
-Palabra clave principal: [palabra_clave_principal]
-Palabras clave LSI: [palabras_clave_lsi]
-Descripción corta: [descripcion]
-Público objetivo: [público_objetivo]
-CTA principal: [cta_principal]
-
-INPUTS QUE NECESITA: [si_es_calculadora.inputs_necesarios]
-OUTPUTS (RESULTADOS): [si_es_calculadora.outputs_esperados]
-CÓMO FUNCIONA: [si_es_calculadora.formula_descripcion]
-
-ESPECIFICACIONES TÉCNICAS:
-1. DISEÑO: Gradiente azul (#667eea) a púrpura (#764ba2), Responsive (375px+), Labels claros
-2. FUNCIONALIDAD: Vanilla JS, Validación inputs, 2 decimales EUR, Error messages
-3. SEO: <title> con KW, <meta description>, <h1>, Schema WebApplication+Calculator
-4. CONVERSIÓN: Botón CTA prominente, Resultado con animación, Disclaimer
-
-ESTRUCTURA HTML OBLIGATORIA: HTML completo con <head>, CSS inline, <body> con formulario calculadora, Schema JSON-LD, JavaScript con función calcular().
-
-REQUISITOS:
-✅ Código funciona al copiarlo tal cual
-✅ Validación de inputs
-✅ Resultados matemáticamente correctos
-✅ Sin console.log()
-✅ Mobile first (375px)
-✅ Gradiente profesional
-✅ Sin errores ortográficos
-
-GENERA: HTML COMPLETO (copy-paste ready) como UN ÚNICO BLOQUE .html que funcione.`;
-
-PROMPTS.P4B = `=== GENERADOR DE ARTÍCULO BLOG - HTML COMPLETO ===
-
-DATOS DEL ARTÍCULO (Copia del bloque JSON de Fase 3):
-
-Nombre/Título: [nombre_pagina]
-URL amigable: /[url_amigable]/
-Palabra clave principal: [palabra_clave_principal]
-Palabras clave LSI: [palabras_clave_lsi]
-Descripción: [descripcion]
-Intención: [intención]
-Público: [público_objetivo]
-Longitud: [si_es_blog.longitud_palabras] palabras
-H2 principales: [si_es_blog.h2_principales]
-Incluir ejemplos: [si_es_blog.incluir_ejemplos]
-Incluir datos: [si_es_blog.incluir_datos]
-
-OBJETIVO: Artículo blog COMPLETO en HTML que ranquee en Google, eduque, lleve tráfico a calculadoras, SEO perfecto, engagement alto.
-
-ESTRUCTURA:
-[INTRO 80-120 palabras] - Engancha con problema, promete solución, incluye KW
-[H2: SUBTEMA 1 - 250-350 palabras] - KW LSI #1, dato/estadística, párrafos cortos
-[H2: SUBTEMA 2 - 250-350 palabras] - KW LSI #2, casos de uso reales
-[H2: SUBTEMA 3 - 250-350 palabras] - KW LSI #3, prevé objeciones
-[H2: CÓMO USAR CALCULADORA - 150-200 palabras] - Paso a paso, LINK a calculadora
-[CONCLUSIÓN - 100-150 palabras] - Resume, CTA final a calculadora
-
-SEO: Title 60 chars, Meta desc 155 chars, 1xH1 + 4-5xH2, KW density 0.5-1%, 2 links internos a calculadora.
-TONO: Conversacional, sin jerga, "tú/usted", emojis 0-2.
-FORMATO: Párrafos 2-3 oraciones, listas cuando aplique, datos verificables.
-
-GENERA: HTML COMPLETO como UN ÚNICO BLOQUE con article, Schema BlogPosting, meta tags.`;
-
-PROMPTS.P4C = `=== GENERADOR DE HERRAMIENTA/COMPARADOR - HTML COMPLETO ===
-
-DATOS (Copia del bloque JSON de Fase 3):
-
-Nombre: [nombre_pagina]
-URL: /[url_amigable]/
-Palabra clave: [palabra_clave_principal]
-Descripción: [descripcion]
-Público: [público_objetivo]
-CTA: [cta_principal]
-
-OBJETIVO: Página INTERACTIVA completa con HTML profesional responsive, JavaScript sin dependencias, SEO optimizado, Conversión alta.
-
-GENERA AHORA HTML COMPLETO Y FUNCIONAL como UN ÚNICO BLOQUE .html.`;
-
-PROMPTS.P5 = `=== GENERADOR DE PÁGINAS LEGALES ===
-
-PARÁMETROS:
-Nombre sitio: [NOMBRE-SITIO]
-Dominio: [DOMINIO]
-Email contacto: [EMAIL-CONTACTO]
-País: [PAÍS]
-Tipo de página: [POLÍTICA PRIVACIDAD / TÉRMINOS DE SERVICIO / AVISO LEGAL]
-
-INSTRUCCIONES: Crea página HTML COMPLETA y LEGAL para [TIPO-PAGINA].
-- Incluye TODO para cumplir con RGPD/LOPD
-- Menciona: cookies, datos personales, derechos usuario
-- Secciones específicas para [PAÍS]
-- Profesional pero entendible
-
-ESTRUCTURA POR TIPO:
-
-POLÍTICA DE PRIVACIDAD: Introducción, Responsable tratamiento, Base legal, Datos recopilados, Derechos usuario, Cookies, Cambios política, Contacto.
-
-TÉRMINOS DE SERVICIO: Aceptación términos, Uso del sitio, Propiedad intelectual, Limitación responsabilidad, Cláusulas renuncia, Modificación términos, Jurisdicción, Contacto.
-
-AVISO LEGAL: Identificación sitio, Responsabilidad, Propiedad intelectual, Limitación responsabilidad, Exclusión garantías, Cookies y tracking, Cambios sitio, Contacto y jurisdicción.
-
-GENERA AHORA HTML COMPLETO Y LEGAL. No es asesoramiento legal (disclaimer). Debe cumplir RGPD/LOPD.`;
-
-PROMPTS.P6 = `=== GENERADOR DE PÁGINA INICIO - HTML COMPLETO ===
-
-DATOS:
-Nombre del sitio: [NOMBRE-SITIO]
-Tagline: [TAGLINE-CORTO]
-Descripción larga: [DESCRIPCIÓN-LARGA]
-Calculadoras (nombre | URL): [URLS-CALCULADORAS]
-Artículos blog (nombre | URL): [URLS-ARTICULOS-BLOG]
-
-ESTRUCTURA:
-1. HERO SECTION (impacto)
-2. GRID DE CALCULADORAS (cards interactivas)
-3. CARACTERÍSTICAS (por qué elegirnos)
-4. PREVIEW DE BLOG (últimos artículos)
-5. FOOTER (se cargará vía iframe)
-
-Colores: Gradiente azul (#667eea) a púrpura (#764ba2)
-Diseño: Moderno, limpio, profesional. Mobile: perfecto en 375px.
-GENERA HTML COMPLETO, HERMOSO Y RESPONSIVE.`;
-
-PROMPTS.P7 = `=== GENERADOR DE HEADER & FOOTER COMPARTIDO ===
-
-DATOS:
-Nombre de marca: [NOMBRE-MARCA]
-Dominio: [DOMINIO]
-Links del menú (nombre | URL): [URLS-MENU]
-
-HEADER: Sticky, Gradiente #667eea → #764ba2, Texto blanco, Logo izquierda, Menu derecha (desktop), Responsive.
-FOOTER: Fondo #1a1a1a, Texto #999, Columnas con links, Copyright, Hover effects.
-
-GENERA HTML COMPLETO CON HEADER Y FOOTER.`;
-
-// ══════════════════════════════════════
-// RENDER HELPERS
-// ══════════════════════════════════════
-function h(tag,attrs,children){
-  let el=document.createElement(tag);
-  if(attrs)Object.entries(attrs).forEach(([k,v])=>{
-    if(k==='style'&&typeof v==='object'){Object.assign(el.style,v)}
-    else if(k==='className'){el.className=v}
-    else if(k.startsWith('on')){el.addEventListener(k.slice(2).toLowerCase(),v)}
-    else{el.setAttribute(k,v)}
-  });
-  if(children!==undefined){
-    if(typeof children==='string')el.textContent=children;
-    else if(Array.isArray(children))children.forEach(c=>{if(c)el.appendChild(typeof c==='string'?document.createTextNode(c):c)});
-    else if(children instanceof Node)el.appendChild(children);
-  }
-  return el;
+function phaseContent2(c){
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Analizar los <strong style="color:#f59e0b">TOP 10 competidores</strong> de tu nicho, encontrar gaps y diseñar la arquitectura completa de URLs.'));
+  add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList(['Toma el nicho elegido en Fase 1','Personaliza: [NICHO-ELEGIDO], [PALABRA-CLAVE-PRINCIPAL], [PAÍS-IDIOMA]','Copia y pega el prompt','Obtén análisis + arquitectura recomendada','Guarda la tabla — la necesitarás en Fase 3']));
+  add(c,mkSectionTitle('📄 Prompt: Análisis Competencia (v2.0)'),mkPromptBlock('PROMPT 2 — Análisis Competencia & Arquitectura URLs','Personaliza: [NICHO-ELEGIDO], [PALABRA-CLAVE-PRINCIPAL], [PAÍS-IDIOMA]','P2'));
+  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#fbbf24;font-size:14px;margin:0;font-weight:700">📋 Output esperado</p><p style="color:#94a3b8;font-size:13px;margin-top:8px;margin-bottom:0">Análisis detallado + tabla final de arquitectura de URLs</p>'));
 }
-function html(tag,attrs,innerHTML){let el=document.createElement(tag);if(attrs)Object.entries(attrs).forEach(([k,v])=>{if(k==='style'&&typeof v==='object')Object.assign(el.style,v);else if(k==='className')el.className=v;else el.setAttribute(k,v)});if(innerHTML)el.innerHTML=innerHTML;return el}
-
-let promptCounter=0;
-function renderPromptBlock(container,title,note,promptKey){
-  const id='pb-'+(promptCounter++);
-  const copyId='cp-'+id;
-  const block=html('div',{className:'prompt-block'});
-  const toggle=html('button',{className:'prompt-toggle'},`<span><span class="prompt-icon">📄</span>${title}</span><span class="prompt-arrow" id="arr-${id}">▼</span>`);
-  const body=html('div',{className:'prompt-body hidden',id:'body-'+id});
-  if(note)body.appendChild(html('p',{className:'prompt-note'},note));
-  body.appendChild(html('button',{className:'copy-btn',id:copyId},'📋 Copiar prompt'));
-  body.appendChild(html('pre',{className:'prompt-pre'},PROMPTS[promptKey]));
-  toggle.onclick=()=>{
-    const b=document.getElementById('body-'+id);
-    const a=document.getElementById('arr-'+id);
-    b.classList.toggle('hidden');a.classList.toggle('open');
-  };
-  document.getElementById(copyId)?.addEventListener('click',()=>copyPrompt(copyId,PROMPTS[promptKey]));
-  block.appendChild(toggle);block.appendChild(body);container.appendChild(block);
-  // Attach copy after append
-  setTimeout(()=>{
-    const cb=document.getElementById(copyId);
-    if(cb)cb.onclick=()=>copyPrompt(copyId,PROMPTS[promptKey]);
-  },0);
+function phaseContent3(c){
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Identificar <strong style="color:#f59e0b">100+ keywords reales</strong>, organizarlas por URL y generar los <strong style="color:#f59e0b">bloques JSON</strong> para Fase 4.'));
+  add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList(['Toma la arquitectura de Fase 2','Personaliza: [NICHO], [KW-PRINCIPAL], [IDIOMA], [PAÍS], [URLS-ARQUITECTURA]','Pega el prompt en tu IA','Recibe: tabla 100+ KW + bloques JSON + resumen','Guarda TODO — cada bloque JSON es input directo para Fase 4']));
+  add(c,mkSectionTitle('📄 Prompt: Keyword Research (v3.0)'),mkPromptBlock('PROMPT 3 — Keyword Research + Inputs Fase 4','Personaliza: [NICHO], [KW-PRINCIPAL], [IDIOMA], [PAÍS], [URLS-ARQUITECTURA]','P3'));
+  add(c,mkInfoBox('rgba(34,197,94,.08)','rgba(34,197,94,.25)','<p style="color:#4ade80;font-size:14px;font-weight:700;margin:0">✅ Checklist de salida</p><div style="color:#94a3b8;font-size:13px;margin-top:10px;line-height:2">☑ 100+ keywords identificadas<br>☑ Bloques JSON listos<br>☑ Agrupados por URL<br>☑ Info completa para cada página</div>'));
+  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#fbbf24;font-size:13px;margin:0">⚠️ <strong>IMPORTANTE:</strong> Cada bloque JSON es una plantilla que copiarás en el prompt de Fase 4. Guarda TODO.</p>'));
 }
-
-function renderSectionTitle(container,text){container.appendChild(html('h3',{className:'section-title'},text))}
-function renderStepList(container,steps){container.appendChild(html('ol',{className:'step-list'},steps.map(s=>`<li>${s}</li>`).join('')))}
-function renderInfoBox(container,colorClass,innerHTML){container.appendChild(html('div',{className:'info-box '+colorClass},innerHTML))}
-function renderParagraph(container,innerHTML){container.appendChild(html('p',{style:{color:'#94a3b8',fontSize:'14px',lineHeight:'1.8'}},innerHTML))}
-
-// ══════════════════════════════════════
-// PHASE CONTENT RENDERERS
-// ══════════════════════════════════════
-function renderPhase1(c){
-  renderSectionTitle(c,'🎯 Objetivo');
-  renderParagraph(c,'Generar <strong style="color:#f59e0b">100 ideas de nichos SEO</strong> rentables para sitios de calculadoras. Cada nicho validado con volumen real, viabilidad y potencial monetario.');
-  renderSectionTitle(c,'📝 Pasos a seguir');
-  renderStepList(c,['Copia el prompt de abajo','Personaliza SOLO el campo [PAÍS-DESTINO] (ej: Alemania, España…)','Pega el prompt en tu IA preferida','Recibe la tabla CSV con 100 nichos','Elige 1 nicho — el que MÁS te apasione']);
-  renderSectionTitle(c,'📄 Prompt: Generador de 100 Ideas (v3.0)');
-  renderPromptBlock(c,'PROMPT 1 — Generador de 100 Ideas de Nichos SEO','Formato de salida: CSV. Personaliza SOLO [PAÍS-DESTINO].','P1');
-  renderInfoBox(c,'amber','<p style="color:#fbbf24;font-size:14px;margin:0;font-weight:700">📋 Output esperado</p><p style="color:#94a3b8;font-size:13px;margin-top:8px;margin-bottom:0">CSV con 100 filas: Ranking | Nicho | Palabra Clave | Volumen | Viabilidad | Justificación | Potencial | Categoría</p>');
-}
-
-function renderPhase2(c){
-  renderSectionTitle(c,'🎯 Objetivo');
-  renderParagraph(c,'Analizar los <strong style="color:#f59e0b">TOP 10 competidores</strong> de tu nicho elegido, encontrar gaps y diseñar la arquitectura completa de URLs.');
-  renderSectionTitle(c,'📝 Pasos a seguir');
-  renderStepList(c,['Toma el nicho elegido en la Fase 1','Personaliza: [NICHO-ELEGIDO], [PALABRA-CLAVE-PRINCIPAL], [PAÍS-IDIOMA]','Copia y pega el prompt en tu IA','Obtén análisis de competencia + arquitectura recomendada','Guarda la tabla de arquitectura — la necesitarás en la Fase 3']);
-  renderSectionTitle(c,'📄 Prompt: Análisis Competencia & Arquitectura (v2.0)');
-  renderPromptBlock(c,'PROMPT 2 — Análisis de Competencia & Arquitectura URLs','Personaliza: [NICHO-ELEGIDO], [PALABRA-CLAVE-PRINCIPAL], [PAÍS-IDIOMA]','P2');
-  renderInfoBox(c,'amber','<p style="color:#fbbf24;font-size:14px;margin:0;font-weight:700">📋 Output esperado</p><p style="color:#94a3b8;font-size:13px;margin-top:8px;margin-bottom:0">Análisis detallado + tabla de arquitectura (Prioridad | Tipo | URL | KW | Volumen | Dificultad | Por Qué)</p>');
-}
-
-function renderPhase3(c){
-  renderSectionTitle(c,'🎯 Objetivo');
-  renderParagraph(c,'Identificar <strong style="color:#f59e0b">100+ keywords reales</strong>, organizarlas por URL destino, y generar los <strong style="color:#f59e0b">bloques JSON de inputs</strong> que usarás en la Fase 4.');
-  renderSectionTitle(c,'📝 Pasos a seguir');
-  renderStepList(c,['Toma la arquitectura de URLs de la Fase 2','Personaliza: [NICHO], [PALABRA-CLAVE-PRINCIPAL], [IDIOMA], [PAÍS], [URLS-ARQUITECTURA]','Pega el prompt en tu IA','Recibe: tabla de 100+ keywords + bloques JSON por URL + resumen ejecutivo','Guarda TODO — cada bloque JSON es input directo para Fase 4']);
-  renderSectionTitle(c,'📄 Prompt: Keyword Research + Inputs Fase 4 (v3.0)');
-  renderPromptBlock(c,'PROMPT 3 — Keyword Research Profundo + Inputs Fase 4','Personaliza: [NICHO], [PALABRA-CLAVE-PRINCIPAL], [IDIOMA], [PAÍS], [URLS-ARQUITECTURA]','P3');
-  renderInfoBox(c,'green','<p style="color:#4ade80;font-size:14px;font-weight:700;margin:0">✅ Checklist de salida</p><div style="color:#94a3b8;font-size:13px;margin-top:10px;line-height:2">☑ 100+ keywords identificadas<br>☑ Bloques JSON listos para Fase 4<br>☑ Agrupados por URL<br>☑ Toda la info para crear cada página</div>');
-  renderInfoBox(c,'amber','<p style="color:#fbbf24;font-size:13px;margin:0">⚠️ <strong>IMPORTANTE:</strong> Cada bloque JSON es una "plantilla" que copiarás en el prompt correcto de Fase 4. Guarda TODO.</p>');
-}
-
-function renderPhase4(c){
-  renderSectionTitle(c,'🎯 Objetivo');
-  renderParagraph(c,'Crear <strong style="color:#f59e0b">cada página de tu sitio</strong> una por una: calculadoras, blogs y herramientas. Cada una como un archivo <code style="color:#f59e0b">.html</code> independiente.');
-  renderSectionTitle(c,'📝 Flujo de trabajo (repite por cada URL)');
-  renderStepList(c,['Copia el bloque JSON de la Fase 3','Elige el prompt: 4A (Calculadora), 4B (Blog), 4C (Herramienta)','Reemplaza todos los campos [entre_corchetes]','Pega el prompt en tu IA y obtén el HTML completo','Guarda como [url_amigable].html','Repite para la siguiente URL — sin límite']);
-  renderInfoBox(c,'amber','<p style="color:#fbbf24;font-size:14px;margin:0;font-weight:700">💡 No hay límite. Puedes crear 5, 20, 100 URLs. Una por una.</p>');
-  renderSectionTitle(c,'📄 Elige el tipo de página');
-
-  const tabsDiv=h('div',{style:{display:'flex',gap:'8px',marginBottom:'24px',flexWrap:'wrap'}});
-  const contentDiv=h('div',{id:'phase4-content'});
-
-  function setTab(key){
-    contentDiv.innerHTML='';
-    document.querySelectorAll('.p4tab').forEach(b=>{b.className='sub-tab p4tab inactive'});
-    document.getElementById('p4t-'+key).className='sub-tab p4tab active-'+(key==='calc'?'blue':key==='blog'?'purple':'pink');
-    if(key==='calc'){
-      renderPromptBlock(contentDiv,'PROMPT 4A — Generador de Calculadora HTML+JS (v3.0)','USO: Uno por cada calculadora. Repite para cada nueva.','P4A');
-      renderInfoBox(contentDiv,'blue','<p style="color:#60a5fa;font-size:13px;margin:0">⏱ <strong>5-8 min</strong> por calculadora → Guarda como <code style="color:#60a5fa">[url_amigable].html</code></p>');
-    } else if(key==='blog'){
-      renderPromptBlock(contentDiv,'PROMPT 4B — Generador de Blog HTML+SEO (v3.0)','USO: Uno por cada artículo. Repite para cada nuevo blog.','P4B');
-      renderInfoBox(contentDiv,'purple','<p style="color:#a78bfa;font-size:13px;margin:0">⏱ <strong>8-10 min</strong> por artículo → Guarda como <code style="color:#a78bfa">blog-[url].html</code></p>');
-    } else {
-      renderPromptBlock(contentDiv,'PROMPT 4C — Generador de Herramienta/Comparador (v3.0)','USO: Para herramientas, comparadores, páginas interactivas.','P4C');
-      renderInfoBox(contentDiv,'pink','<p style="color:#f472b6;font-size:13px;margin:0">⏱ <strong>10-12 min</strong> por herramienta → Guarda como <code style="color:#f472b6">[url].html</code></p>');
-    }
-  }
-
-  [{k:'calc',l:'⚙️ Calculadora (4A)'},{k:'blog',l:'📝 Blog (4B)'},{k:'tool',l:'🔧 Herramienta (4C)'}].forEach(t=>{
-    const btn=h('button',{className:'sub-tab p4tab inactive',id:'p4t-'+t.k},t.l);
-    btn.onclick=()=>setTab(t.k);
-    tabsDiv.appendChild(btn);
-  });
-
-  c.appendChild(tabsDiv);c.appendChild(contentDiv);
-  setTab('calc');
-}
-
-function renderPhase5(c){
-  renderSectionTitle(c,'🎯 Objetivo');
-  renderParagraph(c,'Crear las <strong style="color:#f59e0b">3 páginas legales obligatorias</strong>: Política de Privacidad, Términos de Servicio y Aviso Legal.');
-  renderSectionTitle(c,'📝 Pasos a seguir');
-  renderStepList(c,['Ejecuta el prompt 3 veces cambiando [TIPO-PAGINA]','1ª: POLÍTICA DE PRIVACIDAD → política-privacidad.html','2ª: TÉRMINOS DE SERVICIO → términos-servicio.html','3ª: AVISO LEGAL → aviso-legal.html']);
-  renderSectionTitle(c,'📄 Prompt: Generador de Páginas Legales (v2.0)');
-  renderPromptBlock(c,'PROMPT 5 — Generador de Páginas Legales','Repite 3 veces cambiando [TIPO-PAGINA]. Personaliza: [NOMBRE-SITIO], [DOMINIO], [EMAIL-CONTACTO], [PAÍS]','P5');
-  renderInfoBox(c,'red','<p style="color:#f87171;font-size:14px;font-weight:700;margin:0">⚠️ Disclaimer</p><p style="color:#94a3b8;font-size:13px;margin-top:8px;margin-bottom:0">Estas páginas NO reemplazan asesoramiento legal. Consulta a un abogado especializado.</p>');
-}
-
-function renderPhase6(c){
-  renderSectionTitle(c,'🎯 Objetivo');
-  renderParagraph(c,'Crear la <strong style="color:#f59e0b">página de inicio</strong> y el <strong style="color:#f59e0b">header/footer compartido</strong> que usarán todas las páginas.');
-  renderSectionTitle(c,'📝 Pasos a seguir');
-  renderStepList(c,['Primero: crea la página de inicio con Prompt 6 → index.html','Segundo: crea header/footer con Prompt 7 → header-footer.html','El header-footer.html se carga en todas las páginas vía &lt;iframe&gt;']);
-  renderSectionTitle(c,'📄 Prompt 6: Página de Inicio (v3.0)');
-  renderPromptBlock(c,'PROMPT 6 — Generador de Página Inicio HTML','Personaliza: [NOMBRE-SITIO], [TAGLINE-CORTO], [DESCRIPCIÓN-LARGA], [URLS-CALCULADORAS], [URLS-ARTICULOS-BLOG]','P6');
-  renderSectionTitle(c,'📄 Prompt 7: Header & Footer (v2.0)');
-  renderPromptBlock(c,'PROMPT 7 — Generador de Header & Footer','Personaliza: [NOMBRE-MARCA], [DOMINIO], [URLS-MENU]','P7');
-  renderInfoBox(c,'amber','<p style="color:#94a3b8;font-size:13px;margin:0">📌 El <code style="color:#f59e0b">header-footer.html</code> se carga en TODAS las páginas vía <code style="color:#f59e0b">&lt;iframe&gt;</code></p>');
-}
-
-function renderPhase7(c){
-  renderSectionTitle(c,'🎯 Objetivo');
-  renderParagraph(c,'Revisar <strong style="color:#f59e0b">TODO</strong> el sitio con el checklist de QA y <strong style="color:#22c55e">publicar en Cloudflare Pages</strong>.');
-  renderSectionTitle(c,'✅ Checklist de QA');
-
-  const cats=[
-    {t:"Funcionalidad",i:["Todas las calculadoras funcionan","Resultados matemáticamente precisos","Validación de inputs funciona","Se ve bien en móvil (375px)","Se ve bien en desktop (1200px+)","Header/Footer se carga en TODAS las páginas","No hay 404 errors"]},
-    {t:"SEO",i:["Cada página tiene title único con KW","Cada página tiene meta description único","Una sola h1 por página","H2/H3 estructurados","URLs amigables","Schema JSON-LD en cada página","Images con alt text","Sitemap.xml creado","Internal links funcionan"]},
-    {t:"Contenido",i:["Sin errores ortográficos","Copy profesional","Links internos funcionan","CTAs claros y visibles","Información verificable","Página legal incluida"]},
-    {t:"Rendimiento",i:["Sitio carga en < 3 seg","Sin errores en consola","Sin dependencias externas","CSS es minimal"]},
-    {t:"Legal",i:["Política de privacidad presente","Términos de servicio presentes","Aviso legal presente","Links a legales en footer"]},
+function phaseContent4(c){
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Crear <strong style="color:#f59e0b">cada página de tu sitio</strong> una por una como <code style="color:#f59e0b">.html</code> independiente.'));
+  add(c,mkSectionTitle('📝 Flujo (repite por cada URL)'),mkStepList(['Copia el bloque JSON de Fase 3','Elige: 4A (Calculadora), 4B (Blog), 4C (Herramienta)','Reemplaza campos [entre_corchetes]','Pega → obtén HTML completo','Guarda como [url_amigable].html','Repite — sin límite']));
+  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#fbbf24;font-size:14px;margin:0;font-weight:700">💡 No hay límite. Puedes crear 5, 20 o 100 URLs.</p>'));
+  add(c,mkSectionTitle('📄 Elige el tipo de página'));
+  var tabs=el('div',{css:{display:'flex',gap:'8px',marginBottom:'24px',flexWrap:'wrap'}});
+  var content=el('div');
+  var tabData=[
+    {k:'calc',l:'⚙️ Calculadora (4A)',color:'#3b82f6',pk:'P4A',pt:'PROMPT 4A — Generador de Calculadora',pn:'Uno por cada calculadora. Repite.',info:'⏱ <strong>5-8 min</strong> → <code style="color:#60a5fa">[url].html</code>',ic:'rgba(59,130,246,.08)',ib:'rgba(59,130,246,.25)'},
+    {k:'blog',l:'📝 Blog (4B)',color:'#8b5cf6',pk:'P4B',pt:'PROMPT 4B — Generador de Blog',pn:'Uno por cada artículo. Repite.',info:'⏱ <strong>8-10 min</strong> → <code style="color:#a78bfa">blog-[url].html</code>',ic:'rgba(139,92,246,.08)',ib:'rgba(139,92,246,.25)'},
+    {k:'tool',l:'🔧 Herramienta (4C)',color:'#ec4899',pk:'P4C',pt:'PROMPT 4C — Generador de Herramienta',pn:'Para comparadores e interactivos.',info:'⏱ <strong>10-12 min</strong> → <code style="color:#f472b6">[url].html</code>',ic:'rgba(236,72,153,.08)',ib:'rgba(236,72,153,.25)'}
   ];
-  const total=cats.reduce((s,cat)=>s+cat.i.length,0);
-  const done=Object.values(qaChecks).filter(Boolean).length;
-  const pct=Math.round((done/total)*100);
+  var btns=[];
+  function setTab(idx){
+    content.innerHTML='';
+    btns.forEach(function(b,i){b.style.background=i===idx?tabData[i].color:'rgba(255,255,255,.05)';b.style.border=i===idx?'none':'1px solid rgba(255,255,255,.1)'});
+    var td=tabData[idx];
+    add(content,mkPromptBlock(td.pt,td.pn,td.pk),mkInfoBox(td.ic,td.ib,'<p style="color:'+td.color+';font-size:13px;margin:0">'+td.info+'</p>'));
+  }
+  tabData.forEach(function(td,i){
+    var btn=el('button',{cls:'sub-tab mono',text:td.l,onclick:function(){setTab(i)}});
+    btns.push(btn);tabs.appendChild(btn);
+  });
+  add(c,tabs,content);setTab(0);
+}
+function phaseContent5(c){
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Crear las <strong style="color:#f59e0b">3 páginas legales obligatorias</strong>: Privacidad, Términos y Aviso Legal.'));
+  add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList(['Ejecuta el prompt 3 veces cambiando [TIPO-PAGINA]','1ª: POLÍTICA DE PRIVACIDAD → política-privacidad.html','2ª: TÉRMINOS DE SERVICIO → términos-servicio.html','3ª: AVISO LEGAL → aviso-legal.html']));
+  add(c,mkSectionTitle('📄 Prompt: Páginas Legales (v2.0)'),mkPromptBlock('PROMPT 5 — Generador de Páginas Legales','Repite 3 veces cambiando [TIPO-PAGINA]. Personaliza: [NOMBRE-SITIO], [DOMINIO], [EMAIL], [PAÍS]','P5'));
+  add(c,mkInfoBox('rgba(239,68,68,.08)','rgba(239,68,68,.25)','<p style="color:#f87171;font-size:14px;font-weight:700;margin:0">⚠️ Disclaimer</p><p style="color:#94a3b8;font-size:13px;margin-top:8px;margin-bottom:0">No reemplazan asesoramiento legal. Consulta abogado especializado.</p>'));
+}
+function phaseContent6(c){
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Crear la <strong style="color:#f59e0b">página de inicio</strong> y el <strong style="color:#f59e0b">header/footer compartido</strong>.'));
+  add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList(['Prompt 6 → index.html','Prompt 7 → header-footer.html','El header-footer se carga vía &lt;iframe&gt;']));
+  add(c,mkSectionTitle('📄 Prompt 6: Página Inicio'),mkPromptBlock('PROMPT 6 — Página de Inicio HTML','Personaliza: [NOMBRE-SITIO], [TAGLINE], [DESCRIPCIÓN], [URLS-CALCS], [URLS-BLOG]','P6'));
+  add(c,mkSectionTitle('📄 Prompt 7: Header & Footer'),mkPromptBlock('PROMPT 7 — Header & Footer','Personaliza: [NOMBRE-MARCA], [DOMINIO], [URLS-MENU]','P7'));
+  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#94a3b8;font-size:13px;margin:0">📌 El <code style="color:#f59e0b">header-footer.html</code> se carga en TODAS las páginas vía <code style="color:#f59e0b">&lt;iframe&gt;</code></p>'));
+}
+function phaseContent7(c){
+  var cats=[
+    {t:"Funcionalidad",i:["Todas las calculadoras funcionan","Resultados matemáticamente precisos","Validación de inputs funciona","Se ve bien en móvil (375px)","Se ve bien en desktop (1200px+)","Header/Footer carga en TODAS las páginas","No hay 404 errors"]},
+    {t:"SEO",i:["Cada página tiene title único con KW","Cada página tiene meta description","Una sola h1 por página","H2/H3 estructurados","URLs amigables","Schema JSON-LD en cada página","Imágenes con alt text","Sitemap.xml creado","Internal links funcionan"]},
+    {t:"Contenido",i:["Sin errores ortográficos","Copy profesional","Links internos funcionan","CTAs claros","Info verificable","Páginas legales incluidas"]},
+    {t:"Rendimiento",i:["Carga en < 3 seg","Sin errores en consola","Sin dependencias externas","CSS minimal"]},
+    {t:"Legal",i:["Política privacidad presente","Términos servicio presentes","Aviso legal presente","Links a legales en footer"]}
+  ];
+  var total=0;cats.forEach(function(cat){total+=cat.i.length});
+  function countDone(){var n=0;for(var k in qaChecks)if(qaChecks[k])n++;return n}
+  
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Revisar <strong style="color:#f59e0b">TODO</strong> con el checklist de QA y <strong style="color:#22c55e">publicar en Cloudflare Pages</strong>.'));
+  add(c,mkSectionTitle('✅ Checklist de QA'));
 
-  const barWrap=h('div',{style:{marginBottom:'16px'}});
-  barWrap.innerHTML=`<div class="qa-bar-outer"><div class="qa-bar-inner" style="width:${pct}%;background:${pct===100?'#22c55e':'linear-gradient(90deg,#f59e0b,#ef4444)'}"></div></div><p class="mono" style="color:${pct===100?'#22c55e':'#64748b'};font-size:12px;margin-top:6px">${done}/${total} — ${pct}% completado</p>`;
-  c.appendChild(barWrap);
+  var barOuter=el('div',{css:{height:'8px',background:'rgba(255,255,255,.05)',borderRadius:'4px',marginBottom:'6px'}});
+  var barInner=el('div',{css:{height:'100%',borderRadius:'4px',transition:'width .4s'}});
+  barOuter.appendChild(barInner);
+  var barText=el('p',{cls:'mono',css:{color:'#64748b',fontSize:'12px',marginTop:'6px',marginBottom:'20px'}});
+  function updateBar(){var d=countDone(),pct=Math.round((d/total)*100);barInner.style.width=pct+'%';barInner.style.background=pct===100?'#22c55e':'linear-gradient(90deg,#f59e0b,#ef4444)';barText.textContent=d+'/'+total+' — '+pct+'% completado';barText.style.color=pct===100?'#22c55e':'#64748b'}
+  updateBar();
+  add(c,barOuter,barText);
 
-  cats.forEach((cat,ci)=>{
-    c.appendChild(html('h4',{style:{color:'#cbd5e1',fontSize:'14px',marginBottom:'6px',marginTop:'16px'}},cat.t));
-    cat.i.forEach((item,ii)=>{
-      const key=ci+'-'+ii;
-      const checked=!!qaChecks[key];
-      const label=h('label',{className:'check-item '+(checked?'done':'undone'),id:'qi-'+key});
-      label.innerHTML=`<span class="check-box ${checked?'done':'undone'}">${checked?'✓':''}</span><span class="check-text ${checked?'done':''}">${item}</span>`;
-      label.onclick=()=>{qaChecks[key]=!qaChecks[key];save();renderMap()/*refresh if needed*/;showPhase(7);};
-      c.appendChild(label);
+  cats.forEach(function(cat,ci){
+    add(c,el('h4',{html:cat.t,css:{color:'#cbd5e1',fontSize:'14px',marginBottom:'6px',marginTop:'16px'}}));
+    cat.i.forEach(function(item,ii){
+      var key=ci+'-'+ii;
+      var checked=!!qaChecks[key];
+      var label=el('div',{cls:'check-item',css:{color:checked?'#22c55e':'#94a3b8',cursor:'pointer'}});
+      var box=el('span',{cls:'check-box',text:checked?'✓':'',css:{border:checked?'2px solid #22c55e':'2px solid rgba(255,255,255,.18)',background:checked?'rgba(34,197,94,.12)':'transparent',color:'#22c55e'}});
+      var txt=el('span',{text:item,css:{textDecoration:checked?'line-through':'none',opacity:checked?'.55':'1'}});
+      label.addEventListener('click',function(){
+        qaChecks[key]=!qaChecks[key];save();
+        var ch=qaChecks[key];
+        box.textContent=ch?'✓':'';box.style.border=ch?'2px solid #22c55e':'2px solid rgba(255,255,255,.18)';box.style.background=ch?'rgba(34,197,94,.12)':'transparent';
+        txt.style.textDecoration=ch?'line-through':'none';txt.style.opacity=ch?'.55':'1';
+        label.style.color=ch?'#22c55e':'#94a3b8';
+        updateBar();
+      });
+      add(label,box,txt);c.appendChild(label);
     });
   });
 
-  renderSectionTitle(c,'📋 Estructura Final de Carpetas');
-  c.appendChild(html('pre',{className:'code',style:{background:'rgba(0,0,0,.4)',border:'1px solid rgba(255,255,255,.05)',borderRadius:'10px',padding:'18px',color:'#94a3b8',fontSize:'13px',lineHeight:'1.8',overflowX:'auto'}},`/tu-sitio-seo/
-├── index.html
-├── header-footer.html
-├── calculadoras/
-│   ├── hypothekenrechner.html
-│   └── ...
-├── blog/
-│   └── ...
-├── herramientas/
-│   └── comparador.html
-├── legal/
-│   ├── politica-privacidad.html
-│   ├── terminos-servicio.html
-│   └── aviso-legal.html
-├── sitemap.xml
-└── robots.txt`));
-  renderSectionTitle(c,'🚀 Publicar en Cloudflare (5-10 min)');
-  renderStepList(c,['Abre cloudflare.com','Pages → Crear Proyecto','Direct Upload → Selecciona TODOS tus archivos','Deploy','Conecta tu dominio']);
+  add(c,mkSectionTitle('📋 Estructura Final'));
+  var pre=el('pre',{cls:'code',css:{background:'rgba(0,0,0,.4)',border:'1px solid rgba(255,255,255,.05)',borderRadius:'10px',padding:'18px',color:'#94a3b8',fontSize:'13px',lineHeight:'1.8',overflowX:'auto'}});
+  pre.textContent="/tu-sitio-seo/\n├── index.html\n├── header-footer.html\n├── calculadoras/\n│   ├── hypothekenrechner.html\n│   └── ...\n├── blog/\n│   └── ...\n├── herramientas/\n│   └── comparador.html\n├── legal/\n│   ├── politica-privacidad.html\n│   ├── terminos-servicio.html\n│   └── aviso-legal.html\n├── sitemap.xml\n└── robots.txt";
+  add(c,pre);
+  add(c,mkSectionTitle('🚀 Publicar en Cloudflare (5-10 min)'),mkStepList(['Abre cloudflare.com','Pages → Crear Proyecto','Direct Upload → Selecciona TODOS tus archivos','Deploy','Conecta tu dominio']));
 }
 
-const RENDERERS=[renderPhase1,renderPhase2,renderPhase3,renderPhase4,renderPhase5,renderPhase6,renderPhase7];
+var phaseRenderers=[phaseContent1,phaseContent2,phaseContent3,phaseContent4,phaseContent5,phaseContent6,phaseContent7];
 
-// ══════════════════════════════════════
-// SHOW PHASE DETAIL
-// ══════════════════════════════════════
+// ══════════════════════ SHOW PHASE ══════════════════════
 function showPhase(id){
-  const phase=PHASES.find(p=>p.id===id);
-  const done=completed.includes(id);
-  const next=PHASES.find(p=>p.id===id+1);
+  var phase=PHASES.find(function(p){return p.id===id});
+  var done=completed.indexOf(id)!==-1;
+  var next=PHASES.find(function(p){return p.id===id+1});
+  var app=document.getElementById('app');
+  app.innerHTML='';
 
-  document.getElementById('view-map').classList.add('hidden');
-  const vp=document.getElementById('view-phase');
-  vp.classList.remove('hidden');
-  vp.innerHTML='';
+  // Nav
+  var nav=el('div',{cls:'nav-bar'});
+  var backBtn=el('button',{cls:'back-btn',text:'← Volver al mapa',onclick:renderMap});
+  var xpArea=el('div',{css:{display:'flex',alignItems:'center',gap:'12px'},html:'<span class="mono" style="color:#f59e0b;font-size:12px;font-weight:700">'+getXP()+' XP</span><div style="width:80px;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden"><div style="height:100%;width:'+getPct()+'%;background:linear-gradient(90deg,#f59e0b,#ef4444);border-radius:3px"></div></div>'});
+  add(nav,backBtn,xpArea);app.appendChild(nav);
 
-  // Nav bar
-  const nav=html('div',{className:'nav-bar'});
-  const backBtn=h('button',{className:'back-btn'},'← Volver al mapa');
-  backBtn.onclick=()=>{vp.classList.add('hidden');document.getElementById('view-map').classList.remove('hidden');renderMap()};
-  const xpDiv=html('div',{style:{display:'flex',alignItems:'center',gap:'12px'}},`<span class="mono" style="color:#f59e0b;font-size:12px;font-weight:700">${getXP()} XP</span><div style="width:80px;height:6px;background:rgba(255,255,255,.06);border-radius:3px"><div style="height:100%;width:${getPct()}%;background:linear-gradient(90deg,#f59e0b,#ef4444);border-radius:3px;transition:width .5s"></div></div>`);
-  nav.appendChild(backBtn);nav.appendChild(xpDiv);vp.appendChild(nav);
+  // Header
+  var hdr=el('div',{css:{padding:'48px 20px 0',maxWidth:'780px',margin:'0 auto'}});
+  hdr.innerHTML='<div style="display:flex;align-items:center;gap:14px;margin-bottom:8px"><span style="font-size:36px">'+phase.icon+'</span><div><div class="mono" style="color:#64748b;font-size:12px;font-weight:700;letter-spacing:2px">FASE '+phase.id+' DE '+PHASES.length+'</div><h1 style="font-size:clamp(22px,4vw,30px);font-weight:800;color:#f1f5f9;line-height:1.2;margin-top:4px">'+phase.title+'</h1></div></div><p style="color:#64748b;font-size:15px;margin-bottom:12px">'+phase.subtitle+'</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px"><span class="mono" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:5px 14px;font-size:12px;color:#64748b">⏱ '+phase.time+'</span><span class="mono" style="background:'+(done?'rgba(34,197,94,.1)':'rgba(245,158,11,.1)')+';border:1px solid '+(done?'rgba(34,197,94,.2)':'rgba(245,158,11,.2)')+';border-radius:8px;padding:5px 14px;font-size:12px;color:'+(done?'#4ade80':'#f59e0b')+';font-weight:700">'+(done?'✓ COMPLETADA':'+'+phase.xp+' XP')+'</span><span class="mono" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:5px 14px;font-size:12px;color:#64748b">🎯 '+phase.output+'</span></div>';
+  app.appendChild(hdr);
 
-  // Phase header
-  const header=html('div',{style:{padding:'48px 20px 0',maxWidth:'780px',margin:'0 auto'}},`
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px">
-      <span style="font-size:36px">${phase.icon}</span>
-      <div>
-        <div class="mono" style="color:#64748b;font-size:12px;font-weight:700;letter-spacing:2px">FASE ${phase.id} DE ${PHASES.length}</div>
-        <h1 style="font-size:clamp(22px,4vw,32px);font-weight:800;color:#f1f5f9;line-height:1.2;margin-top:4px">${phase.title}</h1>
-      </div>
-    </div>
-    <p style="color:#64748b;font-size:15px;margin-bottom:12px">${phase.subtitle}</p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px">
-      <span class="mono" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:5px 14px;font-size:12px;color:#64748b">⏱ ${phase.time}</span>
-      <span class="mono" style="background:${done?'rgba(34,197,94,.1)':'rgba(245,158,11,.1)'};border:1px solid ${done?'rgba(34,197,94,.2)':'rgba(245,158,11,.2)'};border-radius:8px;padding:5px 14px;font-size:12px;color:${done?'#4ade80':'#f59e0b'};font-weight:700">${done?'✓ COMPLETADA':'+'+phase.xp+' XP'}</span>
-      <span class="mono" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:5px 14px;font-size:12px;color:#64748b">🎯 ${phase.output}</span>
-    </div>
-  `);
-  vp.appendChild(header);
-
-  // Phase body
-  const body=h('div',{style:{maxWidth:'780px',margin:'0 auto',padding:'0 20px 60px'}});
-  body.style.animation='fadeIn .4s';
-  RENDERERS[phase.id-1](body);
+  // Body
+  var body=el('div',{css:{maxWidth:'780px',margin:'0 auto',padding:'0 20px 60px',animation:'fadeIn .4s'}});
+  phaseRenderers[phase.id-1](body);
 
   // Buttons
-  const btns=h('div',{style:{marginTop:'40px',display:'flex',flexDirection:'column',gap:'12px'}});
+  var btns=el('div',{css:{marginTop:'40px'}});
   if(!done){
-    const btn=h('button',{className:'complete-btn gold'},'✅ COMPLETAR FASE '+phase.id+' — RECLAMAR +'+phase.xp+' XP');
-    btn.onclick=()=>{
-      if(!completed.includes(id)){completed.push(id);save();showBadge(phase)}
+    var cb=el('button',{cls:'complete-btn mono',css:{background:'linear-gradient(135deg,#f59e0b,#d97706)',color:'#000'},text:'✅ COMPLETAR FASE '+phase.id+' — RECLAMAR +'+phase.xp+' XP',onclick:function(){
+      if(completed.indexOf(id)===-1){completed.push(id);save();showBadge(phase)}
       showPhase(id);
-    };
-    btns.appendChild(btn);
+    }});
+    btns.appendChild(cb);
   }
   if(done&&next){
-    const btn=h('button',{className:'complete-btn green'},'→ AVANZAR A FASE '+next.id+': '+next.title);
-    btn.onclick=()=>showPhase(next.id);
-    btns.appendChild(btn);
+    btns.appendChild(el('button',{cls:'complete-btn mono',css:{background:'linear-gradient(135deg,#22c55e,#16a34a)',color:'#fff'},text:'→ AVANZAR A FASE '+next.id+': '+next.title,onclick:function(){showPhase(next.id)}}));
   }
   if(done&&!next){
-    const btn=h('button',{className:'complete-btn green'},'🏆 VER RESUMEN FINAL');
-    btn.onclick=()=>{vp.classList.add('hidden');document.getElementById('view-map').classList.remove('hidden');renderMap()};
-    btns.appendChild(btn);
+    btns.appendChild(el('button',{cls:'complete-btn mono',css:{background:'linear-gradient(135deg,#22c55e,#16a34a)',color:'#fff'},text:'🏆 VER RESUMEN FINAL',onclick:renderMap}));
   }
   body.appendChild(btns);
-  vp.appendChild(body);
+  app.appendChild(body);
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ══════════════════════════════════════
-// RENDER MAP
-// ══════════════════════════════════════
+// ══════════════════════ RENDER MAP ══════════════════════
 function renderMap(){
-  const vm=document.getElementById('view-map');
-  vm.innerHTML='';
-  const allDone=completed.length===PHASES.length;
+  var app=document.getElementById('app');
+  app.innerHTML='';
+  var allDone=completed.length===PHASES.length;
+  var xp=getXP(),pct=getPct(),lv=getLevel();
 
-  // Hero
-  vm.innerHTML=`
-    <div class="hero">
-      <div class="hero-grid"></div>
-      <div class="hero-inner">
-        <div class="hero-tag mono">PROFESSIONAL v2</div>
-        <h1 class="hero-title">Nichos SEO de Calculadoras</h1>
-        <p class="hero-sub">De <strong style="color:#f59e0b">IDEA</strong> a <strong style="color:#22c55e">SITIO PUBLICADO</strong> en 2.5-3 Horas</p>
-        <div class="xp-wrap">
-          <div class="xp-row">
-            <span class="mono" style="color:#f59e0b;font-weight:700;font-size:14px;${completed.length>0?'animation:glow 2s infinite':''}"}>LVL: ${getLevel()}</span>
-            <span class="mono" style="color:#64748b;font-size:13px">${getXP()}/${TOTAL_XP} XP</span>
-          </div>
-          <div class="xp-bar-outer"><div class="xp-bar-inner ${getPct()===100?'complete':'progress'}" style="width:${getPct()}%"></div></div>
-          <div class="mono" style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:#475569"><span>${completed.length}/${PHASES.length} fases</span><span>${getPct()}%</span></div>
-        </div>
-        ${completed.length>0?'<div class="badges-row">'+completed.map(id=>{const p=PHASES.find(ph=>ph.id===id);return `<div class="badge-pill mono">${p.badgeIcon} ${p.badge}</div>`}).join('')+'</div>':''}
-      </div>
-    </div>
-  `;
+  // Hero (static HTML, no event listeners needed)
+  var hero=el('div',{cls:'hero'});
+  hero.innerHTML='<div class="hero-grid"></div><div class="hero-inner"><div class="hero-tag mono">PROFESSIONAL v2</div><h1 class="hero-title">Nichos SEO de Calculadoras</h1><p style="font-size:clamp(15px,2.5vw,18px);color:#64748b;margin-bottom:36px;line-height:1.6">De <strong style="color:#f59e0b">IDEA</strong> a <strong style="color:#22c55e">SITIO PUBLICADO</strong> en 2.5-3 Horas</p><div style="max-width:420px;margin:0 auto"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px"><span class="mono" style="color:#f59e0b;font-weight:700;font-size:14px;'+(completed.length>0?'animation:glow 2s infinite':'')+'">LVL: '+lv+'</span><span class="mono" style="color:#64748b;font-size:13px">'+xp+'/'+TXP+' XP</span></div><div style="height:10px;background:rgba(255,255,255,.04);border-radius:5px;border:1px solid rgba(255,255,255,.06);overflow:hidden"><div style="height:100%;width:'+pct+'%;border-radius:5px;transition:width .8s cubic-bezier(.22,1,.36,1);'+(pct===100?'background:linear-gradient(90deg,#22c55e,#16a34a)':'background:linear-gradient(90deg,#f59e0b,#ef4444,#ec4899);box-shadow:0 0 12px rgba(245,158,11,.3)')+'"></div></div><div class="mono" style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:#475569"><span>'+completed.length+'/'+PHASES.length+' fases</span><span>'+pct+'%</span></div></div>'+(completed.length>0?'<div style="margin-top:20px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap">'+completed.map(function(id){var p=PHASES.find(function(x){return x.id===id});return '<div class="mono" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:4px 12px;font-size:11px;color:#f59e0b;font-weight:700">'+p.bi+' '+p.badge+'</div>'}).join('')+'</div>':'')+'</div>';
+  app.appendChild(hero);
 
-  // Timeline
-  const tw=h('div',{className:'timeline-wrap'});
+  // Phase list — using DOM methods to preserve onclick
+  var wrap=el('div',{css:{maxWidth:'680px',margin:'0 auto',padding:'40px 20px 80px'}});
 
-  PHASES.forEach((phase,idx)=>{
-    const done=completed.includes(phase.id);
-    const unlocked=phase.id===1||completed.includes(phase.id-1);
-    const isNext=!done&&unlocked;
+  PHASES.forEach(function(phase,idx){
+    var done=completed.indexOf(phase.id)!==-1;
+    var unlocked=phase.id===1||completed.indexOf(phase.id-1)!==-1;
+    var isNext=!done&&unlocked;
     if(!done&&!isNext)return;
 
-    const item=h('div',{className:'timeline-item'});
-    if(idx<PHASES.length-1&&done)item.appendChild(html('div',{className:'timeline-line'}));
-    item.appendChild(html('div',{className:'timeline-dot mono '+(done?'done':'next')},done?'✓':String(phase.id)));
+    var row=el('div',{css:{position:'relative',paddingLeft:'52px',marginBottom:'16px'}});
+    if(idx<PHASES.length-1&&done){
+      row.appendChild(el('div',{css:{position:'absolute',left:'21px',top:'48px',bottom:'-16px',width:'2px',background:'rgba(34,197,94,.25)'}}));
+    }
+    var dot=el('div',{cls:'mono',css:{position:'absolute',left:'8px',top:'16px',width:'28px',height:'28px',borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'13px',fontWeight:'800',background:done?'#22c55e':'#f59e0b',color:done?'#fff':'#000',animation:isNext?'pulse 2s infinite':'none'},text:done?'✓':String(phase.id)});
+    row.appendChild(dot);
 
-    const card=html('div',{className:'phase-card',style:{background:isNext?'linear-gradient(135deg,rgba(245,158,11,.08),rgba(245,158,11,.02))':'rgba(34,197,94,.03)',border:isNext?'1px solid rgba(245,158,11,.25)':'1px solid rgba(34,197,94,.12)'}},`
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
-        <div style="display:flex;align-items:center;gap:12px">
-          <span style="font-size:24px">${phase.icon}</span>
-          <div>
-            <div style="font-size:16px;font-weight:700;color:${done?'#4ade80':'#e2e8f0'}">Fase ${phase.id}: ${phase.title}</div>
-            <div style="font-size:12px;color:#64748b;margin-top:2px">${phase.subtitle}</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span class="mono" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:4px 12px;font-size:11px;color:#64748b">⏱ ${phase.time}</span>
-          <span class="mono" style="background:${done?'rgba(34,197,94,.1)':'rgba(245,158,11,.1)'};border:1px solid ${done?'rgba(34,197,94,.2)':'rgba(245,158,11,.2)'};border-radius:6px;padding:4px 12px;font-size:11px;color:${done?'#4ade80':'#f59e0b'};font-weight:700">${done?'✓ DONE':'+'+phase.xp+' XP'}</span>
-          <span style="color:#475569;font-size:16px;margin-left:4px">→</span>
-        </div>
-      </div>
-    `);
-    card.onclick=()=>showPhase(phase.id);
-    item.appendChild(card);
-    tw.appendChild(item);
+    var card=el('div',{cls:'phase-card',css:{background:isNext?'linear-gradient(135deg,rgba(245,158,11,.08),rgba(245,158,11,.02))':'rgba(34,197,94,.03)',border:isNext?'1px solid rgba(245,158,11,.25)':'1px solid rgba(34,197,94,.12)'}});
+    card.innerHTML='<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px"><div style="display:flex;align-items:center;gap:12px"><span style="font-size:24px">'+phase.icon+'</span><div><div style="font-size:16px;font-weight:700;color:'+(done?'#4ade80':'#e2e8f0')+'">Fase '+phase.id+': '+phase.title+'</div><div style="font-size:12px;color:#64748b;margin-top:2px">'+phase.subtitle+'</div></div></div><div style="display:flex;align-items:center;gap:8px"><span class="mono" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:4px 12px;font-size:11px;color:#64748b">⏱ '+phase.time+'</span><span class="mono" style="background:'+(done?'rgba(34,197,94,.1)':'rgba(245,158,11,.1)')+';border:1px solid '+(done?'rgba(34,197,94,.2)':'rgba(245,158,11,.2)')+';border-radius:6px;padding:4px 12px;font-size:11px;color:'+(done?'#4ade80':'#f59e0b')+';font-weight:700">'+(done?'✓ DONE':'+'+phase.xp+' XP')+'</span><span style="color:#475569;font-size:16px;margin-left:4px">→</span></div></div>';
+    card.addEventListener('click',(function(pid){return function(){showPhase(pid)}})(phase.id));
+    row.appendChild(card);
+    wrap.appendChild(row);
   });
 
-  // Final card
+  // Summary or final — also using DOM methods
   if(allDone){
-    tw.innerHTML+=`
-      <div class="final-card">
-        <div style="font-size:60px;margin-bottom:16px">🏆</div>
-        <h2 class="final-title mono">¡MISIÓN COMPLETA!</h2>
-        <p style="color:#94a3b8;font-size:15px;margin-bottom:32px">Has completado las 7 fases. Tu sitio SEO de calculadoras está listo.</p>
-        <div class="final-grid">
-          ${["Investigación","100+ Keywords","N URLs creadas","SEO perfecto","Legal completo","Publicado"].map(l=>`<div class="final-item">✅ ${l}</div>`).join('')}
-        </div>
-        <h3 class="mono" style="color:#e2e8f0;font-size:16px;margin-bottom:14px">📈 Próximos Pasos</h3>
-        <div style="text-align:left;max-width:420px;margin:0 auto;color:#94a3b8;font-size:13px;line-height:2.4">
-          <div><strong style="color:#f59e0b">Semana 1:</strong> Monitorea Google Analytics</div>
-          <div><strong style="color:#f59e0b">Semana 2-4:</strong> Crea 2-3 backlinks</div>
-          <div><strong style="color:#f59e0b">Mes 1-2:</strong> Primeros visitantes</div>
-          <div><strong style="color:#f59e0b">Mes 3:</strong> Primeros ingresos</div>
-          <div><strong style="color:#f59e0b">Mes 6+:</strong> Ingresos pasivos recurrentes</div>
-        </div>
-        <div style="margin-top:28px;padding:20px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);border-radius:14px">
-          <h4 class="mono" style="color:#f59e0b;font-size:14px;margin-bottom:12px">📊 Estimación Realista de Ingresos</h4>
-          <div style="color:#94a3b8;font-size:13px;line-height:2">
-            <div>Mes 1-2: <strong style="color:#e2e8f0">50-300 visitantes</strong></div>
-            <div>Mes 3: <strong style="color:#e2e8f0">500-2,000 visitantes</strong></div>
-            <div>Mes 6: <strong style="color:#e2e8f0">2,000-10,000+/mes</strong></div>
-            <div>Ingresos: <strong style="color:#22c55e">EUR 300-5,000+/mes</strong></div>
-          </div>
-        </div>
-        <p style="color:#64748b;font-size:14px;margin-top:28px;font-style:italic">Tu viaje empieza ahora. CREA. Vuelve en 1 mes. 🚀</p>
-      </div>
-    `;
-    // Reset button
-    const resetBtn=h('button',{className:'reset-btn',style:{display:'block',margin:'20px auto 0'}}, '↺ Reiniciar progreso');
-    resetBtn.onclick=()=>{completed=[];qaChecks={};save();renderMap()};
-    tw.appendChild(resetBtn);
+    var fin=el('div',{css:{marginTop:'48px',padding:'44px 32px',background:'linear-gradient(145deg,rgba(34,197,94,.06),rgba(245,158,11,.04))',border:'2px solid rgba(34,197,94,.2)',borderRadius:'24px',textAlign:'center',animation:'fadeIn .6s'}});
+    fin.innerHTML='<div style="font-size:60px;margin-bottom:16px">🏆</div><h2 class="mono" style="font-size:28px;font-weight:800;margin-bottom:8px;background:linear-gradient(135deg,#22c55e,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">¡MISIÓN COMPLETA!</h2><p style="color:#94a3b8;font-size:15px;margin-bottom:32px">Las 7 fases completadas. Tu sitio está listo.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:32px">'+["Investigación","100+ Keywords","URLs creadas","SEO perfecto","Legal completo","Publicado"].map(function(l){return '<div style="background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.12);border-radius:10px;padding:12px;font-size:12px;color:#4ade80;font-weight:600">✅ '+l+'</div>'}).join('')+'</div><h3 class="mono" style="color:#e2e8f0;font-size:16px;margin-bottom:14px">📈 Próximos Pasos</h3><div style="text-align:left;max-width:420px;margin:0 auto;color:#94a3b8;font-size:13px;line-height:2.4"><div><strong style="color:#f59e0b">Semana 1:</strong> Monitorea Google Analytics</div><div><strong style="color:#f59e0b">Semana 2-4:</strong> Crea 2-3 backlinks</div><div><strong style="color:#f59e0b">Mes 1-2:</strong> Primeros visitantes</div><div><strong style="color:#f59e0b">Mes 3:</strong> Primeros ingresos</div><div><strong style="color:#f59e0b">Mes 6+:</strong> Ingresos pasivos recurrentes</div></div><div style="margin-top:28px;padding:20px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);border-radius:14px"><h4 class="mono" style="color:#f59e0b;font-size:14px;margin-bottom:12px">📊 Estimación de Ingresos</h4><div style="color:#94a3b8;font-size:13px;line-height:2">Mes 1-2: <strong style="color:#e2e8f0">50-300 visitantes</strong><br>Mes 3: <strong style="color:#e2e8f0">500-2,000</strong><br>Mes 6: <strong style="color:#e2e8f0">2,000-10,000+/mes</strong><br>Ingresos: <strong style="color:#22c55e">EUR 300-5,000+/mes</strong></div></div><p style="color:#64748b;font-size:14px;margin-top:28px;font-style:italic">Tu viaje empieza ahora. 🚀</p>';
+    var resetBtn=el('button',{css:{marginTop:'20px',background:'rgba(255,255,255,.06)',border:'1px solid rgba(255,255,255,.1)',color:'#64748b',padding:'10px 24px',borderRadius:'10px',cursor:'pointer',fontSize:'12px',fontFamily:'inherit'},text:'↺ Reiniciar progreso',onclick:function(){completed=[];qaChecks={};save();renderMap()}});
+    fin.appendChild(resetBtn);
+    wrap.appendChild(fin);
+  } else {
+    var summary=el('div',{css:{marginTop:'40px',background:'rgba(255,255,255,.02)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'14px',padding:'24px'}});
+    summary.innerHTML='<h3 class="mono" style="color:#94a3b8;font-size:14px;margin-bottom:16px">📊 Timeline Estimado</h3><div style="display:grid;grid-template-columns:1fr auto;gap:8px 20px;font-size:13px"><span style="color:#64748b">Mínimo (5 URLs)</span><span class="mono" style="color:#e2e8f0">2-2.5 horas</span><span style="color:#64748b">Estándar (10 URLs)</span><span class="mono" style="color:#e2e8f0">2.5-3.5 horas</span><span style="color:#64748b">Extenso (20+ URLs)</span><span class="mono" style="color:#e2e8f0">4+ horas</span></div>';
+    wrap.appendChild(summary);
   }
 
-  if(!allDone){
-    tw.innerHTML+=`
-      <div class="summary-box">
-        <h3 class="mono" style="color:#94a3b8;font-size:14px;margin-bottom:16px">📊 Timeline Estimado</h3>
-        <div class="summary-grid">
-          <span style="color:#64748b">Mínimo (5 URLs)</span><span class="mono" style="color:#e2e8f0">2-2.5 horas</span>
-          <span style="color:#64748b">Estándar (10 URLs)</span><span class="mono" style="color:#e2e8f0">2.5-3.5 horas</span>
-          <span style="color:#64748b">Extenso (20+ URLs)</span><span class="mono" style="color:#e2e8f0">4+ horas</span>
-        </div>
-      </div>
-    `;
-  }
-
-  vm.appendChild(tw);
+  app.appendChild(wrap);
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ══════════════════════════════════════
-// INIT
-// ══════════════════════════════════════
+// ══════════════════════ INIT ══════════════════════
 renderMap();
 </script>
 </body>
-</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+</html>
