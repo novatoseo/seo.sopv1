@@ -119,17 +119,60 @@ P.P3="=== ARQUITECTO DE PROMPTS WEB & SYSTEM DESIGN ===\n\n" +
   "- Contenido Principal: [Secciones específicas para esta URL: H1, Textos, CTAs, Features]\"\n\n" +
   "--- INSTRUCCIÓN FINAL ---\n" +
   "Comienza analizando las URLs y entrégame SOLO el prompt para la URL #1 (Home). Al final pregunta: \"¿Validas este prompt para pasar a la siguiente?\"";
-P.P4A="=== GENERADOR DE CALCULADORA - HTML + JAVASCRIPT COMPLETO ===\n\nDATOS (del bloque JSON Fase 3):\nNombre: [nombre_pagina]\nURL: /[url_amigable]/\nKW principal: [palabra_clave_principal]\nKW LSI: [palabras_clave_lsi]\nDescripción: [descripcion]\nPúblico: [público_objetivo]\nCTA: [cta_principal]\nINPUTS: [si_es_calculadora.inputs_necesarios]\nOUTPUTS: [si_es_calculadora.outputs_esperados]\nFÓRMULA: [si_es_calculadora.formula_descripcion]\n\nESPECIFICACIONES:\n1. DISEÑO: Gradiente azul (#667eea) a púrpura (#764ba2), Responsive 375px+\n2. FUNCIONALIDAD: Vanilla JS, Validación, 2 decimales EUR\n3. SEO: title+KW, meta description, h1, Schema WebApplication+Calculator\n4. CONVERSIÓN: Botón CTA prominente, Resultado con animación, Disclaimer\n\nREQUISITOS:\n✅ Funciona al copiar tal cual\n✅ Validación inputs\n✅ Resultados correctos\n✅ Mobile first\n✅ Sin console.log()\n✅ Gradiente profesional\n\nGENERA: UN ÚNICO BLOQUE HTML completo (copy-paste ready) con CSS inline, JS funcional, meta tags, Schema.";
 
-P.P4B="=== GENERADOR DE ARTÍCULO BLOG - HTML COMPLETO ===\n\nDATOS (del bloque JSON Fase 3):\nTítulo: [nombre_pagina]\nURL: /[url_amigable]/\nKW principal: [palabra_clave_principal]\nKW LSI: [palabras_clave_lsi]\nDescripción: [descripcion]\nIntención: [intención]\nPúblico: [público_objetivo]\nLongitud: [si_es_blog.longitud_palabras] palabras\nH2s: [si_es_blog.h2_principales]\n\nESTRUCTURA:\n[INTRO 80-120 palabras] - Engancha, promete solución, incluye KW\n[H2: SUBTEMA 1 - 250-350] - KW LSI #1, dato/estadística\n[H2: SUBTEMA 2 - 250-350] - KW LSI #2, casos reales\n[H2: SUBTEMA 3 - 250-350] - KW LSI #3, objeciones\n[H2: CÓMO USAR CALCULADORA - 150-200] - Paso a paso, LINK\n[CONCLUSIÓN - 100-150] - Resume, CTA final\n\nSEO: Title 60 chars, Meta 155 chars, 1xH1, 4-5xH2, KW 0.5-1%, 2 internal links.\nTONO: Conversacional, sin jerga, párrafos cortos.\n\nGENERA: HTML COMPLETO como UN ÚNICO BLOQUE con article, Schema BlogPosting.";
+P.P4A="=== GENERADOR DE ECOSISTEMA LEGAL & COMPLIANCE (MODO ITERATIVO) ===\n\n" +
+  "INPUTS:\n" +
+  "País de Operación: [PAÍS] (Define la jurisdicción: RGPD, CCPA, LGPD, etc.)\n" +
+  "Nombre del Proyecto: [NOMBRE_WEB]\n" +
+  "Datos del Responsable: [DATOS_CONTACTO_COMPLETOS] (Nombre/Empresa, Dirección, Email, NIF/Tax ID)\n" +
+  "Estilo Visual: [BRANDING] (Mismo que fase anterior)\n\n" +
+  "ROL:\n" +
+  "Eres un Abogado Digital Experto en Compliance y un Senior Frontend Developer.\n" +
+  "Tu objetivo es blindar legalmente el proyecto generando las páginas obligatorias una a una, asegurando coherencia técnica con el resto del sitio.\n\n" +
+  "PROTOCOLO DE EJECUCIÓN:\n" +
+  "1. ANÁLISIS NORMATIVO: Basado en el [PAÍS], lista qué páginas son estrictamente obligatorias (ej: España -> Aviso Legal, Privacidad, Cookies, Condiciones).\n" +
+  "2. DESARROLLO ITERATIVO:\n" +
+  "   - No generes todo el código de golpe.\n" +
+  "   - Genera el código HTML completo para la PRIMERA página de la lista.\n" +
+  "   - Detente y pregunta: \"¿Validas los datos y el diseño? ¿Pasamos a la siguiente?\".\n\n" +
+  "REQUISITOS TÉCNICOS (ESTRICTO):\n" +
+  "- Estructura: HTML5 válido + Tailwind CSS (CDN).\n" +
+  "- Diseño: Usa el mismo esquema de colores y tipografía que el resto de la web.\n" +
+  "- Header/Footer: Deben ser idénticos visualmente a la Home (usa la misma estructura de navegación).\n" +
+  "- Contenido: Redacción legal formal, adaptada a la normativa del país, insertando los [DATOS_CONTACTO] dinámicamente.\n\n" +
+  "--- INSTRUCCIÓN INICIAL ---\n" +
+  "Analiza el país [PAÍS].\n" +
+  "Lista las páginas requeridas.\n" +
+  "Genera INMEDIATAMENTE el código de la primera página (usualmente Política de Privacidad).\n" +
+  "Detente.";
 
-P.P4C="=== GENERADOR DE HERRAMIENTA/COMPARADOR - HTML COMPLETO ===\n\nDATOS (del bloque JSON Fase 3):\nNombre: [nombre_pagina]\nURL: /[url_amigable]/\nKW: [palabra_clave_principal]\nDescripción: [descripcion]\nPúblico: [público_objetivo]\nCTA: [cta_principal]\n\nOBJETIVO: Página INTERACTIVA con HTML responsive, JS vanilla, SEO optimizado, conversión alta.\n\nGENERA HTML COMPLETO Y FUNCIONAL como UN ÚNICO BLOQUE .html.";
+P.P5="=== GENERADOR DE ECOSISTEMA TÉCNICO SEO ===\n\n" +
+  "INPUTS:\n" +
+  "Dominio Base: [DOMINIO_RAIZ] (ej: https://miweb.com - SIN barra al final)\n" +
+  "Inventario de Archivos: [LISTA_DE_ARCHIVOS] (Lista todos los .html: index.html, contacto.html, privacy.html...)\n\n" +
+  "ROL:\n" +
+  "Eres un Senior Technical SEO Specialist. Tu misión es maximizar la \"Crawlability\" (rastreabilidad) del sitio generando archivos de configuración con sintaxis XML/TXT perfecta.\n\n" +
+  "PROTOCOLO DE EJECUCIÓN:\n" +
+  "1. PROCESAMIENTO DE URLs:\n" +
+  "   - Convierte cada archivo en su URL Absoluta (Dominio + Archivo).\n" +
+  "   - EXCEPCIÓN CRÍTICA: Si el archivo es 'index.html', la URL pública debe ser la raíz (/).\n" +
+  "   - Asegura formato de fecha W3C (YYYY-MM-DD) para hoy.\n\n" +
+  "2. GENERACIÓN DE ARCHIVOS:\n" +
+  "   A) ROBOTS.TXT:\n" +
+  "      - User-agent universal (*).\n" +
+  "      - Allow: / (Permitir todo).\n" +
+  "      - Sitemap: [Inserta la URL absoluta del sitemap].\n" +
+  "   B) SITEMAP.XML:\n" +
+  "      - Cabecera XML estándar UTF-8.\n" +
+  "      - Itera sobre la lista de archivos.\n" +
+  "      - <loc>: URL Absoluta.\n" +
+  "      - <lastmod>: Fecha actual.\n" +
+  "      - <changefreq>: 'monthly' para legales/estáticas, 'weekly' para blog/calculadoras.\n" +
+  "      - <priority>: 1.0 para la Home, 0.8 para contenido core, 0.5 para legales.\n\n" +
+  "OUTPUT:\n" +
+  "Entrégame dos bloques de código CLARAMENTE SEPARADOS (uno para robots.txt y otro para sitemap.xml) listos para guardar.";
 
-P.P5="=== GENERADOR DE PÁGINAS LEGALES ===\n\nPARÁMETROS:\nNombre sitio: [NOMBRE-SITIO]\nDominio: [DOMINIO]\nEmail: [EMAIL-CONTACTO]\nPaís: [PAÍS]\nTipo: [POLÍTICA PRIVACIDAD / TÉRMINOS DE SERVICIO / AVISO LEGAL]\n\nINSTRUCCIONES: Crea HTML COMPLETA y LEGAL para [TIPO-PAGINA].\n- Cumplir RGPD/LOPD\n- Cookies, datos personales, derechos usuario\n- Secciones específicas [PAÍS]\n\nPOLÍTICA PRIVACIDAD: Introducción, Responsable, Base legal, Datos, Derechos, Cookies, Cambios, Contacto.\nTÉRMINOS: Aceptación, Uso, PI, Limitación, Renuncia, Modificación, Jurisdicción, Contacto.\nAVISO LEGAL: Identificación, Responsabilidad, PI, Limitación, Garantías, Cookies, Cambios, Contacto.\n\nGENERA HTML COMPLETO. Disclaimer: no es asesoramiento legal.";
-
-P.P6="=== GENERADOR DE PÁGINA INICIO - HTML COMPLETO ===\n\nDATOS:\nNombre: [NOMBRE-SITIO]\nTagline: [TAGLINE-CORTO]\nDescripción: [DESCRIPCIÓN-LARGA]\nCalculadoras: [URLS-CALCULADORAS]\nBlog: [URLS-ARTICULOS-BLOG]\n\nESTRUCTURA:\n1. HERO SECTION\n2. GRID DE CALCULADORAS (cards)\n3. CARACTERÍSTICAS\n4. PREVIEW BLOG\n5. FOOTER (iframe)\n\nColores: #667eea → #764ba2. Mobile first 375px.\nGENERA HTML COMPLETO, HERMOSO Y RESPONSIVE.";
-
-P.P7="=== GENERADOR DE HEADER & FOOTER COMPARTIDO ===\n\nDATOS:\nMarca: [NOMBRE-MARCA]\nDominio: [DOMINIO]\nLinks menú: [URLS-MENU]\n\nHEADER: Sticky, gradiente #667eea→#764ba2, texto blanco, responsive.\nFOOTER: Fondo #1a1a1a, texto #999, columnas, copyright, hover.\n\nGENERA HTML COMPLETO CON HEADER Y FOOTER.";
+P.P6='=== ASISTENTE DE DEVOPS & DNS ===\n\nCONTEXTO:\nTengo una web estática (HTML/CSS).\nHosting: Vercel (conectado vía GitHub).\nDominio: Comprado en Cloudflare.\n\nPROBLEMA ACTUAL:\n[DESCRIBE TU ERROR: Ej. "Mi web se ve bien en local pero en Vercel no cargan los estilos" o "No sé qué registros DNS poner en Cloudflare"].\n\nSOLICITUD:\nDame una guía paso a paso para solucionar este error específico y verificar que mi web esté online.'
 
 // ══════════════════════ DOM HELPERS ══════════════════════
 function el(tag,attrs){
