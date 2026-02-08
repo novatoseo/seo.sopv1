@@ -69,7 +69,7 @@ body{background:#080c14;color:#e2e8f0;font-family:'DM Sans','Segoe UI',system-ui
 var PHASES=[
 {id:1,icon:"💡",title:"Generar 100 Ideas de Nichos",subtitle:"Opciones infinitas. Elige la que TE APASIONE.",time:"8-10 min",xp:150,output:"Lista de 100 nichos viables",badge:"IDEATOR",bi:"🧠"},
 {id:2,icon:"🔍",title:"Análisis Competencia & Arquitectura",subtitle:"Espía a la competencia. Luego, supéralos.",time:"15-20 min",xp:250,output:"Lista de URLs con análisis",badge:"STRATEGIST",bi:"🎯"},
-{id:3,icon:"🔑",title:"Keyword Research Profundo",subtitle:"Encuentra las palabras clave que Google ADORA.",time:"12-15 min",xp:300,output:"Inputs organizados para cada URL",badge:"KEYWORD HUNTER",bi:"🏹"},
+{id:3,icon:"🔑",title:"Ingeniero de prompts",subtitle:"Encuentra las palabras clave que Google ADORA.",time:"12-15 min",xp:300,output:"Inputs organizados para cada URL",badge:"KEYWORD HUNTER",bi:"🏹"},
 {id:4,icon:"⚙️",title:"Crear URLs (Calc + Blog + Tools)",subtitle:"Cada página = un archivo .html independiente",time:"5-10 min c/u",xp:500,output:"N URLs SEO optimizadas",badge:"BUILDER",bi:"🏗️"},
 {id:5,icon:"⚖️",title:"Crear Páginas Legales",subtitle:"Protección legal. Necesarias para operar.",time:"25-30 min",xp:200,output:"Privacidad, Términos, Aviso Legal",badge:"COMPLIANT",bi:"🛡️"},
 {id:6,icon:"🏠",title:"Página Inicio + Header/Footer",subtitle:"Tu vitrina al mundo.",time:"15-17 min",xp:250,output:"index.html + header-footer.html",badge:"ARCHITECT",bi:"🏛️"},
@@ -94,8 +94,49 @@ P.P1="=== GENERADOR DE 100 IDEAS DE NICHOS SEO RENTABLES ===\n\nCONTEXTO:\nSoy e
 
 P.P2="=== ANÁLISIS COMPETIDOR & ARQUITECTURA DE URLs ===\n\nCONTEXTO:\nElegí el nicho: [NICHO-ELEGIDO]\nPalabra clave principal: [PALABRA-CLAVE-PRINCIPAL]\nPaís/Idioma: [PAÍS-IDIOMA]\n\nPARTE 1: ANÁLISIS DE COMPETENCIA\n\nNecesito que analices a los competidores TOP 10 de esta palabra clave:\n- ¿Cuántas URLs/páginas tienen cada sitio?\n- ¿Cuál es la estructura de navegación?\n- ¿Tienen calculadora, blog, o ambas?\n- ¿Qué palabras clave secundarias atacan?\n- ¿Cuántos artículos de blog?\n- ¿Tienen \"tools\" o herramientas secundarias?\n\nRespuesta formato:\n**Competidor 1 (sitio):**\n- URLs totales: [número]\n- Estructura: [descripción]\n- Herramientas: [lista]\n- Palabras clave: [lista de 5 principales]\n- Estrategia: [resumen]\n[Repite para competidores 2-10]\n\nPARTE 2: ANÁLISIS DE GAPS\n- ¿Qué URLs crean los competidores?\n- ¿Qué Keywords NO atacan (oportunidades)?\n- ¿Qué long-tail desatendidas?\n- ¿Hay demanda sin oferta?\n\nPARTE 3: ARQUITECTURA RECOMENDADA\n1. ¿Cuántas URLs MÍNIMO? JUSTIFICA.\n2. Para CADA URL: Nombre, URL amigable, KW objetivo, Búsquedas/mes, Tipo, Justificación, Dificultad SEO, Prioridad.\n3. Estructura en orden de importancia.\n\nPARTE 4: VENTAJA COMPETITIVA\n¿Cómo SUPERAR a la competencia? 3-5 acciones específicas.\n\nFORMATO FINAL (TABLA):\n| Prioridad | Tipo | URL | Palabra Clave | Volumen | Dificultad | Por Qué |\n\nRESPONDE TODAS LAS PARTES EN ORDEN.";
 
-P.P3="=== KEYWORD RESEARCH PROFUNDO (100+ KEYWORDS) + INPUTS FASE 4 ===\n\nCONTEXTO:\nNicho: [NICHO]\nPalabra clave principal: [PALABRA-CLAVE-PRINCIPAL]\nIdioma: [IDIOMA]\nPaís: [PAÍS]\nURLs planeadas: [URLS-ARQUITECTURA]\n\nINSTRUCCIONES CRÍTICAS:\n1. GENERA 100+ palabras clave REALES.\n2. Cada keyword: palabra exacta, búsquedas/mes, intención, categoría, dificultad, justificación, URL destino.\n3. THINK CULTURALLY: ¿Cómo busca la gente? ¿Qué problemas? ¿Tendencias? ¿Estacionalidad?\n4. VARIEDADES: Marca+genérica, preguntas, long-tail, comparativas, how-to, problemas.\n\nPARTE 1: TABLA COMPLETA\n| Ranking | Palabra Clave | Búsquedas/Mes | Intención | Categoría | Dificultad | URL Destino | Justificación |\nGenera 100+ rows.\n\nPARTE 2: INPUTS POR URL\nPara CADA URL genera bloque con:\n- URL, Tipo, KW Primaria, Volumen Total\n- Lista de KWs a atacar\n- Descripción contenido ideal\n- H2s sugeridos\n- JSON de inputs para Fase 4:\n{\n  \"nombre_pagina\": \"[Nombre]\",\n  \"url_amigable\": \"[url]\",\n  \"tipo\": \"[CALCULADORA/BLOG/HERRAMIENTA]\",\n  \"palabra_clave_principal\": \"[KW]\",\n  \"palabras_clave_lsi\": [\"kw1\",\"kw2\",\"kw3\"],\n  \"descripcion\": \"[1-2 líneas]\",\n  \"intencion\": \"[TRANSACCIONAL/INFORMATIVA]\",\n  \"volumen_total\": [número],\n  \"publico_objetivo\": \"[Descripción]\",\n  \"cta_principal\": \"[Botón]\",\n  \"si_es_calculadora\": {\n    \"inputs_necesarios\": [\"Input 1\",\"Input 2\"],\n    \"outputs_esperados\": [\"Output 1\",\"Output 2\"],\n    \"formula_descripcion\": \"[Fórmula]\"\n  },\n  \"si_es_blog\": {\n    \"longitud_palabras\": 1500,\n    \"h2_principales\": [\"H2 1\",\"H2 2\",\"H2 3\"],\n    \"incluir_ejemplos\": true,\n    \"incluir_datos\": true\n  }\n}\nREPITE para CADA URL.\n\nPARTE 3: RESUMEN EJECUTIVO\nTotal URLs, Total KWs, Volumen combinado, Dificultad promedio, Prioridad.";
+P.P3="=== function phaseContent3(c){
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Analizar la arquitectura y generar <strong style="color:#f59e0b">prompts de desarrollo individuales</strong> para cada URL, asegurando <strong style="color:#f59e0b">coherencia global</strong> (Header/Footer/Branding) y validación paso a paso.'));
+  
+  add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList([
+    'Toma la arquitectura aprobada de Fase 2',
+    'Personaliza: [NICHO], [BRANDING], [URLS-ARQUITECTURA]',
+    'Pega el prompt: La IA definirá primero los elementos globales',
+    'Iteración: Recibe el prompt para URL 1 → Valida → Escribe "Siguiente"',
+    'Guarda cada prompt generado en un documento aparte para usarlo en la Fase 4'
+  ]));
 
+  var p3Text = "=== ARQUITECTO DE PROMPTS WEB & SYSTEM DESIGN ===\n\n" +
+  "INPUTS:\n" +
+  "Nicho: [NICHO]\n" +
+  "Branding/Estilo: [BRANDING] (Ej: Minimalista, azul corporativo, fuente sans-serif)\n" +
+  "Arquitectura de URLs: [URLS-ARQUITECTURA] (Lista completa del paso anterior)\n\n" +
+  "ROL:\n" +
+  "Eres un Senior Frontend Architect y Prompt Engineer. Tu tarea NO es escribir el código HTML ahora, sino diseñar los \"Prompts de Instrucción\" perfectos para que un Junior AI Developer codifique la web paso a paso en la siguiente fase.\n\n" +
+  "REGLAS DE ORO (CONSISTENCIA GLOBAL):\n" +
+  "1. SINGLE SOURCE OF TRUTH: Define primero un Header (con navegación basada en la Arquitectura) y un Footer estándar. Estos deben inyectarse en CADA prompt individual.\n" +
+  "2. NAVEGACIÓN REAL: Los enlaces generados deben apuntar a las URLs definidas (ej: href=\"servicios.html\"), no a \"#\".\n\n" +
+  "ALGORITMO DE EJECUCIÓN (ITERATIVO):\n" +
+  "1. ANALIZA la arquitectura y define mentalmente el bloque Header/Footer global.\n" +
+  "2. GENERA el Prompt de Desarrollo para la PRIMERA URL de la lista.\n" +
+  "3. DETENTE y espera mi instrucción.\n" +
+  "4. Cuando yo escriba \"Siguiente\", genera el prompt para la segunda URL, manteniendo estrictamente la coherencia del Header/Footer.\n\n" +
+  "FORMATO DE SALIDA (Para cada URL):\n" +
+  "Genera un bloque de código listo para copiar que contenga:\n" +
+  "\"Actúa como Experto Web. Genera el código HTML5 completo (con Tailwind CSS vía CDN) para la página: [NOMBRE_URL].\n" +
+  "- Title Tag SEO: [Título Optimizado]\n" +
+  "- Estructura Visual: [Instrucciones de diseño]\n" +
+  "- Header Global: [Instrucciones precisas del menú y logo]\n" +
+  "- Footer Global: [Instrucciones precisas de enlaces legales y sitemap]\n" +
+  "- Contenido Principal: [Secciones específicas para esta URL: H1, Textos, CTAs, Features]\"\n\n" +
+  "--- INSTRUCCIÓN FINAL ---\n" +
+  "Comienza analizando las URLs y entrégame SOLO el prompt para la URL #1 (Home). Al final pregunta: \"¿Validas este prompt para pasar a la siguiente?\"";
+
+  add(c,mkSectionTitle('📄 Prompt: Arquitecto de Prompts (v3.0)'),mkPromptBlock('PROMPT 3 — System Design & Prompting Iterativo','Personaliza los inputs y ejecuta.','P3', p3Text));
+  
+  add(c,mkInfoBox('rgba(34,197,94,.08)','rgba(34,197,94,.25)','<p style="color:#4ade80;font-size:14px;font-weight:700;margin:0">✅ Checklist de salida</p><div style="color:#94a3b8;font-size:13px;margin-top:10px;line-height:2">☑ Elementos globales (Header/Footer) definidos<br>☑ Enlaces mapeados según arquitectura<br>☑ Prompt de desarrollo para URL 1 listo<br>☑ Sistema de validación activo</div>'));
+  
+  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#fbbf24;font-size:13px;margin:0">⚠️ <strong>IMPORTANTE:</strong> No dejes que la IA genere todas las URLs de golpe. Hazlo una a una para verificar que el <strong>Menú de Navegación</strong> siempre incluye los enlaces correctos.</p>'));
+}
 P.P4A="=== GENERADOR DE CALCULADORA - HTML + JAVASCRIPT COMPLETO ===\n\nDATOS (del bloque JSON Fase 3):\nNombre: [nombre_pagina]\nURL: /[url_amigable]/\nKW principal: [palabra_clave_principal]\nKW LSI: [palabras_clave_lsi]\nDescripción: [descripcion]\nPúblico: [público_objetivo]\nCTA: [cta_principal]\nINPUTS: [si_es_calculadora.inputs_necesarios]\nOUTPUTS: [si_es_calculadora.outputs_esperados]\nFÓRMULA: [si_es_calculadora.formula_descripcion]\n\nESPECIFICACIONES:\n1. DISEÑO: Gradiente azul (#667eea) a púrpura (#764ba2), Responsive 375px+\n2. FUNCIONALIDAD: Vanilla JS, Validación, 2 decimales EUR\n3. SEO: title+KW, meta description, h1, Schema WebApplication+Calculator\n4. CONVERSIÓN: Botón CTA prominente, Resultado con animación, Disclaimer\n\nREQUISITOS:\n✅ Funciona al copiar tal cual\n✅ Validación inputs\n✅ Resultados correctos\n✅ Mobile first\n✅ Sin console.log()\n✅ Gradiente profesional\n\nGENERA: UN ÚNICO BLOQUE HTML completo (copy-paste ready) con CSS inline, JS funcional, meta tags, Schema.";
 
 P.P4B="=== GENERADOR DE ARTÍCULO BLOG - HTML COMPLETO ===\n\nDATOS (del bloque JSON Fase 3):\nTítulo: [nombre_pagina]\nURL: /[url_amigable]/\nKW principal: [palabra_clave_principal]\nKW LSI: [palabras_clave_lsi]\nDescripción: [descripcion]\nIntención: [intención]\nPúblico: [público_objetivo]\nLongitud: [si_es_blog.longitud_palabras] palabras\nH2s: [si_es_blog.h2_principales]\n\nESTRUCTURA:\n[INTRO 80-120 palabras] - Engancha, promete solución, incluye KW\n[H2: SUBTEMA 1 - 250-350] - KW LSI #1, dato/estadística\n[H2: SUBTEMA 2 - 250-350] - KW LSI #2, casos reales\n[H2: SUBTEMA 3 - 250-350] - KW LSI #3, objeciones\n[H2: CÓMO USAR CALCULADORA - 150-200] - Paso a paso, LINK\n[CONCLUSIÓN - 100-150] - Resume, CTA final\n\nSEO: Title 60 chars, Meta 155 chars, 1xH1, 4-5xH2, KW 0.5-1%, 2 internal links.\nTONO: Conversacional, sin jerga, párrafos cortos.\n\nGENERA: HTML COMPLETO como UN ÚNICO BLOQUE con article, Schema BlogPosting.";
