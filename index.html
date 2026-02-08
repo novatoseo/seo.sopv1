@@ -164,10 +164,46 @@ function phaseContent2(c){
 }
 function phaseContent3(c){
   add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Analizar la arquitectura y generar <strong style="color:#f59e0b">prompts de desarrollo individuales</strong> para cada URL, asegurando <strong style="color:#f59e0b">coherencia global</strong> (Header/Footer/Branding) y validación paso a paso.'));
-  add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList(['Toma la arquitectura aprobada de Fase 2','Personaliza: [NICHO], [BRANDING], [URLS-ARQUITECTURA]','Pega el prompt: La IA definirá primero los elementos globales','Iteración: Recibe el prompt para URL 1 → Valida → Escribe "Siguiente"','Guarda cada prompt generado para la fase de desarrollo']));
-  add(c,mkSectionTitle('📄 Prompt: Generador Iterativo (v3.0)'),mkPromptBlock('PROMPT 3 — Arquitectura de Prompts & Consistencia','Personaliza: [NICHO], [BRANDING], [URLS-ARQUITECTURA]','P3'));
+  
+  add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList([
+    'Toma la arquitectura aprobada de Fase 2',
+    'Personaliza: [NICHO], [BRANDING], [URLS-ARQUITECTURA]',
+    'Pega el prompt: La IA definirá primero los elementos globales',
+    'Iteración: Recibe el prompt para URL 1 → Valida → Escribe "Siguiente"',
+    'Guarda cada prompt generado en un documento aparte para usarlo en la Fase 4'
+  ]));
+
+  var p3Text = "=== ARQUITECTO DE PROMPTS WEB & SYSTEM DESIGN ===\n\n" +
+  "INPUTS:\n" +
+  "Nicho: [NICHO]\n" +
+  "Branding/Estilo: [BRANDING] (Ej: Minimalista, azul corporativo, fuente sans-serif)\n" +
+  "Arquitectura de URLs: [URLS-ARQUITECTURA] (Lista completa del paso anterior)\n\n" +
+  "ROL:\n" +
+  "Eres un Senior Frontend Architect y Prompt Engineer. Tu tarea NO es escribir el código HTML ahora, sino diseñar los \"Prompts de Instrucción\" perfectos para que un Junior AI Developer codifique la web paso a paso en la siguiente fase.\n\n" +
+  "REGLAS DE ORO (CONSISTENCIA GLOBAL):\n" +
+  "1. SINGLE SOURCE OF TRUTH: Define primero un Header (con navegación basada en la Arquitectura) y un Footer estándar. Estos deben inyectarse en CADA prompt individual.\n" +
+  "2. NAVEGACIÓN REAL: Los enlaces generados deben apuntar a las URLs definidas (ej: href=\"servicios.html\"), no a \"#\".\n\n" +
+  "ALGORITMO DE EJECUCIÓN (ITERATIVO):\n" +
+  "1. ANALIZA la arquitectura y define mentalmente el bloque Header/Footer global.\n" +
+  "2. GENERA el Prompt de Desarrollo para la PRIMERA URL de la lista.\n" +
+  "3. DETENTE y espera mi instrucción.\n" +
+  "4. Cuando yo escriba \"Siguiente\", genera el prompt para la segunda URL, manteniendo estrictamente la coherencia del Header/Footer.\n\n" +
+  "FORMATO DE SALIDA (Para cada URL):\n" +
+  "Genera un bloque de código listo para copiar que contenga:\n" +
+  "\"Actúa como Experto Web. Genera el código HTML5 completo (con Tailwind CSS vía CDN) para la página: [NOMBRE_URL].\n" +
+  "- Title Tag SEO: [Título Optimizado]\n" +
+  "- Estructura Visual: [Instrucciones de diseño]\n" +
+  "- Header Global: [Instrucciones precisas del menú y logo]\n" +
+  "- Footer Global: [Instrucciones precisas de enlaces legales y sitemap]\n" +
+  "- Contenido Principal: [Secciones específicas para esta URL: H1, Textos, CTAs, Features]\"\n\n" +
+  "--- INSTRUCCIÓN FINAL ---\n" +
+  "Comienza analizando las URLs y entrégame SOLO el prompt para la URL #1 (Home). Al final pregunta: \"¿Validas este prompt para pasar a la siguiente?\"";
+
+  add(c,mkSectionTitle('📄 Prompt: Arquitecto de Prompts (v3.0)'),mkPromptBlock('PROMPT 3 — System Design & Prompting Iterativo','Personaliza los inputs y ejecuta.','P3', p3Text));
+  
   add(c,mkInfoBox('rgba(34,197,94,.08)','rgba(34,197,94,.25)','<p style="color:#4ade80;font-size:14px;font-weight:700;margin:0">✅ Checklist de salida</p><div style="color:#94a3b8;font-size:13px;margin-top:10px;line-height:2">☑ Elementos globales (Header/Footer) definidos<br>☑ Enlaces mapeados según arquitectura<br>☑ Prompt de desarrollo para URL 1 listo<br>☑ Sistema de validación activo</div>'));
-  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#fbbf24;font-size:13px;margin:0">⚠️ <strong>IMPORTANTE:</strong> La IA debe detenerse después de cada URL. Verifica que el <strong>Branding</strong> y los <strong>Enlaces</strong> sean consistentes antes de pedir la siguiente.</p>'));
+  
+  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#fbbf24;font-size:13px;margin:0">⚠️ <strong>IMPORTANTE:</strong> No dejes que la IA genere todas las URLs de golpe. Hazlo una a una para verificar que el <strong>Menú de Navegación</strong> siempre incluye los enlaces correctos.</p>'));
 }
 function phaseContent4(c){
   add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Generar las <strong style="color:#f59e0b">Páginas Legales y de Confianza</strong> obligatorias para <strong style="color:#f59e0b">[PAÍS]</strong>, manteniendo la identidad visual y estructura técnica del sitio.'));
@@ -175,14 +211,42 @@ function phaseContent4(c){
   add(c,mkSectionTitle('📝 Flujo de Trabajo'),mkStepList([
     'Define tu ubicación: [PAÍS] (Determina la normativa: RGPD, LOPD, CCPA, etc.)',
     'Prepara tus datos: [Nombre Empresa/Dueño], [Dirección], [Email], [NIF/CIF/ID]',
-    'Ejecuta el prompt: La IA listará las páginas necesarias y generará la primera',
-    'Validación: Revisa los datos, copia el HTML y escribe "Siguiente" para la próxima página'
+    'Ejecuta el prompt: La IA analizará la ley local y listará las páginas',
+    'Iteración: Recibe el HTML de la página 1 → Revisa datos → Escribe "Siguiente"',
+    'Guarda cada archivo con el nombre exacto que definiste en el Footer de la Fase 3'
   ]));
+
+  var p4Text = "=== GENERADOR DE ECOSISTEMA LEGAL & COMPLIANCE (MODO ITERATIVO) ===\n\n" +
+  "INPUTS:\n" +
+  "País de Operación: [PAÍS] (Define la jurisdicción: RGPD, CCPA, LGPD, etc.)\n" +
+  "Nombre del Proyecto: [NOMBRE_WEB]\n" +
+  "Datos del Responsable: [DATOS_CONTACTO_COMPLETOS] (Nombre/Empresa, Dirección, Email, NIF/Tax ID)\n" +
+  "Estilo Visual: [BRANDING] (Mismo que fase anterior)\n\n" +
+  "ROL:\n" +
+  "Eres un Abogado Digital Experto en Compliance y un Senior Frontend Developer.\n" +
+  "Tu objetivo es blindar legalmente el proyecto generando las páginas obligatorias una a una, asegurando coherencia técnica con el resto del sitio.\n\n" +
+  "PROTOCOLO DE EJECUCIÓN:\n" +
+  "1. ANÁLISIS NORMATIVO: Basado en el [PAÍS], lista qué páginas son estrictamente obligatorias (ej: España -> Aviso Legal, Privacidad, Cookies, Condiciones).\n" +
+  "2. DESARROLLO ITERATIVO:\n" +
+  "   - No generes todo el código de golpe.\n" +
+  "   - Genera el código HTML completo para la PRIMERA página de la lista.\n" +
+  "   - Detente y pregunta: \"¿Validas los datos y el diseño? ¿Pasamos a la siguiente?\".\n\n" +
+  "REQUISITOS TÉCNICOS (ESTRICTO):\n" +
+  "- Estructura: HTML5 válido + Tailwind CSS (CDN).\n" +
+  "- Diseño: Usa el mismo esquema de colores y tipografía que el resto de la web.\n" +
+  "- Header/Footer: Deben ser idénticos visualmente a la Home (usa la misma estructura de navegación).\n" +
+  "- Contenido: Redacción legal formal, adaptada a la normativa del país, insertando los [DATOS_CONTACTO] dinámicamente.\n\n" +
+  "--- INSTRUCCIÓN INICIAL ---\n" +
+  "Analiza el país [PAÍS].\n" +
+  "Lista las páginas requeridas.\n" +
+  "Genera INMEDIATAMENTE el código de la primera página (usualmente Política de Privacidad).\n" +
+  "Detente.";
 
   add(c,mkSectionTitle('📄 Prompt: Legal Compliance System'),mkPromptBlock(
     'PROMPT 4 — Generador de Arquitectura Legal',
     'Personaliza: [PAÍS], [NOMBRE_WEB], [DATOS_CONTACTO]',
-    '=== GENERADOR DE LEGALES (MODO ITERATIVO) ===\n\nCONTEXTO:\nPaís de operación: [PAÍS]\nNombre de la web: [NOMBRE_WEB]\nDatos del responsable: [DATOS_CONTACTO_COMPLETOS]\n\nOBJETIVO:\nActúa como un Consultor Legal Especialista en normativa digital de [PAÍS] y Desarrollador Web.\n1. Identifica qué páginas legales son OBLIGATORIAS para este país (Ej: Aviso Legal, Privacidad, Cookies, Términos).\n2. Genera el código HTML completo para cada una, UNA POR UNA.\n\nREQUISITOS TÉCNICOS (CRÍTICO):\n- Usa EXACTAMENTE el mismo Header, Footer y Estilos CSS/Tailwind definidos en la Fase anterior.\n- El contenido legal debe ser robusto, usando mis datos proporcionados.\n- Si para una página específica necesitas un dato extra (ej: nombre del DPO), PÍDEMELO antes de generar el código.\n\nEJECUCIÓN:\n1. Enumera la lista de páginas a crear.\n2. Genera el código para la PRIMERA página.\n3. Detente y pregunta: "¿Datos correctos? ¿Pasamos a la siguiente legal?".'
+    'P4',
+    p4Text
   ));
 
   add(c,mkInfoBox('rgba(239,68,68,.08)','rgba(239,68,68,.25)','<p style="color:#ef4444;font-size:13px;margin:0">⚠️ <strong>IMPORTANTE:</strong> La IA genera plantillas legales estándar basadas en tu país. Aunque son un excelente punto de partida, siempre revisa los textos finales con un especialista local antes de publicar.</p>'));
@@ -190,22 +254,49 @@ function phaseContent4(c){
   add(c,mkInfoBox('rgba(59,130,246,.08)','rgba(59,130,246,.25)','<p style="color:#3b82f6;font-size:13px;margin:0">💡 <strong>Tip:</strong> Asegúrate de que los enlaces del Footer (creados en Fase 3) coincidan con los nombres de archivo que guardes aquí (ej: <code>privacy.html</code>, <code>cookies.html</code>).</p>'));
 }
 function phaseContent5(c){
-  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Generar los archivos técnicos esenciales <strong style="color:#f59e0b">robots.txt</strong> y <strong style="color:#f59e0b">sitemap.xml</strong> para garantizar la indexación en Google.'));
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Generar los archivos técnicos esenciales <strong style="color:#f59e0b">robots.txt</strong> y <strong style="color:#f59e0b">sitemap.xml</strong> para garantizar que Google pueda rastrear e indexar tu web correctamente.'));
 
   add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList([
-    'Recopila TODAS las URLs finales (Home, categorías, artículos y legales).',
+    'Recopila los nombres de TODOS tus archivos .html creados (Home, legales, blog, calculadoras).',
     'Define tu dominio final (ej: https://tudominio.com).',
-    'Ejecuta el prompt para obtener ambos códigos.',
-    'Guarda los archivos en la raíz de tu proyecto.'
+    'Ejecuta el prompt para obtener el código exacto.',
+    'Guarda los archivos en la raíz de tu carpeta de proyecto.'
   ]));
 
-  add(c,mkSectionTitle('📄 Prompt: Technical SEO Files'),mkPromptBlock(
+  var p5Text = "=== GENERADOR DE ECOSISTEMA TÉCNICO SEO ===\n\n" +
+  "INPUTS:\n" +
+  "Dominio Base: [DOMINIO_RAIZ] (ej: https://miweb.com - SIN barra al final)\n" +
+  "Inventario de Archivos: [LISTA_DE_ARCHIVOS] (Lista todos los .html: index.html, contacto.html, privacy.html...)\n\n" +
+  "ROL:\n" +
+  "Eres un Senior Technical SEO Specialist. Tu misión es maximizar la \"Crawlability\" (rastreabilidad) del sitio generando archivos de configuración con sintaxis XML/TXT perfecta.\n\n" +
+  "PROTOCOLO DE EJECUCIÓN:\n" +
+  "1. PROCESAMIENTO DE URLs:\n" +
+  "   - Convierte cada archivo en su URL Absoluta (Dominio + Archivo).\n" +
+  "   - EXCEPCIÓN CRÍTICA: Si el archivo es 'index.html', la URL pública debe ser la raíz (/).\n" +
+  "   - Asegura formato de fecha W3C (YYYY-MM-DD) para hoy.\n\n" +
+  "2. GENERACIÓN DE ARCHIVOS:\n" +
+  "   A) ROBOTS.TXT:\n" +
+  "      - User-agent universal (*).\n" +
+  "      - Allow: / (Permitir todo).\n" +
+  "      - Sitemap: [Inserta la URL absoluta del sitemap].\n" +
+  "   B) SITEMAP.XML:\n" +
+  "      - Cabecera XML estándar UTF-8.\n" +
+  "      - Itera sobre la lista de archivos.\n" +
+  "      - <loc>: URL Absoluta.\n" +
+  "      - <lastmod>: Fecha actual.\n" +
+  "      - <changefreq>: 'monthly' para legales/estáticas, 'weekly' para blog/calculadoras.\n" +
+  "      - <priority>: 1.0 para la Home, 0.8 para contenido core, 0.5 para legales.\n\n" +
+  "OUTPUT:\n" +
+  "Entrégame dos bloques de código CLARAMENTE SEPARADOS (uno para robots.txt y otro para sitemap.xml) listos para guardar.";
+
+  add(c,mkSectionTitle('📄 Prompt: Technical SEO Architect'),mkPromptBlock(
     'PROMPT 5 — Generador de Robots & Sitemap',
-    'Personaliza: [DOMINIO_RAIZ], [LISTA_DE_URLS]',
-    '=== GENERADOR DE ARCHIVOS TÉCNICOS SEO ===\n\nCONTEXTO:\nDominio Principal: [DOMINIO_RAIZ] (Sin barra al final)\nLista de URLs del sitio: [LISTA_DE_URLS] (Pega aquí todas las urls relativas: /index.html, /contacto.html, etc.)\n\nTAREA:\nActúa como un experto en SEO Técnico. Genera el código para estos dos archivos:\n\n1. ROBOTS.TXT:\n- User-agent: *\n- Allow: /\n- Sitemap: [DOMINIO_RAIZ]/sitemap.xml\n\n2. SITEMAP.XML:\n- Estructura XML estándar.\n- <loc> debe ser la URL absoluta ([DOMINIO_RAIZ] + [slug]).\n- Asigna <priority> 1.0 a la Home y 0.8 al resto.\n- <lastmod> con la fecha de hoy.\n- <changefreq> monthly.\n\nENTREGABLE:\nDos bloques de código separados listos para guardar.'
+    'Personaliza: [DOMINIO_RAIZ] y [LISTA_DE_ARCHIVOS]',
+    'P5',
+    p5Text
   ));
 
-  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#fbbf24;font-size:13px;margin:0">⚠️ <strong>IMPORTANTE:</strong> El archivo <code>sitemap.xml</code> es vital para que Google encuentre todas tus páginas rápidamente, especialmente si tu enlazado interno aún no es perfecto.</p>'));
+  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#fbbf24;font-size:13px;margin:0">⚠️ <strong>IMPORTANTE:</strong> El archivo <code>sitemap.xml</code> es el mapa que le das a Google. Sin él, es posible que el buscador tarde semanas en encontrar tus páginas internas.</p>'));
 }
 function phaseContent6(c){
   add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Publicar tu web en internet. Usaremos <strong style="color:#f59e0b">GitHub</strong> (repositorio), <strong style="color:#f59e0b">Vercel</strong> (hosting gratuito y rápido) y <strong style="color:#f59e0b">Cloudflare</strong> (dominio profesional).'));
