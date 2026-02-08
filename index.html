@@ -3,25 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOP SEO Calculadoras — Gamificado</title>
+<title>SOP SEO: De Idea a Indexación</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ════ CORE STYLES ════ */
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:#080c14;color:#e2e8f0;font-family:'DM Sans','Segoe UI',system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:rgba(255,255,255,.03)}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
+
+/* ════ ANIMATIONS ════ */
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes popIn{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,.35)}50%{box-shadow:0 0 0 10px rgba(245,158,11,0)}}
 @keyframes glow{0%,100%{text-shadow:0 0 20px rgba(245,158,11,.3)}50%{text-shadow:0 0 40px rgba(245,158,11,.6)}}
+
+/* ════ UTILS ════ */
 .mono{font-family:'Space Mono',monospace}
 .code{font-family:'JetBrains Mono','Fira Code',monospace}
 .hidden{display:none!important}
+
+/* ════ COMPONENTS ════ */
 .badge-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;animation:fadeIn .3s}
 .badge-card{background:linear-gradient(145deg,#1e293b,#0f172a);border:2px solid #f59e0b;border-radius:28px;padding:52px 48px;text-align:center;box-shadow:0 0 100px rgba(245,158,11,.2);animation:popIn .4s cubic-bezier(.175,.885,.32,1.275);max-width:400px;width:90%}
+
 .prompt-block{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);border-radius:14px;margin-bottom:20px;overflow:hidden}
 .prompt-toggle{width:100%;background:none;border:none;color:#e2e8f0;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:inherit;font-size:15px;font-weight:700;text-align:left}
 .prompt-toggle:hover{background:rgba(255,255,255,.02)}
@@ -29,21 +37,26 @@ body{background:#080c14;color:#e2e8f0;font-family:'DM Sans','Segoe UI',system-ui
 .prompt-arrow.open{transform:rotate(180deg)}
 .prompt-body{padding:0 22px 22px}
 .prompt-pre{background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:18px;color:#cbd5e1;font-size:12.5px;line-height:1.7;overflow-x:auto;white-space:pre-wrap;word-break:break-word;max-height:520px;overflow-y:auto;font-family:'JetBrains Mono','Fira Code',monospace}
+
 .copy-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:#94a3b8;padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:all .25s;font-family:inherit;font-weight:600}
 .copy-btn.copied{background:#22c55e;color:#fff;border-color:#22c55e}
+
 .info-box{border-radius:12px;padding:18px;margin-top:16px}
 .section-title{color:#e2e8f0;font-size:16px;font-weight:700;margin-top:32px;margin-bottom:14px;font-family:'Space Mono',monospace;border-bottom:1px solid rgba(255,255,255,.06);padding-bottom:10px}
 .step-list{color:#cbd5e1;font-size:14px;line-height:2.2;padding-left:22px;margin:0}
+
 .check-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;cursor:pointer;font-size:14px;line-height:1.5;transition:color .2s}
 .check-box{width:22px;height:22px;min-width:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .2s;margin-top:1px}
+
 .phase-card{border-radius:16px;padding:20px 24px;cursor:pointer;transition:all .2s}
 .phase-card:hover{transform:translateX(4px)}
 .complete-btn{width:100%;padding:18px 24px;border:none;border-radius:14px;font-size:16px;font-weight:800;cursor:pointer;font-family:'Space Mono',monospace;letter-spacing:1px;transition:transform .15s;margin-top:12px}
 .complete-btn:active{transform:scale(.97)}
+
 .nav-bar{background:rgba(0,0,0,.5);border-bottom:1px solid rgba(255,255,255,.06);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(16px)}
 .back-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#94a3b8;padding:8px 18px;border-radius:8px;cursor:pointer;font-size:13px;font-family:inherit;font-weight:600;transition:all .2s}
 .back-btn:hover{background:rgba(255,255,255,.1);color:#e2e8f0}
-.sub-tab{padding:12px 22px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;font-family:inherit;transition:all .2s;border:none;color:#fff}
+
 .hero{background:linear-gradient(170deg,#0c1220,#0a0f1a 40%,#111827);border-bottom:1px solid rgba(255,255,255,.04);padding:56px 20px 52px;text-align:center;position:relative;overflow:hidden}
 .hero-grid{position:absolute;inset:0;opacity:.04;background-image:linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px);background-size:48px 48px}
 .hero-inner{position:relative;max-width:700px;margin:0 auto}
@@ -65,34 +78,35 @@ body{background:#080c14;color:#e2e8f0;font-family:'DM Sans','Segoe UI',system-ui
 <div id="app"></div>
 
 <script>
-// ══════════════════════ DATA ══════════════════════
+// ══════════════════════ DATA (UPDATED TO 8 PHASES) ══════════════════════
 var PHASES=[
-{id:1,icon:"💡",title:"Generar 100 Ideas de Nichos",subtitle:"Opciones infinitas. Elige la que TE APASIONE.",time:"8-10 min",xp:150,output:"Lista de 100 nichos viables",badge:"IDEATOR",bi:"🧠"},
-{id:2,icon:"🔍",title:"Análisis Competencia & Arquitectura",subtitle:"Espía a la competencia. Luego, supéralos.",time:"15-20 min",xp:250,output:"Lista de URLs con análisis",badge:"STRATEGIST",bi:"🎯"},
-{id:3,icon:"🔑",title:"Ingeniero de prompts",subtitle:"Encuentra las palabras clave que Google ADORA.",time:"12-15 min",xp:300,output:"Inputs organizados para cada URL",badge:"KEYWORD HUNTER",bi:"🏹"},
-{id:4,icon:"⚙️",title:"Crear URLs (Calc + Blog + Tools)",subtitle:"Cada página = un archivo .html independiente",time:"5-10 min c/u",xp:500,output:"N URLs SEO optimizadas",badge:"BUILDER",bi:"🏗️"},
-{id:5,icon:"⚖️",title:"Crear Páginas Legales",subtitle:"Protección legal. Necesarias para operar.",time:"25-30 min",xp:200,output:"Privacidad, Términos, Aviso Legal",badge:"COMPLIANT",bi:"🛡️"},
-{id:6,icon:"🏠",title:"Página Inicio + Header/Footer",subtitle:"Tu vitrina al mundo.",time:"15-17 min",xp:250,output:"index.html + header-footer.html",badge:"ARCHITECT",bi:"🏛️"},
-{id:7,icon:"✅",title:"QA Final & Publicación",subtitle:"Últimas revisiones. Luego: al mundo.",time:"10-15 min",xp:350,output:"Sitio completamente funcional",badge:"LAUNCHER",bi:"🚀"}
+  {id:1,icon:"💡",title:"Generar 100 Ideas de Nichos",subtitle:"Opciones infinitas. Elige la que TE APASIONE.",time:"8-10 min",xp:100,output:"Lista de 100 nichos",badge:"IDEATOR",bi:"🧠"},
+  {id:2,icon:"🔍",title:"Análisis Competencia & Arquitectura",subtitle:"Espía a la competencia. Luego, supéralos.",time:"15-20 min",xp:200,output:"Lista de URLs analizada",badge:"STRATEGIST",bi:"🎯"},
+  {id:3,icon:"📐",title:"Arquitectura de Prompts & Diseño",subtitle:"Define el Header, Footer y Estilo Global.",time:"15-20 min",xp:300,output:"Prompts para cada URL",badge:"ARCHITECT",bi:"🏛️"},
+  {id:4,icon:"⚖️",title:"Legales & Compliance Iterativo",subtitle:"Genera Privacidad, Cookies y Términos uno a uno.",time:"10-15 min",xp:250,output:"Archivos .html legales",badge:"LAWYER",bi:"🛡️"},
+  {id:5,icon:"🤖",title:"SEO Técnico (Robots + Sitemap)",subtitle:"Haz que Google entienda tu web.",time:"5 min",xp:200,output:"robots.txt + sitemap.xml",badge:"TECH SEO",bi:"⚙️"},
+  {id:6,icon:"☁️",title:"Despliegue (GitHub + Vercel)",subtitle:"Tu código local sube a la nube gratis.",time:"10-15 min",xp:350,output:"Web online en HTTPS",badge:"DEVOPS",bi:"☁️"},
+  {id:7,icon:"✅",title:"QA & Auditoría Post-Launch",subtitle:"Revisión final en entorno de producción.",time:"10-15 min",xp:200,output:"Web sin errores",badge:"TESTER",bi:"🧪"},
+  {id:8,icon:"🔎",title:"Indexación (Search Console)",subtitle:"Avisa a Google: '¡Ya estoy aquí!'",time:"5-8 min",xp:400,output:"Solicitud de indexación",badge:"PUBLISHER",bi:"🚀"}
 ];
 var TXP=PHASES.reduce(function(s,p){return s+p.xp},0);
 
-var completed=[];try{completed=JSON.parse(localStorage.getItem('sop_done')||'[]')}catch(e){}
-var qaChecks={};try{qaChecks=JSON.parse(localStorage.getItem('sop_qa')||'{}')}catch(e){}
+var completed=[];try{completed=JSON.parse(localStorage.getItem('sop_done_v2')||'[]')}catch(e){}
+var qaChecks={};try{qaChecks=JSON.parse(localStorage.getItem('sop_qa_v2')||'{}')}catch(e){}
 
-function save(){try{localStorage.setItem('sop_done',JSON.stringify(completed));localStorage.setItem('sop_qa',JSON.stringify(qaChecks))}catch(e){}}
+function save(){try{localStorage.setItem('sop_done_v2',JSON.stringify(completed));localStorage.setItem('sop_qa_v2',JSON.stringify(qaChecks))}catch(e){}}
 function getXP(){var s=0;for(var i=0;i<completed.length;i++){var p=PHASES.find(function(x){return x.id===completed[i]});if(p)s+=p.xp}return s}
-function getLevel(){var n=completed.length;return n===0?"NOVATO":n<=2?"APRENDIZ":n<=4?"PRO":n<=6?"EXPERTO":"MAESTRO SEO"}
+function getLevel(){var n=completed.length;return n===0?"NOVATO":n<=2?"APRENDIZ":n<=4?"JUNIOR":n<=6?"SENIOR":n===8?"MAESTRO SEO":"PRO"}
 function getPct(){return Math.round((getXP()/TXP)*100)}
 
 function showBadge(p){document.getElementById('bp-icon').textContent=p.bi;document.getElementById('bp-name').textContent=p.badge;document.getElementById('badge-popup').classList.remove('hidden')}
 function closeBadge(){document.getElementById('badge-popup').classList.add('hidden')}
 
-// ══════════════════════ PROMPTS ══════════════════════
+// ══════════════════════ PROMPTS (UPDATED) ══════════════════════
 var P={};
-P.P1="=== GENERADOR DE 100 IDEAS DE NICHOS SEO RENTABLES ===\n\nCONTEXTO:\nSoy emprendedor digital que quiere crear sitios de calculadoras online para ganar dinero.\nObjetivo: Obtener 100 ideas de nichos REALES y VIABLES en [PAÍS-DESTINO].\n\nCRITERIOS DE FILTRO (ESTRICTOS):\n1. Volumen de búsquedas: 600-10000/mes (debe tener demanda real)\n2. Competencia: BAJA-MEDIA (no dominado por Google o sitios gigantes)\n3. Potencial monetario: EUR 500-3000+/mes realista\n4. Validación: Que EXISTA demanda real en [PAÍS-DESTINO]\n5. Calculadora viable: Que tenga sentido crear una herramienta interactiva\n\nINSTRUCCIONES DE ANÁLISIS:\nPara cada nicho, debes:\n- Pensar COMO PERSONA que vive en [PAÍS-DESTINO]\n- Entender necesidades reales y psicología del mercado\n- Investigar micronichos no saturados\n- Considerar estacionalidad y tendencias\n- Pensar en PROBLEMAS reales que la gente resuelve con calculadoras\n\nDIVERSIDAD DE CATEGORÍAS:\nIncluye nichos de:\n- Finanzas (hipotecas, créditos, impuestos, inversiones)\n- Construcción & Hogar (presupuestos, materiales, reforma)\n- Salud & Fitness (calorías, IMC, edad biológica, etc.)\n- Educación (becas, costos estudio, etc.)\n- Energía (consumo eléctrico, solar, etc.)\n- Seguros (cálculo de primas, etc.)\n- Viajes (presupuestos, conversiones)\n- Negocios (márgenes, ROI, payback, etc.)\n- Automotor (financiamiento, consumo combustible)\n- Y más...\n\nFORMATO DE RESPUESTA (OBLIGATORIO):\nDevuelve EXACTAMENTE 100 ideas en este formato CSV:\n\nRanking | Nicho | Palabra Clave Principal | Volumen/Mes Est. | Viabilidad | Por Qué Funciona | Potencial Mensual EUR | Categoría\n\nEjemplo de filas:\n1 | Calculadora de Hipotecas | \"hypothekenrechner\" | 1800 | ALTA | Alemanes buscan financiamiento. Alto ticket. | 1500-2500 | Finanzas\n2 | Calculadora de Impuestos | \"steuerrechner\" | 2100 | ALTA | Anual. Millones lo buscan. Recurrente. | 1200-2000 | Impuestos\n\nREGLAS IMPORTANTES:\n- NO repitas nichos (cada uno único)\n- Los volúmenes deben ser REALISTAS\n- Incluye nichos obvios Y nichos ocultos\n- Prioriza \"evergreen\"\n- Considera demanda REAL, no especulación\n\nAHORA GENERA LOS 100 NICHOS.\nResponde en formato CSV directo (sin preamble ni explicaciones).";
+P.P1="=== GENERADOR DE 100 IDEAS DE NICHOS SEO RENTABLES ===\n\nCONTEXTO:\nSoy emprendedor digital que quiere crear sitios de calculadoras online para ganar dinero.\nObjetivo: Obtener 100 ideas de nichos REALES y VIABLES en [PAÍS-DESTINO].\n\nCRITERIOS DE FILTRO (ESTRICTOS):\n1. Volumen de búsquedas: 600-10000/mes (debe tener demanda real)\n2. Competencia: BAJA-MEDIA (no dominado por Google o sitios gigantes)\n3. Potencial monetario: EUR 500-3000+/mes realista\n4. Validación: Que EXISTA demanda real en [PAÍS-DESTINO]\n\nFORMATO DE RESPUESTA (OBLIGATORIO):\nDevuelve EXACTAMENTE 100 ideas en este formato CSV:\n\nRanking | Nicho | Palabra Clave Principal | Volumen/Mes Est. | Viabilidad | Por Qué Funciona | Potencial Mensual EUR | Categoría\n\nEjemplo de filas:\n1 | Calculadora de Hipotecas | \"hypothekenrechner\" | 1800 | ALTA | Alemanes buscan financiamiento. Alto ticket. | 1500-2500 | Finanzas\n\nREGLAS IMPORTANTES:\n- NO repitas nichos (cada uno único)\n- Los volúmenes deben ser REALISTAS\n- Incluye nichos obvios Y nichos ocultos\n\nAHORA GENERA LOS 100 NICHOS.";
 
-P.P2="=== ANÁLISIS COMPETIDOR & ARQUITECTURA DE URLs ===\n\nCONTEXTO:\nElegí el nicho: [NICHO-ELEGIDO]\nPalabra clave principal: [PALABRA-CLAVE-PRINCIPAL]\nPaís/Idioma: [PAÍS-IDIOMA]\n\nPARTE 1: ANÁLISIS DE COMPETENCIA\n\nNecesito que analices a los competidores TOP 10 de esta palabra clave:\n- ¿Cuántas URLs/páginas tienen cada sitio?\n- ¿Cuál es la estructura de navegación?\n- ¿Tienen calculadora, blog, o ambas?\n- ¿Qué palabras clave secundarias atacan?\n- ¿Cuántos artículos de blog?\n- ¿Tienen \"tools\" o herramientas secundarias?\n\nRespuesta formato:\n**Competidor 1 (sitio):**\n- URLs totales: [número]\n- Estructura: [descripción]\n- Herramientas: [lista]\n- Palabras clave: [lista de 5 principales]\n- Estrategia: [resumen]\n[Repite para competidores 2-10]\n\nPARTE 2: ANÁLISIS DE GAPS\n- ¿Qué URLs crean los competidores?\n- ¿Qué Keywords NO atacan (oportunidades)?\n- ¿Qué long-tail desatendidas?\n- ¿Hay demanda sin oferta?\n\nPARTE 3: ARQUITECTURA RECOMENDADA\n1. ¿Cuántas URLs MÍNIMO? JUSTIFICA.\n2. Para CADA URL: Nombre, URL amigable, KW objetivo, Búsquedas/mes, Tipo, Justificación, Dificultad SEO, Prioridad.\n3. Estructura en orden de importancia.\n\nPARTE 4: VENTAJA COMPETITIVA\n¿Cómo SUPERAR a la competencia? 3-5 acciones específicas.\n\nFORMATO FINAL (TABLA):\n| Prioridad | Tipo | URL | Palabra Clave | Volumen | Dificultad | Por Qué |\n\nRESPONDE TODAS LAS PARTES EN ORDEN.";
+P.P2="=== ANÁLISIS COMPETIDOR & ARQUITECTURA DE URLs ===\n\nCONTEXTO:\nElegí el nicho: [NICHO-ELEGIDO]\nPalabra clave principal: [PALABRA-CLAVE-PRINCIPAL]\nPaís/Idioma: [PAÍS-IDIOMA]\n\nPARTE 1: ANÁLISIS DE COMPETENCIA\nNecesito que analices a los competidores TOP 10. ¿Qué URLs tienen? ¿Qué keywords atacan?\n\nPARTE 2: ANÁLISIS DE GAPS\n- ¿Qué URLs crean los competidores?\n- ¿Qué Keywords NO atacan (oportunidades)?\n\nPARTE 3: ARQUITECTURA RECOMENDADA\n1. ¿Cuántas URLs MÍNIMO? JUSTIFICA.\n2. Para CADA URL: Nombre, URL amigable, KW objetivo, Búsquedas/mes, Tipo, Justificación.\n3. Estructura en orden de importancia.\n\nPARTE 4: VENTAJA COMPETITIVA\n¿Cómo SUPERAR a la competencia? 3-5 acciones específicas.";
 
 P.P3="=== ARQUITECTO DE PROMPTS WEB & SYSTEM DESIGN ===\n\n" +
   "INPUTS:\n" +
@@ -172,9 +186,9 @@ P.P5="=== GENERADOR DE ECOSISTEMA TÉCNICO SEO ===\n\n" +
   "OUTPUT:\n" +
   "Entrégame dos bloques de código CLARAMENTE SEPARADOS (uno para robots.txt y otro para sitemap.xml) listos para guardar.";
 
-P.P6='=== ASISTENTE DE DEVOPS & DNS ===\n\nCONTEXTO:\nTengo una web estática (HTML/CSS).\nHosting: Vercel (conectado vía GitHub).\nDominio: Comprado en Cloudflare.\n\nPROBLEMA ACTUAL:\n[DESCRIBE TU ERROR: Ej. "Mi web se ve bien en local pero en Vercel no cargan los estilos" o "No sé qué registros DNS poner en Cloudflare"].\n\nSOLICITUD:\nDame una guía paso a paso para solucionar este error específico y verificar que mi web esté online.'
+P.P6="=== ASISTENTE DE DEVOPS & DNS ===\n\nCONTEXTO:\nTengo una web estática (HTML/CSS).\nHosting: Vercel (conectado vía GitHub).\nDominio: Comprado en Cloudflare.\n\nPROBLEMA ACTUAL:\n[DESCRIBE TU ERROR: Ej. \"Mi web se ve bien en local pero en Vercel no cargan los estilos\" o \"No sé qué registros DNS poner en Cloudflare\"].\n\nSOLICITUD:\nDame una guía paso a paso para solucionar este error específico y verificar que mi web esté online.";
 
-// ══════════════════════ DOM HELPERS ══════════════════════
+// ══════════════════════ HELPERS ══════════════════════
 function el(tag,attrs){
   var e=document.createElement(tag);
   if(!attrs)return e;
@@ -188,13 +202,12 @@ function el(tag,attrs){
 }
 function add(parent){for(var i=1;i<arguments.length;i++)if(arguments[i])parent.appendChild(arguments[i]);return parent}
 
-// ══════════════════════ REUSABLE BUILDERS ══════════════════════
 function mkSectionTitle(txt){return el('h3',{cls:'section-title',html:txt})}
 function mkStepList(steps){return el('ol',{cls:'step-list',html:steps.map(function(s){return '<li>'+s+'</li>'}).join('')})}
 function mkParagraph(innerHTML){return el('p',{html:innerHTML,css:{color:'#94a3b8',fontSize:'14px',lineHeight:'1.8'}})}
 function mkInfoBox(bgColor,borderColor,innerHTML){var d=el('div',{cls:'info-box',html:innerHTML});d.style.background=bgColor;d.style.border='1px solid '+borderColor;return d}
 
-function mkPromptBlock(title,note,promptKey){
+function mkPromptBlock(title,note,promptKey,overrideText){
   var block=el('div',{cls:'prompt-block'});
   var arrow=el('span',{cls:'prompt-arrow',text:'▼'});
   var toggle=el('button',{cls:'prompt-toggle'});
@@ -202,211 +215,101 @@ function mkPromptBlock(title,note,promptKey){
   toggle.appendChild(arrow);
   var body=el('div',{cls:'prompt-body',css:{display:'none'}});
   if(note)add(body,el('p',{html:note,css:{color:'#f59e0b',fontSize:'13px',marginBottom:'14px',fontStyle:'italic',lineHeight:'1.5'}}));
+  
+  var textToCopy = overrideText || P[promptKey];
+  
   var copyBtn=el('button',{cls:'copy-btn',text:'📋 Copiar prompt',onclick:function(){
-    navigator.clipboard.writeText(P[promptKey]).then(function(){
+    navigator.clipboard.writeText(textToCopy).then(function(){
       copyBtn.textContent='✓ Copiado';copyBtn.classList.add('copied');
       setTimeout(function(){copyBtn.textContent='📋 Copiar prompt';copyBtn.classList.remove('copied')},2000);
     });
   }});
   add(body,el('div',{css:{display:'flex',justifyContent:'flex-end',marginBottom:'10px'}}).appendChild(copyBtn).parentNode);
-  var pre=el('pre',{cls:'prompt-pre'});pre.textContent=P[promptKey];
+  var pre=el('pre',{cls:'prompt-pre'});pre.textContent=textToCopy;
   add(body,pre);
   toggle.addEventListener('click',function(){var v=body.style.display==='none';body.style.display=v?'block':'none';arrow.classList.toggle('open',v)});
   return add(block,toggle,body);
 }
 
-// ══════════════════════ PHASE CONTENT ══════════════════════
+// ══════════════════════ CONTENT RENDERERS ══════════════════════
 function phaseContent1(c){
-  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Generar <strong style="color:#f59e0b">100 ideas de nichos SEO</strong> rentables para sitios de calculadoras. Cada nicho validado con volumen, viabilidad y potencial monetario.'));
-  add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList(['Copia el prompt de abajo','Personaliza SOLO [PAÍS-DESTINO] (ej: Alemania, España…)','Pega el prompt en tu IA preferida','Recibe la tabla CSV con 100 nichos','Elige 1 nicho — el que MÁS te apasione']));
-  add(c,mkSectionTitle('📄 Prompt: Generador de 100 Ideas (v3.0)'),mkPromptBlock('PROMPT 1 — Generador de 100 Ideas de Nichos SEO','Formato de salida: CSV. Personaliza SOLO [PAÍS-DESTINO].','P1'));
-  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#fbbf24;font-size:14px;margin:0;font-weight:700">📋 Output esperado</p><p style="color:#94a3b8;font-size:13px;margin-top:8px;margin-bottom:0">CSV con 100 filas: Ranking | Nicho | Palabra Clave | Volumen | Viabilidad | Justificación | Potencial | Categoría</p>'));
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Generar <strong style="color:#f59e0b">100 ideas de nichos SEO</strong> rentables.'));
+  add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList(['Copia el prompt','Personaliza [PAÍS-DESTINO]','Recibe la tabla CSV','Elige 1 nicho que te apasione']));
+  add(c,mkSectionTitle('📄 Prompt: Generador de Ideas'),mkPromptBlock('PROMPT 1 — 100 Nichos','Personaliza [PAÍS-DESTINO]','P1'));
 }
+
 function phaseContent2(c){
-  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Analizar los <strong style="color:#f59e0b">TOP 10 competidores</strong> de tu nicho, encontrar gaps y diseñar la arquitectura completa de URLs.'));
-  add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList(['Toma el nicho elegido en Fase 1','Personaliza: [NICHO-ELEGIDO], [PALABRA-CLAVE-PRINCIPAL], [PAÍS-IDIOMA]','Copia y pega el prompt','Obtén análisis + arquitectura recomendada','Guarda la tabla — la necesitarás en Fase 3']));
-  add(c,mkSectionTitle('📄 Prompt: Análisis Competencia (v2.0)'),mkPromptBlock('PROMPT 2 — Análisis Competencia & Arquitectura URLs','Personaliza: [NICHO-ELEGIDO], [PALABRA-CLAVE-PRINCIPAL], [PAÍS-IDIOMA]','P2'));
-  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#fbbf24;font-size:14px;margin:0;font-weight:700">📋 Output esperado</p><p style="color:#94a3b8;font-size:13px;margin-top:8px;margin-bottom:0">Análisis detallado + tabla final de arquitectura de URLs</p>'));
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Analizar la <strong style="color:#f59e0b">Competencia</strong> y definir la <strong style="color:#f59e0b">Arquitectura de URLs</strong>.'));
+  add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList(['Personaliza [NICHO], [KW], [PAÍS]','Ejecuta el prompt','Guarda la lista de URLs para el siguiente paso']));
+  add(c,mkSectionTitle('📄 Prompt: Análisis Competencia'),mkPromptBlock('PROMPT 2 — Análisis & Arquitectura','Personaliza inputs','P2'));
 }
+
 function phaseContent3(c){
-  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Analizar la arquitectura y generar <strong style="color:#f59e0b">prompts de desarrollo individuales</strong> para cada URL, asegurando <strong style="color:#f59e0b">coherencia global</strong> (Header/Footer/Branding) y validación paso a paso.'));
-  
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Analizar la arquitectura y generar <strong style="color:#f59e0b">prompts de desarrollo individuales</strong> para cada URL, asegurando <strong style="color:#f59e0b">coherencia global</strong> (Header/Footer/Branding).'));
   add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList([
     'Toma la arquitectura aprobada de Fase 2',
     'Personaliza: [NICHO], [BRANDING], [URLS-ARQUITECTURA]',
     'Pega el prompt: La IA definirá primero los elementos globales',
     'Iteración: Recibe el prompt para URL 1 → Valida → Escribe "Siguiente"',
-    'Guarda cada prompt generado en un documento aparte para usarlo en la Fase 4'
+    'Guarda cada prompt generado en un documento aparte para usarlo luego'
   ]));
-
-  var p3Text = "=== ARQUITECTO DE PROMPTS WEB & SYSTEM DESIGN ===\n\n" +
-  "INPUTS:\n" +
-  "Nicho: [NICHO]\n" +
-  "Branding/Estilo: [BRANDING] (Ej: Minimalista, azul corporativo, fuente sans-serif)\n" +
-  "Arquitectura de URLs: [URLS-ARQUITECTURA] (Lista completa del paso anterior)\n\n" +
-  "ROL:\n" +
-  "Eres un Senior Frontend Architect y Prompt Engineer. Tu tarea NO es escribir el código HTML ahora, sino diseñar los \"Prompts de Instrucción\" perfectos para que un Junior AI Developer codifique la web paso a paso en la siguiente fase.\n\n" +
-  "REGLAS DE ORO (CONSISTENCIA GLOBAL):\n" +
-  "1. SINGLE SOURCE OF TRUTH: Define primero un Header (con navegación basada en la Arquitectura) y un Footer estándar. Estos deben inyectarse en CADA prompt individual.\n" +
-  "2. NAVEGACIÓN REAL: Los enlaces generados deben apuntar a las URLs definidas (ej: href=\"servicios.html\"), no a \"#\".\n\n" +
-  "ALGORITMO DE EJECUCIÓN (ITERATIVO):\n" +
-  "1. ANALIZA la arquitectura y define mentalmente el bloque Header/Footer global.\n" +
-  "2. GENERA el Prompt de Desarrollo para la PRIMERA URL de la lista.\n" +
-  "3. DETENTE y espera mi instrucción.\n" +
-  "4. Cuando yo escriba \"Siguiente\", genera el prompt para la segunda URL, manteniendo estrictamente la coherencia del Header/Footer.\n\n" +
-  "FORMATO DE SALIDA (Para cada URL):\n" +
-  "Genera un bloque de código listo para copiar que contenga:\n" +
-  "\"Actúa como Experto Web. Genera el código HTML5 completo (con Tailwind CSS vía CDN) para la página: [NOMBRE_URL].\n" +
-  "- Title Tag SEO: [Título Optimizado]\n" +
-  "- Estructura Visual: [Instrucciones de diseño]\n" +
-  "- Header Global: [Instrucciones precisas del menú y logo]\n" +
-  "- Footer Global: [Instrucciones precisas de enlaces legales y sitemap]\n" +
-  "- Contenido Principal: [Secciones específicas para esta URL: H1, Textos, CTAs, Features]\"\n\n" +
-  "--- INSTRUCCIÓN FINAL ---\n" +
-  "Comienza analizando las URLs y entrégame SOLO el prompt para la URL #1 (Home). Al final pregunta: \"¿Validas este prompt para pasar a la siguiente?\"";
-
-  add(c,mkSectionTitle('📄 Prompt: Arquitecto de Prompts (v3.0)'),mkPromptBlock('PROMPT 3 — System Design & Prompting Iterativo','Personaliza los inputs y ejecuta.','P3', p3Text));
-  
-  add(c,mkInfoBox('rgba(34,197,94,.08)','rgba(34,197,94,.25)','<p style="color:#4ade80;font-size:14px;font-weight:700;margin:0">✅ Checklist de salida</p><div style="color:#94a3b8;font-size:13px;margin-top:10px;line-height:2">☑ Elementos globales (Header/Footer) definidos<br>☑ Enlaces mapeados según arquitectura<br>☑ Prompt de desarrollo para URL 1 listo<br>☑ Sistema de validación activo</div>'));
-  
-  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#fbbf24;font-size:13px;margin:0">⚠️ <strong>IMPORTANTE:</strong> No dejes que la IA genere todas las URLs de golpe. Hazlo una a una para verificar que el <strong>Menú de Navegación</strong> siempre incluye los enlaces correctos.</p>'));
+  add(c,mkSectionTitle('📄 Prompt: Arquitecto de Prompts'),mkPromptBlock('PROMPT 3 — System Design & Prompting Iterativo','Personaliza los inputs y ejecuta.','P3'));
+  add(c,mkInfoBox('rgba(34,197,94,.08)','rgba(34,197,94,.25)','<p style="color:#4ade80;font-size:14px;font-weight:700;margin:0">✅ Checklist de salida</p><div style="color:#94a3b8;font-size:13px;margin-top:10px;line-height:2">☑ Header/Footer definidos<br>☑ Enlaces mapeados<br>☑ Prompt para URL 1 listo</div>'));
 }
+
 function phaseContent4(c){
-  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Generar las <strong style="color:#f59e0b">Páginas Legales y de Confianza</strong> obligatorias para <strong style="color:#f59e0b">[PAÍS]</strong>, manteniendo la identidad visual y estructura técnica del sitio.'));
-
-  add(c,mkSectionTitle('📝 Flujo de Trabajo'),mkStepList([
-    'Define tu ubicación: [PAÍS] (Determina la normativa: RGPD, LOPD, CCPA, etc.)',
-    'Prepara tus datos: [Nombre Empresa/Dueño], [Dirección], [Email], [NIF/CIF/ID]',
-    'Ejecuta el prompt: La IA analizará la ley local y listará las páginas',
-    'Iteración: Recibe el HTML de la página 1 → Revisa datos → Escribe "Siguiente"',
-    'Guarda cada archivo con el nombre exacto que definiste en el Footer de la Fase 3'
-  ]));
-
-  var p4Text = "=== GENERADOR DE ECOSISTEMA LEGAL & COMPLIANCE (MODO ITERATIVO) ===\n\n" +
-  "INPUTS:\n" +
-  "País de Operación: [PAÍS] (Define la jurisdicción: RGPD, CCPA, LGPD, etc.)\n" +
-  "Nombre del Proyecto: [NOMBRE_WEB]\n" +
-  "Datos del Responsable: [DATOS_CONTACTO_COMPLETOS] (Nombre/Empresa, Dirección, Email, NIF/Tax ID)\n" +
-  "Estilo Visual: [BRANDING] (Mismo que fase anterior)\n\n" +
-  "ROL:\n" +
-  "Eres un Abogado Digital Experto en Compliance y un Senior Frontend Developer.\n" +
-  "Tu objetivo es blindar legalmente el proyecto generando las páginas obligatorias una a una, asegurando coherencia técnica con el resto del sitio.\n\n" +
-  "PROTOCOLO DE EJECUCIÓN:\n" +
-  "1. ANÁLISIS NORMATIVO: Basado en el [PAÍS], lista qué páginas son estrictamente obligatorias (ej: España -> Aviso Legal, Privacidad, Cookies, Condiciones).\n" +
-  "2. DESARROLLO ITERATIVO:\n" +
-  "   - No generes todo el código de golpe.\n" +
-  "   - Genera el código HTML completo para la PRIMERA página de la lista.\n" +
-  "   - Detente y pregunta: \"¿Validas los datos y el diseño? ¿Pasamos a la siguiente?\".\n\n" +
-  "REQUISITOS TÉCNICOS (ESTRICTO):\n" +
-  "- Estructura: HTML5 válido + Tailwind CSS (CDN).\n" +
-  "- Diseño: Usa el mismo esquema de colores y tipografía que el resto de la web.\n" +
-  "- Header/Footer: Deben ser idénticos visualmente a la Home (usa la misma estructura de navegación).\n" +
-  "- Contenido: Redacción legal formal, adaptada a la normativa del país, insertando los [DATOS_CONTACTO] dinámicamente.\n\n" +
-  "--- INSTRUCCIÓN INICIAL ---\n" +
-  "Analiza el país [PAÍS].\n" +
-  "Lista las páginas requeridas.\n" +
-  "Genera INMEDIATAMENTE el código de la primera página (usualmente Política de Privacidad).\n" +
-  "Detente.";
-
-  add(c,mkSectionTitle('📄 Prompt: Legal Compliance System'),mkPromptBlock(
-    'PROMPT 4 — Generador de Arquitectura Legal',
-    'Personaliza: [PAÍS], [NOMBRE_WEB], [DATOS_CONTACTO]',
-    'P4',
-    p4Text
-  ));
-
-  add(c,mkInfoBox('rgba(239,68,68,.08)','rgba(239,68,68,.25)','<p style="color:#ef4444;font-size:13px;margin:0">⚠️ <strong>IMPORTANTE:</strong> La IA genera plantillas legales estándar basadas en tu país. Aunque son un excelente punto de partida, siempre revisa los textos finales con un especialista local antes de publicar.</p>'));
-  
-  add(c,mkInfoBox('rgba(59,130,246,.08)','rgba(59,130,246,.25)','<p style="color:#3b82f6;font-size:13px;margin:0">💡 <strong>Tip:</strong> Asegúrate de que los enlaces del Footer (creados en Fase 3) coincidan con los nombres de archivo que guardes aquí (ej: <code>privacy.html</code>, <code>cookies.html</code>).</p>'));
-}
-function phaseContent5(c){
-  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Generar los archivos técnicos esenciales <strong style="color:#f59e0b">robots.txt</strong> y <strong style="color:#f59e0b">sitemap.xml</strong> para garantizar que Google pueda rastrear e indexar tu web correctamente.'));
-
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Generar las <strong style="color:#f59e0b">Páginas Legales</strong> obligatorias para <strong style="color:#f59e0b">[PAÍS]</strong>, una por una.'));
   add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList([
-    'Recopila los nombres de TODOS tus archivos .html creados (Home, legales, blog, calculadoras).',
-    'Define tu dominio final (ej: https://tudominio.com).',
-    'Ejecuta el prompt para obtener el código exacto.',
-    'Guarda los archivos en la raíz de tu carpeta de proyecto.'
+    'Define tu ubicación: [PAÍS]',
+    'Prepara datos: [Empresa], [Dirección], [Email]',
+    'Ejecuta el prompt: La IA listará las páginas necesarias',
+    'Iteración: Recibe HTML página 1 → Revisa → "Siguiente"',
+    'Guarda archivos con nombres estándar (privacy.html, terms.html)'
   ]));
-
-  var p5Text = "=== GENERADOR DE ECOSISTEMA TÉCNICO SEO ===\n\n" +
-  "INPUTS:\n" +
-  "Dominio Base: [DOMINIO_RAIZ] (ej: https://miweb.com - SIN barra al final)\n" +
-  "Inventario de Archivos: [LISTA_DE_ARCHIVOS] (Lista todos los .html: index.html, contacto.html, privacy.html...)\n\n" +
-  "ROL:\n" +
-  "Eres un Senior Technical SEO Specialist. Tu misión es maximizar la \"Crawlability\" (rastreabilidad) del sitio generando archivos de configuración con sintaxis XML/TXT perfecta.\n\n" +
-  "PROTOCOLO DE EJECUCIÓN:\n" +
-  "1. PROCESAMIENTO DE URLs:\n" +
-  "   - Convierte cada archivo en su URL Absoluta (Dominio + Archivo).\n" +
-  "   - EXCEPCIÓN CRÍTICA: Si el archivo es 'index.html', la URL pública debe ser la raíz (/).\n" +
-  "   - Asegura formato de fecha W3C (YYYY-MM-DD) para hoy.\n\n" +
-  "2. GENERACIÓN DE ARCHIVOS:\n" +
-  "   A) ROBOTS.TXT:\n" +
-  "      - User-agent universal (*).\n" +
-  "      - Allow: / (Permitir todo).\n" +
-  "      - Sitemap: [Inserta la URL absoluta del sitemap].\n" +
-  "   B) SITEMAP.XML:\n" +
-  "      - Cabecera XML estándar UTF-8.\n" +
-  "      - Itera sobre la lista de archivos.\n" +
-  "      - <loc>: URL Absoluta.\n" +
-  "      - <lastmod>: Fecha actual.\n" +
-  "      - <changefreq>: 'monthly' para legales/estáticas, 'weekly' para blog/calculadoras.\n" +
-  "      - <priority>: 1.0 para la Home, 0.8 para contenido core, 0.5 para legales.\n\n" +
-  "OUTPUT:\n" +
-  "Entrégame dos bloques de código CLARAMENTE SEPARADOS (uno para robots.txt y otro para sitemap.xml) listos para guardar.";
-
-  add(c,mkSectionTitle('📄 Prompt: Technical SEO Architect'),mkPromptBlock(
-    'PROMPT 5 — Generador de Robots & Sitemap',
-    'Personaliza: [DOMINIO_RAIZ] y [LISTA_DE_ARCHIVOS]',
-    'P5',
-    p5Text
-  ));
-
-  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#fbbf24;font-size:13px;margin:0">⚠️ <strong>IMPORTANTE:</strong> El archivo <code>sitemap.xml</code> es el mapa que le das a Google. Sin él, es posible que el buscador tarde semanas en encontrar tus páginas internas.</p>'));
+  add(c,mkSectionTitle('📄 Prompt: Legal Compliance'),mkPromptBlock('PROMPT 4 — Generador Legal Iterativo','Personaliza: [PAÍS], [DATOS]','P4'));
+  add(c,mkInfoBox('rgba(239,68,68,.08)','rgba(239,68,68,.25)','<p style="color:#ef4444;font-size:13px;margin:0">⚠️ <strong>IMPORTANTE:</strong> La IA genera plantillas estándar. Revisa siempre los textos antes de publicar.</p>'));
 }
+
+function phaseContent5(c){
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Generar <strong style="color:#f59e0b">robots.txt</strong> y <strong style="color:#f59e0b">sitemap.xml</strong> para SEO.'));
+  add(c,mkSectionTitle('📝 Pasos a seguir'),mkStepList([
+    'Recopila nombres de TODOS tus archivos .html',
+    'Define tu dominio final (ej: https://tudominio.com)',
+    'Ejecuta el prompt para obtener ambos códigos',
+    'Guarda los archivos en la raíz del proyecto'
+  ]));
+  add(c,mkSectionTitle('📄 Prompt: Technical SEO'),mkPromptBlock('PROMPT 5 — Robots & Sitemap','Personaliza: [DOMINIO], [LISTA_ARCHIVOS]','P5'));
+  add(c,mkInfoBox('rgba(245,158,11,.08)','rgba(245,158,11,.25)','<p style="color:#fbbf24;font-size:13px;margin:0">⚠️ <strong>TIP:</strong> Sin sitemap.xml, Google tardará mucho más en indexar tus páginas profundas.</p>'));
+}
+
 function phaseContent6(c){
-  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Publicar tu web en internet. Usaremos <strong style="color:#f59e0b">GitHub</strong> (repositorio), <strong style="color:#f59e0b">Vercel</strong> (hosting gratuito y rápido) y <strong style="color:#f59e0b">Cloudflare</strong> (dominio profesional).'));
-
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Publicar tu web usando <strong style="color:#f59e0b">GitHub</strong>, <strong style="color:#f59e0b">Vercel</strong> y <strong style="color:#f59e0b">Cloudflare</strong>.'));
   add(c,mkSectionTitle('📝 Flujo de Lanzamiento'),mkStepList([
-    'PREPARACIÓN: Renombra tu archivo principal a <code style="color:#f59e0b">index.html</code>. El resto deben ser <code style="color:#f59e0b">[nombre].html</code>.',
-    'GITHUB: Crea una cuenta y un "New Repository". Sube todos tus archivos (Upload files).',
-    'VERCEL: Conecta tu cuenta de GitHub. Importa el repositorio y haz clic en "Deploy".',
-    'DOMINIO: Si la web funciona bien, compra tu dominio en Cloudflare.',
-    'DNS: En Vercel > Settings > Domains, añade tu dominio. Configura los registros DNS en Cloudflare según te pida Vercel.'
+    'PREPARACIÓN: Renombra tu archivo principal a <code style="color:#f59e0b">index.html</code>.',
+    'GITHUB: Crea repositorio y sube tus archivos.',
+    'VERCEL: Conecta GitHub, importa repo y dale a "Deploy".',
+    'DOMINIO: Compra en Cloudflare y configúralo en Vercel > Settings > Domains.'
   ]));
-
-  add(c,mkSectionTitle('📄 Prompt: Asistente de Despliegue (Opcional)'),mkPromptBlock(
-    'PROMPT 6 — Experto en Hosting & DNS',
-    'Úsalo solo si tienes errores al subir la web o configurar el dominio.',
-    '=== ASISTENTE DE DEVOPS & DNS ===\n\nCONTEXTO:\nTengo una web estática (HTML/CSS).\nHosting: Vercel (conectado vía GitHub).\nDominio: Comprado en Cloudflare.\n\nPROBLEMA ACTUAL:\n[DESCRIBE TU ERROR: Ej. "Mi web se ve bien en local pero en Vercel no cargan los estilos" o "No sé qué registros DNS poner en Cloudflare"].\n\nSOLICITUD:\nDame una guía paso a paso para solucionar este error específico y verificar que mi web esté online.'
-  ));
-
-  add(c,mkInfoBox('rgba(59,130,246,.08)','rgba(59,130,246,.25)','<p style="color:#3b82f6;font-size:13px;margin:0">💡 <strong>Tip Pro:</strong> Vercel actualiza tu web automáticamente. Cada vez que cambies algo en tu código y lo subas a GitHub, tu web se actualizará sola en segundos.</p>'));
-  
-  add(c,mkInfoBox('rgba(239,68,68,.08)','rgba(239,68,68,.25)','<p style="color:#ef4444;font-size:13px;margin:0">⚠️ <strong>CRÍTICO:</strong> Asegúrate de que todos tus enlaces internos en el código apunten a <code>pagina.html</code> y no solo a <code>pagina</code>, o Vercel podría dar error 404.</p>'));
+  add(c,mkSectionTitle('📄 Prompt: Ayuda Despliegue'),mkPromptBlock('PROMPT 6 — Experto DevOps (Opcional)','Úsalo si tienes errores al subir la web.','P6'));
+  add(c,mkInfoBox('rgba(59,130,246,.08)','rgba(59,130,246,.25)','<p style="color:#3b82f6;font-size:13px;margin:0">💡 Vercel se actualiza solo cada vez que subes cambios a GitHub.</p>'));
 }
+
 function phaseContent7(c){
   var cats=[
-    {t:"Despliegue & Dominio",i:["La web carga en el dominio final (HTTPS)","No hay error de certificado SSL","Vercel muestra 'Ready' en el dashboard","La versión móvil carga correctamente","Favicon visible en la pestaña"]},
-    {t:"SEO Técnico",i:["El archivo /robots.txt es accesible","El archivo /sitemap.xml es accesible","Las URLs terminan en .html (o clean urls configuradas)","Meta Title y Description únicos por página","Una etiqueta H1 única por página"]},
-    {t:"Contenido & UX",i:["Menú de navegación funciona","Footer aparece en todas las URLs","Enlaces internos correctos (no 404)","Botones de llamada a la acción (CTA) visibles","Formularios (si hay) funcionan"]},
-    {t:"Legal",i:["Página de Privacidad accesible","Página de Aviso Legal accesible","Banner de Cookies (si aplica) funciona","Datos de contacto visibles"]}
+    {t:"Despliegue & Dominio",i:["Carga en HTTPS","No hay errores SSL","Vercel dice 'Ready'","Versión móvil OK"]},
+    {t:"SEO Técnico",i:["/robots.txt accesible","/sitemap.xml accesible","URLs limpias","Meta Titles únicos"]},
+    {t:"UX & Legal",i:["Menú funciona","Footer en todas las URLs","Links legales funcionan","Contacto visible"]}
   ];
-
   var total=0;cats.forEach(function(cat){total+=cat.i.length});
-  
-  // Lógica de la barra de progreso (mantenida igual)
   function countDone(){var n=0;for(var k in qaChecks)if(qaChecks[k])n++;return n}
   
-  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Auditar la web en <strong style="color:#22c55e">Producción</strong> y forzar la <strong style="color:#f59e0b">indexación en Google</strong>.'));
-  add(c,mkSectionTitle('✅ Checklist de QA (Post-Launch)'));
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Auditar la web en <strong style="color:#22c55e">Producción</strong>.'));
+  add(c,mkSectionTitle('✅ Checklist de QA'));
 
-  // Barra de progreso visual
   var barOuter=el('div',{css:{height:'8px',background:'rgba(255,255,255,.05)',borderRadius:'4px',marginBottom:'6px'}});
   var barInner=el('div',{css:{height:'100%',borderRadius:'4px',transition:'width .4s'}});
   barOuter.appendChild(barInner);
   var barText=el('p',{cls:'mono',css:{color:'#64748b',fontSize:'12px',marginTop:'6px',marginBottom:'20px'}});
-  
   function updateBar(){
     var d=countDone(),pct=Math.round((d/total)*100);
     barInner.style.width=pct+'%';
@@ -417,16 +320,14 @@ function phaseContent7(c){
   updateBar();
   add(c,barOuter,barText);
 
-  // Generación de categorías de checklist
   cats.forEach(function(cat,ci){
     add(c,el('h4',{html:cat.t,css:{color:'#cbd5e1',fontSize:'14px',marginBottom:'6px',marginTop:'16px'}}));
     cat.i.forEach(function(item,ii){
-      var key=ci+'-'+ii+'-p7'; // Clave única actualizada para fase 7
+      var key=ci+'-'+ii+'-p7';
       var checked=!!qaChecks[key];
       var label=el('div',{cls:'check-item',css:{color:checked?'#22c55e':'#94a3b8',cursor:'pointer'}});
       var box=el('span',{cls:'check-box',text:checked?'✓':'',css:{border:checked?'2px solid #22c55e':'2px solid rgba(255,255,255,.18)',background:checked?'rgba(34,197,94,.12)':'transparent',color:'#22c55e'}});
       var txt=el('span',{text:item,css:{textDecoration:checked?'line-through':'none',opacity:checked?'.55':'1'}});
-      
       label.addEventListener('click',function(){
         qaChecks[key]=!qaChecks[key];save();
         var ch=qaChecks[key];
@@ -438,57 +339,31 @@ function phaseContent7(c){
       add(label,box,txt);c.appendChild(label);
     });
   });
-
-  add(c,mkSectionTitle('📋 Estructura Final en GitHub/Vercel'));
-  var pre=el('pre',{cls:'code',css:{background:'rgba(0,0,0,.4)',border:'1px solid rgba(255,255,255,.05)',borderRadius:'10px',padding:'18px',color:'#94a3b8',fontSize:'13px',lineHeight:'1.8',overflowX:'auto'}});
-  // Estructura aplanada acorde a la Fase 6
-  pre.textContent="/raiz-del-repo/\n├── index.html            (Home)\n├── contacto.html\n├── [articulo-seo].html\n├── [calculadora].html\n├── privacy.html\n├── terms.html\n├── robots.txt\n├── sitemap.xml\n└── assets/               (Imágenes y CSS)";
-  add(c,pre);
-
-  add(c,mkSectionTitle('🚀 Indexación (Google Search Console)'),mkStepList([
-    'Ve a search.google.com/search-console',
-    'Añade propiedad → Dominio (ej: tusitio.com)',
-    'Verifica mediante DNS (copia el TXT a Cloudflare)',
-    'Menú "Sitemaps" → Escribe "sitemap.xml" → Enviar',
-    'Menú "Inspección de URL" → Pega tu dominio → "Solicitar indexación"'
-  ]));
-  
-  add(c,mkInfoBox('rgba(59,130,246,.08)','rgba(59,130,246,.25)','<p style="color:#3b82f6;font-size:13px;margin:0">🎉 <strong>¡Felicidades!</strong> Si has llegado hasta aquí, tienes una web 100% funcional, legal, alojada gratis en Vercel y optimizada para SEO.</p>'));
 }
+
 function phaseContent8(c){
-  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Oficializar tu web ante Google: Verificar la propiedad del dominio, enviar el mapa del sitio y <strong style="color:#f59e0b">solicitar la indexación</strong> para aparecer en búsquedas.'));
-
-  add(c,mkSectionTitle('1️⃣ Verificación de Propiedad (DNS)'),mkStepList([
-    'Accede a <a href="https://search.google.com/search-console" target="_blank" style="color:#60a5fa;text-decoration:underline">Google Search Console</a> e inicia sesión.',
-    'Selecciona el tipo de propiedad: <strong>Dominio</strong> (la opción de la izquierda).',
-    'Introduce tu dominio sin https ni www (ej: <code>tusitio.com</code>).',
-    'Copia el registro <strong>TXT</strong> que te proporciona Google.',
-    'Ve a <strong>Cloudflare</strong> > Selecciona tu dominio > DNS > <strong>Add record</strong>.',
-    'Type: <strong>TXT</strong> | Name: <strong>@</strong> | Content: <strong>[Pega el código de Google]</strong>.',
-    'Guarda en Cloudflare, espera 1 minuto y pulsa <strong>VERIFICAR</strong> en Search Console.'
+  add(c,mkSectionTitle('🎯 Objetivo'),mkParagraph('Oficializar tu web ante Google y <strong style="color:#f59e0b">solicitar indexación</strong>.'));
+  add(c,mkSectionTitle('1️⃣ Verificación de Propiedad'),mkStepList([
+    'Entra a Google Search Console > Propiedad "Dominio"',
+    'Copia el registro TXT',
+    'Ve a Cloudflare > DNS > Add Record (TXT)',
+    'Espera 1 min y verifica en GSC'
   ]));
-
   add(c,mkSectionTitle('2️⃣ Enviar Sitemap'),mkStepList([
-    'En el panel de Search Console, ve al menú lateral: <strong>Sitemaps</strong>.',
-    'En la casilla "Añadir un sitemap nuevo", escribe: <code style="color:#f59e0b">sitemap.xml</code>',
-    'Pulsa <strong>ENVIAR</strong>.',
-    'Verifica que en la columna "Estado" aparezca <span style="color:#22c55e">Correcto</span>. (Si da error, espera 10 min y reintenta).'
+    'En GSC > Sitemaps',
+    'Escribe "sitemap.xml" y envía',
+    'Verifica estado "Correcto"'
   ]));
-
-  add(c,mkSectionTitle('3️⃣ Solicitar Indexación Manual'),mkStepList([
-    'En la barra de búsqueda superior de Search Console, pega tu URL exacta: <code style="color:#cbd5e1">https://tusitio.com/</code>',
-    'Pulsa Enter. Google te dirá "La URL no está en Google".',
-    'Haz clic en el botón gris: <strong>SOLICITAR INDEXACIÓN</strong>.',
-    'Espera (puede tardar 1-2 minutos).',
-    'Repite el proceso con tus URLs más importantes si lo deseas.'
+  add(c,mkSectionTitle('3️⃣ Solicitar Indexación'),mkStepList([
+    'Pega tu URL en la barra superior de GSC',
+    'Dale a "Solicitar Indexación"'
   ]));
+  add(c,mkInfoBox('rgba(34,197,94,.08)','rgba(34,197,94,.25)','<p style="color:#22c55e;font-size:14px;font-weight:700;margin:0">🎉 ¡WEB COMPLETADA!</p><p style="color:#94a3b8;font-size:13px;margin-top:8px">Has creado, validado, desarrollado, legalizado y publicado un activo digital.</p>'));
+}
 
-  add(c,mkInfoBox('rgba(34,197,94,.08)','rgba(34,197,94,.25)','<p style="color:#22c55e;font-size:14px;font-weight:700;margin:0">🎉 ¡CICLO COMPLETO!</p><p style="color:#94a3b8;font-size:13px;margin-top:8px;line-height:1.6">Has pasado de una idea a una web publicada, legal y enviada a Google. Los primeros resultados suelen aparecer en 24-48 horas.</p>'));
-}  
+var phaseRenderers=[phaseContent1,phaseContent2,phaseContent3,phaseContent4,phaseContent5,phaseContent6,phaseContent7,phaseContent8];
 
-var phaseRenderers=[phaseContent1,phaseContent2,phaseContent3,phaseContent4,phaseContent5,phaseContent6,phaseContent7];
-
-// ══════════════════════ SHOW PHASE ══════════════════════
+// ══════════════════════ CORE ENGINE ══════════════════════
 function showPhase(id){
   var phase=PHASES.find(function(p){return p.id===id});
   var done=completed.indexOf(id)!==-1;
@@ -531,19 +406,18 @@ function showPhase(id){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ══════════════════════ RENDER MAP ══════════════════════
 function renderMap(){
   var app=document.getElementById('app');
   app.innerHTML='';
   var allDone=completed.length===PHASES.length;
   var xp=getXP(),pct=getPct(),lv=getLevel();
 
-  // Hero (static HTML, no event listeners needed)
+  // Hero
   var hero=el('div',{cls:'hero'});
-  hero.innerHTML='<div class="hero-grid"></div><div class="hero-inner"><div class="hero-tag mono">PROFESSIONAL v2</div><h1 class="hero-title">Nichos SEO de Calculadoras</h1><p style="font-size:clamp(15px,2.5vw,18px);color:#64748b;margin-bottom:36px;line-height:1.6">De <strong style="color:#f59e0b">IDEA</strong> a <strong style="color:#22c55e">SITIO PUBLICADO</strong> en 2.5-3 Horas</p><div style="max-width:420px;margin:0 auto"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px"><span class="mono" style="color:#f59e0b;font-weight:700;font-size:14px;'+(completed.length>0?'animation:glow 2s infinite':'')+'">LVL: '+lv+'</span><span class="mono" style="color:#64748b;font-size:13px">'+xp+'/'+TXP+' XP</span></div><div style="height:10px;background:rgba(255,255,255,.04);border-radius:5px;border:1px solid rgba(255,255,255,.06);overflow:hidden"><div style="height:100%;width:'+pct+'%;border-radius:5px;transition:width .8s cubic-bezier(.22,1,.36,1);'+(pct===100?'background:linear-gradient(90deg,#22c55e,#16a34a)':'background:linear-gradient(90deg,#f59e0b,#ef4444,#ec4899);box-shadow:0 0 12px rgba(245,158,11,.3)')+'"></div></div><div class="mono" style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:#475569"><span>'+completed.length+'/'+PHASES.length+' fases</span><span>'+pct+'%</span></div></div>'+(completed.length>0?'<div style="margin-top:20px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap">'+completed.map(function(id){var p=PHASES.find(function(x){return x.id===id});return '<div class="mono" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:4px 12px;font-size:11px;color:#f59e0b;font-weight:700">'+p.bi+' '+p.badge+'</div>'}).join('')+'</div>':'')+'</div>';
+  hero.innerHTML='<div class="hero-grid"></div><div class="hero-inner"><div class="hero-tag mono">PROFESSIONAL v3.0</div><h1 class="hero-title">SOP: Web de Calculadoras SEO</h1><p style="font-size:clamp(15px,2.5vw,18px);color:#64748b;margin-bottom:36px;line-height:1.6">De <strong style="color:#f59e0b">IDEA</strong> a <strong style="color:#22c55e">INDEXACIÓN</strong> en 8 pasos estratégicos.</p><div style="max-width:420px;margin:0 auto"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px"><span class="mono" style="color:#f59e0b;font-weight:700;font-size:14px;'+(completed.length>0?'animation:glow 2s infinite':'')+'">LVL: '+lv+'</span><span class="mono" style="color:#64748b;font-size:13px">'+xp+'/'+TXP+' XP</span></div><div style="height:10px;background:rgba(255,255,255,.04);border-radius:5px;border:1px solid rgba(255,255,255,.06);overflow:hidden"><div style="height:100%;width:'+pct+'%;border-radius:5px;transition:width .8s cubic-bezier(.22,1,.36,1);'+(pct===100?'background:linear-gradient(90deg,#22c55e,#16a34a)':'background:linear-gradient(90deg,#f59e0b,#ef4444,#ec4899);box-shadow:0 0 12px rgba(245,158,11,.3)')+'"></div></div><div class="mono" style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:#475569"><span>'+completed.length+'/'+PHASES.length+' fases</span><span>'+pct+'%</span></div></div></div>';
   app.appendChild(hero);
 
-  // Phase list — using DOM methods to preserve onclick
+  // Map List
   var wrap=el('div',{css:{maxWidth:'680px',margin:'0 auto',padding:'40px 20px 80px'}});
 
   PHASES.forEach(function(phase,idx){
@@ -566,17 +440,12 @@ function renderMap(){
     wrap.appendChild(row);
   });
 
-  // Summary or final — also using DOM methods
   if(allDone){
     var fin=el('div',{css:{marginTop:'48px',padding:'44px 32px',background:'linear-gradient(145deg,rgba(34,197,94,.06),rgba(245,158,11,.04))',border:'2px solid rgba(34,197,94,.2)',borderRadius:'24px',textAlign:'center',animation:'fadeIn .6s'}});
-    fin.innerHTML='<div style="font-size:60px;margin-bottom:16px">🏆</div><h2 class="mono" style="font-size:28px;font-weight:800;margin-bottom:8px;background:linear-gradient(135deg,#22c55e,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">¡MISIÓN COMPLETA!</h2><p style="color:#94a3b8;font-size:15px;margin-bottom:32px">Las 7 fases completadas. Tu sitio está listo.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:32px">'+["Investigación","100+ Keywords","URLs creadas","SEO perfecto","Legal completo","Publicado"].map(function(l){return '<div style="background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.12);border-radius:10px;padding:12px;font-size:12px;color:#4ade80;font-weight:600">✅ '+l+'</div>'}).join('')+'</div><h3 class="mono" style="color:#e2e8f0;font-size:16px;margin-bottom:14px">📈 Próximos Pasos</h3><div style="text-align:left;max-width:420px;margin:0 auto;color:#94a3b8;font-size:13px;line-height:2.4"><div><strong style="color:#f59e0b">Semana 1:</strong> Monitorea Google Analytics</div><div><strong style="color:#f59e0b">Semana 2-4:</strong> Crea 2-3 backlinks</div><div><strong style="color:#f59e0b">Mes 1-2:</strong> Primeros visitantes</div><div><strong style="color:#f59e0b">Mes 3:</strong> Primeros ingresos</div><div><strong style="color:#f59e0b">Mes 6+:</strong> Ingresos pasivos recurrentes</div></div><div style="margin-top:28px;padding:20px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);border-radius:14px"><h4 class="mono" style="color:#f59e0b;font-size:14px;margin-bottom:12px">📊 Estimación de Ingresos</h4><div style="color:#94a3b8;font-size:13px;line-height:2">Mes 1-2: <strong style="color:#e2e8f0">50-300 visitantes</strong><br>Mes 3: <strong style="color:#e2e8f0">500-2,000</strong><br>Mes 6: <strong style="color:#e2e8f0">2,000-10,000+/mes</strong><br>Ingresos: <strong style="color:#22c55e">EUR 300-5,000+/mes</strong></div></div><p style="color:#64748b;font-size:14px;margin-top:28px;font-style:italic">Tu viaje empieza ahora. 🚀</p>';
-    var resetBtn=el('button',{css:{marginTop:'20px',background:'rgba(255,255,255,.06)',border:'1px solid rgba(255,255,255,.1)',color:'#64748b',padding:'10px 24px',borderRadius:'10px',cursor:'pointer',fontSize:'12px',fontFamily:'inherit'},text:'↺ Reiniciar progreso',onclick:function(){completed=[];qaChecks={};save();renderMap()}});
+    fin.innerHTML='<div style="font-size:60px;margin-bottom:16px">🏆</div><h2 class="mono" style="font-size:28px;font-weight:800;margin-bottom:8px;background:linear-gradient(135deg,#22c55e,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">¡PROYECTO TERMINADO!</h2><p style="color:#94a3b8;font-size:15px;margin-bottom:32px">Tu web está online, legal y en manos de Google.</p><div style="text-align:left;max-width:420px;margin:0 auto;color:#94a3b8;font-size:13px;line-height:2.4"><div><strong style="color:#f59e0b">Next Step:</strong> Crear backlinks de calidad.</div><div><strong style="color:#f59e0b">Next Step:</strong> Crear contenido recurrente.</div><div><strong style="color:#f59e0b">Next Step:</strong> Monitorizar keywords.</div></div>';
+    var resetBtn=el('button',{css:{marginTop:'20px',background:'rgba(255,255,255,.06)',border:'1px solid rgba(255,255,255,.1)',color:'#64748b',padding:'10px 24px',borderRadius:'10px',cursor:'pointer',fontSize:'12px',fontFamily:'inherit'},text:'↺ Iniciar nuevo proyecto',onclick:function(){completed=[];qaChecks={};save();renderMap()}});
     fin.appendChild(resetBtn);
     wrap.appendChild(fin);
-  } else {
-    var summary=el('div',{css:{marginTop:'40px',background:'rgba(255,255,255,.02)',border:'1px solid rgba(255,255,255,.06)',borderRadius:'14px',padding:'24px'}});
-    summary.innerHTML='<h3 class="mono" style="color:#94a3b8;font-size:14px;margin-bottom:16px">📊 Timeline Estimado</h3><div style="display:grid;grid-template-columns:1fr auto;gap:8px 20px;font-size:13px"><span style="color:#64748b">Mínimo (5 URLs)</span><span class="mono" style="color:#e2e8f0">2-2.5 horas</span><span style="color:#64748b">Estándar (10 URLs)</span><span class="mono" style="color:#e2e8f0">2.5-3.5 horas</span><span style="color:#64748b">Extenso (20+ URLs)</span><span class="mono" style="color:#e2e8f0">4+ horas</span></div>';
-    wrap.appendChild(summary);
   }
 
   app.appendChild(wrap);
